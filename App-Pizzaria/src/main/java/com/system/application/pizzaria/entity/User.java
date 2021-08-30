@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioDomainEntity {
+public class User {
 
     private String nome;
 }
