@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_users")
+@Table(name = "TB_USERS")
 public class UserModel {
 
     @Id

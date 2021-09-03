@@ -14,10 +14,10 @@ public enum StatusPedido {
     REEMBOLSADO(7,"Pedido Reembolsado, valor devolvido ao comprador");
 
     private final String descricao;
-    private final Integer code;
+    private final Integer codigo;
 
     StatusPedido(int code, String descricao) {
-        this.code = code;
+        this.codigo = code;
         this.descricao = descricao;
     }
 }
