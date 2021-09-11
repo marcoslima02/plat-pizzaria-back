@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @Getter
-public abstract class BebidaVM {
+public class BebidaVM {
 
     private Integer id;
 

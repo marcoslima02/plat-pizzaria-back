@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-public abstract class Endereco {
+public class Endereco {
 
     private Integer id;
 
