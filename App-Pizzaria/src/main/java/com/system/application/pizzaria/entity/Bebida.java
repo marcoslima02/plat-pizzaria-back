@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 
 @Getter
-public abstract class Bebida {
+public class Bebida {
 
     private Integer id;
 
