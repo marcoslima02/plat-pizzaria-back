@@ -1,4 +1,23 @@
 package com.system.application.pizzaria.viewmodel;
 
-public class BebidaVM {
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Getter
+public abstract class BebidaVM {
+
+    private Integer id;
+
+    @Setter
+    private String nome;
+
+    @Setter
+    private Integer quantidade;
+
+    @Setter
+    private BigDecimal preco;
+
+
 }
