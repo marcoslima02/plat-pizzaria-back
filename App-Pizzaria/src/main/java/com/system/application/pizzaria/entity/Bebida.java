@@ -20,6 +20,4 @@ public abstract class Bebida {
     @Setter
     private BigDecimal preco;
 
-
-
 }

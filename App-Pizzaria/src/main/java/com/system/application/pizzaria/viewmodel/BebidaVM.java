@@ -19,5 +19,4 @@ public abstract class BebidaVM {
     @Setter
     private BigDecimal preco;
 
-
 }

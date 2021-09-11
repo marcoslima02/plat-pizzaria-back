@@ -18,7 +18,7 @@ public class BebidaModel {
 
     @Getter
     @Setter
-    @Column(name = "NOME", nullable = false, columnDefinition = "STRING(100)")
+    @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nome;
 
     @Getter
@@ -28,7 +28,7 @@ public class BebidaModel {
 
     @Getter
     @Setter
-    @Column(name = "PRECO", nullable = false, columnDefinition = "INTEGER")
+    @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
     private BigDecimal preco;
 
 }
