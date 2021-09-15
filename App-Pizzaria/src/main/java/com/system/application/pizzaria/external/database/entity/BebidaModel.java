@@ -6,29 +6,27 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "TB_BEBIBA")
+@Table(name = "TB_BEBIDA")
 public class BebidaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private long id;
+    @Column(name = "ID")
+    private long idBebidaModel;
 
-    @Getter
-    @Setter
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
-    private String nome;
+    private String nomeBebidaModel;
 
-    @Getter
-    @Setter
     @Column(name = "QUANTIDADE", nullable = false, columnDefinition = "INTEGER")
-    private Integer quantidade;
+    private Integer quantidadeBebidaModel;
 
-    @Getter
-    @Setter
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
-    private BigDecimal preco;
+    private BigDecimal precoBebidaModel;
+
+    @ManyToOne
+    private PedidoModel pedidoModel;
 
 }

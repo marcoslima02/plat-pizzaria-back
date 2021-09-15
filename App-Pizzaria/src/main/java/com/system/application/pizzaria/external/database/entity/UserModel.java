@@ -5,38 +5,29 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "TB_USERS")
 public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private long id;
+    @Column(name = "ID")
+    private long idUserModel;
 
-    @Getter
-    @Setter
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
-    private String nome;
+    private String nomeUserModel;
 
-    @Getter
-    @Setter
     @Column(name = "CPF", nullable = false, columnDefinition = "VARCHAR(14)")
-    private String cpf;
+    private String cpfUserModel;
 
-    @Getter
-    @Setter
     @Column(name = "APELIDO", columnDefinition = "VARCHAR(20)")
-    private String apelido;
+    private String apelidoUserModel;
 
-    @Getter
-    @Setter
     @Column(name = "SENHA", nullable = false, columnDefinition = "VARCHAR(50)")
-    private String senha;
+    private String senhaUserModel;
 
-    @Getter
-    @Setter
     @Column(name = "TELEFONE", nullable = false, columnDefinition = "VARCHAR(25)")
-    private String telefone;
+    private String telefoneUserModel;
 }

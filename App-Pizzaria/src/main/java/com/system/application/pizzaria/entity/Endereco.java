@@ -4,26 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public class Endereco {
 
-    private Integer id;
-
-    @Setter
-    private String cep;
-
-    @Setter
-    private String rua;
-
-    @Setter
-    private Integer numero;
-
-    @Setter
-    private String complemento;
-
-    @Setter
-    private String bairro;
-
-    @Setter
-    private String cidade;
+    private Integer idEndereco;
+    private String cepEndereco;
+    private String ruaEndereco;
+    private Integer numeroEndereco;
+    private String complementoEndereco;
+    private String bairroEndereco;
+    private String cidadeEndereco;
 
 }

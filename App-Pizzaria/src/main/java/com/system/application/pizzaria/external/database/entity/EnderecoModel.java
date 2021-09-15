@@ -7,41 +7,31 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_ENDERECO")
+@Getter
+@Setter
 public class EnderecoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
+    @Column(name = "ID")
     private long id;
 
-    @Getter
-    @Setter
     @Column(name = "CEP", nullable = false, columnDefinition = "VARCHAR(9)")
-    private String cep;
+    private String cepEnderecoModel;
 
-    @Getter
-    @Setter
     @Column(name = "RUA", nullable = false, columnDefinition = "VARCHAR(100)")
-    private String rua;
+    private String ruaEnderecoModel;
 
-    @Getter
-    @Setter
     @Column(name = "NUMERO", nullable = false, columnDefinition = "INTEGER")
-    private Integer numero;
+    private Integer numeroEnderecoModel;
 
-    @Getter
-    @Setter
     @Column(name = "COMPLEMENTO", nullable = false, columnDefinition = "VARCHAR(100)")
-    private String complemento;
+    private String complementoEnderecoModel;
 
-    @Getter
-    @Setter
     @Column(name = "BAIRRO", nullable = false, columnDefinition = "VARCHAR(50)")
-    private String bairro;
+    private String bairroEnderecoModel;
 
-    @Getter
-    @Setter@Column(name = "CIDADE", nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(name = "CIDADE", nullable = false, columnDefinition = "VARCHAR(50)")
     private String cidade;
 
 }

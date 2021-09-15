@@ -6,20 +6,20 @@ import lombok.Setter;
 @Getter
 public abstract class User {
 
-    private Integer id;
+    private Integer idUser;
 
     @Setter
-    private String nome;
+    private String nomeUser;
 
     @Setter
-    private String cpf;
+    private String cpfUser;
 
     @Setter
-    private String apelido;
+    private String apelidoUser;
 
     @Setter
-    private String senha;
+    private String senhaUser;
 
     @Setter
-    private String telefone;
+    private String telefoneUser;
 }

@@ -7,17 +7,12 @@ import java.math.BigDecimal;
 
 
 @Getter
+@Setter
 public class Bebida {
 
-    private Integer id;
-
-    @Setter
-    private String nome;
-
-    @Setter
-    private Integer quantidade;
-
-    @Setter
-    private BigDecimal preco;
+    private Integer idBebida;
+    private String nomeBebida;
+    private Integer quantidadeBebida;
+    private BigDecimal precoBebida;
 
 }

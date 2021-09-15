@@ -1,54 +1,48 @@
 package com.system.application.pizzaria.external.database.entity;
 
+import com.system.application.pizzaria.entity.Bebida;
+import com.system.application.pizzaria.entity.enums.StatusPedido;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_PEDIDO")
+@Getter
+@Setter
 public class PedidoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private long id;
+    @Column(name = "ID")
+    private long idPedidoModel;
 
-    @Getter
-    @Setter
-    @Column(name = "STATUS", nullable = false, columnDefinition = "VARCHAR(25)")
-    private String status;
+    @Column(name = "STATUS", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusPedido statusPedidoModel = StatusPedido.AGUARDANDO;
 
-    @Getter
-    @Setter
-    @Column(name = "PIZZA", nullable = true, columnDefinition = "VARCHAR(100)")
-    private String pizza;
+    @Column(name = "PIZZAS")
+    @OneToMany(mappedBy = "pedidoModel")
+    private Set<PizzaModel> pizzaPedidoModel;
 
-    @Getter
-    @Setter
-    @Column(name = "BEBIDA", nullable = true, columnDefinition = "VARCHAR(100)")
-    private String bebida;
+    @Column(name = "BEBIDAS")
+    @OneToMany(mappedBy = "pedidoModel")
+    private Set<BebidaModel> bebidaPedidoModel;
 
-    @Getter
-    @Setter
-    @Column(name = "HORARIOPEDIDO", nullable = false, columnDefinition = "VARCHAR(9)")
-    private String horarioPedido;
+    @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "VARCHAR(9)")
+    private String horarioPedidoModel;
 
-    @Getter
-    @Setter
-    @Column(name = "HORARIOESTIMADO", nullable = false, columnDefinition = "VARCHAR(9)")
-    private String horarioEstimado;
+    @Column(name = "HORARIO_ESTIMADO", nullable = false, columnDefinition = "VARCHAR(9)")
+    private String horarioEstimadoPedidoModel;
 
-    @Getter
-    @Setter
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
-    private BigDecimal preco;
+    private BigDecimal precoPedidoModel;
 
-    @Getter
-    @Setter
     @Column(name = "COMENTARIO", nullable = true, columnDefinition = "VARCHAR(300)")
-    private String comentario;
+    private String comentarioPedidoModel;
 
 }

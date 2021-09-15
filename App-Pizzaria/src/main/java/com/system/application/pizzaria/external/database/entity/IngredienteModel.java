@@ -8,26 +8,24 @@ import java.math.BigDecimal;
 
 @Entity
 @Table (name = "TB_INGREDIENTE")
+@Getter
+@Setter
 public class IngredienteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private long id;
+    @Column(name = "ID")
+    private long idIngredienteModel;
 
-    @Getter
-    @Setter
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
-    private String nome;
+    private String nomeIngredienteModel;
 
-    @Getter
-    @Setter
     @Column(name = "QUANTIDADE", nullable = false, columnDefinition = "INTEGER")
-    private Integer quantidade;
+    private Integer quantidadeIngredienteModel;
 
-    @Getter
-    @Setter
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
-    private BigDecimal preco;
+    private BigDecimal precoIngredienteModel;
+
+    @ManyToOne
+    private PizzaModel pizzaModel;
 }
