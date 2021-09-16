@@ -4,22 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public abstract class UserVM {
 
-    private Integer idUserVM;
-
-    @Setter
-    private String nomeUserVM;
-
-    @Setter
-    private String cpfUserVM;
-
-    @Setter
-    private String apelidoUserVM;
-
-    @Setter
-    private String senhaUserVM;
-
-    @Setter
-    private String telefoneUserVM;
+    private String nome;
+    private String cpf;
+    private String apelido;
+    private String senha;
+    private String telefone;
 }

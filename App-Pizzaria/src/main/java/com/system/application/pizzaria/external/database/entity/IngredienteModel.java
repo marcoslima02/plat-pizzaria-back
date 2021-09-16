@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table (name = "TB_INGREDIENTE")
+@Table (name = "TB_INGREDIENTES")
 @Getter
 @Setter
 public class IngredienteModel {
@@ -15,7 +15,7 @@ public class IngredienteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long idIngredienteModel;
+    private Integer idIngredienteModel;
 
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nomeIngredienteModel;

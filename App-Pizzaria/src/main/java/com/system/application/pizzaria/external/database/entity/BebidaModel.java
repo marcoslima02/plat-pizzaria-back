@@ -9,13 +9,13 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "TB_BEBIDA")
+@Table(name = "TB_BEBIDAS")
 public class BebidaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long idBebidaModel;
+    private Integer idBebidaModel;
 
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nomeBebidaModel;

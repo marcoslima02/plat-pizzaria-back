@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "TB_PEDIDO")
+@Table(name = "TB_PEDIDOS")
 @Getter
 @Setter
 public class PedidoModel {
@@ -19,7 +19,7 @@ public class PedidoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long idPedidoModel;
+    private Integer idPedidoModel;
 
     @Column(name = "STATUS", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -33,10 +33,13 @@ public class PedidoModel {
     @OneToMany(mappedBy = "pedidoModel")
     private Set<BebidaModel> bebidaPedidoModel;
 
-    @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "VARCHAR(9)")
+    @ManyToOne
+    private AtendenteModel atendenteModel;
+
+    @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "DATETIME")
     private String horarioPedidoModel;
 
-    @Column(name = "HORARIO_ESTIMADO", nullable = false, columnDefinition = "VARCHAR(9)")
+    @Column(name = "HORARIO_ESTIMADO", nullable = false, columnDefinition = "DATETIME")
     private String horarioEstimadoPedidoModel;
 
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")

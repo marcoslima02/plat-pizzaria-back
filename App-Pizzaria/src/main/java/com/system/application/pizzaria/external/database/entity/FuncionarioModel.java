@@ -6,20 +6,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
-@Entity
-@Table(name="TB_Funcionarios")
-public class FuncionarioModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer idFuncionarioModel;
+public abstract class FuncionarioModel extends UserModel{
 
-    @Column(name = "HORARIO_TRABALHO", nullable = false, columnDefinition = "DATE")
-    private LocalDate horarioTrabalhoFuncionarioModel;
-
-    @Column(name = "SALRIO", nullable = false, columnDefinition = "DECIMAL")
-    private BigDecimal salarioFuncionarioModel;
+    private LocalDateTime horarioTrabalho;
+    private BigDecimal salario;
 }

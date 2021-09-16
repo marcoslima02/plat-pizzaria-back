@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TB_ENDERECO")
+@Table(name = "TB_ENDERECOS")
 @Getter
 @Setter
 public class EnderecoModel {
@@ -14,7 +14,7 @@ public class EnderecoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Integer id;
 
     @Column(name = "CEP", nullable = false, columnDefinition = "VARCHAR(9)")
     private String cepEnderecoModel;

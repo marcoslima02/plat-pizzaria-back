@@ -5,15 +5,12 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public abstract class Funcionario extends User {
 
-    private Integer idFuncionario;
-
-    @Setter
-    private LocalDate horarioTrabalho;
-
-    @Setter
+    private LocalDateTime horarioTrabalho;
     private BigDecimal salario;
 }
