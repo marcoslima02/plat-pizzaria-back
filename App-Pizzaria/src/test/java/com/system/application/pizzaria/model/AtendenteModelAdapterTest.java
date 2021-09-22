@@ -37,12 +37,10 @@ public class AtendenteModelAdapterTest {
     }
 
     @Test
-    public void shouldExceptionWithModelNull() {
-        //Arrange
-        AtendenteModel atendenteModel = null;
+    public void shouldExceptionWithModelNullTest() {
         //Act
         try {
-            AtendenteModelAdapter.modelToEntity(atendenteModel);
+            AtendenteModelAdapter.modelToEntity(null);
         } catch (Exception e) {
             //Assert
             assertEquals("Adapter modelToEntity Atendente is Null", e.getMessage());
@@ -50,12 +48,10 @@ public class AtendenteModelAdapterTest {
     }
 
     @Test
-    public void shouldExceptionWithEntityNull() {
-        //Arrange
-        Atendente atendenteEntity = null;
+    public void shouldExceptionWithEntityNullTest() {
         //Act
         try {
-            AtendenteModelAdapter.entityToModel(atendenteEntity);
+            AtendenteModelAdapter.entityToModel(null);
         } catch (Exception e) {
             //Assert
             assertEquals("Adapter entityToModel Atendente is Null", e.getMessage());
@@ -67,7 +63,7 @@ public class AtendenteModelAdapterTest {
         atendente.setIdAtendente(9);
         atendente.setNome("Sarina Briones");
         atendente.setCpf("123.456.789.-12");
-        atendente.setSenha("Sarinita");
+        atendente.setApelido("Sarinita");
         atendente.setSenha("sari@123;");
         atendente.setTelefone("+55 (12) 9 9701-4672");
         atendente.setHorarioTrabalho(LocalDateTime.of(2000, 05, 20, 23, 40));
@@ -81,7 +77,7 @@ public class AtendenteModelAdapterTest {
         atendenteModel.setIdAtendenteModel(9);
         atendenteModel.setNome("Sarina Briones");
         atendenteModel.setCpf("123.456.789.-12");
-        atendenteModel.setSenha("Sarinita");
+        atendenteModel.setApelido("Sarinita");
         atendenteModel.setSenha("sari@123;");
         atendenteModel.setTelefone("+55 (12) 9 9701-4672");
         atendenteModel.setHorarioTrabalho(LocalDateTime.of(2000, 05, 20, 23, 40));

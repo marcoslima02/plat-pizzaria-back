@@ -5,8 +5,7 @@ import lombok.Getter;
 
 import static com.system.application.pizzaria.entity.enums.ErrorTypeApplication.ERRO_ATENDENTE;
 
-
-public class AtendenteException extends RuntimeException{
+public class EnderecoException extends RuntimeException{
 
     @Getter
     private final ErrorType errorType;
@@ -14,7 +13,7 @@ public class AtendenteException extends RuntimeException{
     @Getter
     private final String message;
 
-    public AtendenteException(ErrorType errorType, String message) {
+    public EnderecoException(EnderecoException.ErrorType errorType, String message) {
         this.errorType = errorType;
         this.message = message;
     }

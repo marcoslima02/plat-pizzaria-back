@@ -1,20 +1,22 @@
 package com.system.application.pizzaria.external.database.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "TB_ENDERECOS")
 @Getter
 @Setter
+@EqualsAndHashCode
+@Entity
+@Table(name = "TB_ENDERECOS")
 public class EnderecoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer id;
+    private Integer idEndereco;
 
     @Column(name = "CEP", nullable = false, columnDefinition = "VARCHAR(9)")
     private String cepEnderecoModel;
@@ -32,6 +34,6 @@ public class EnderecoModel {
     private String bairroEnderecoModel;
 
     @Column(name = "CIDADE", nullable = false, columnDefinition = "VARCHAR(50)")
-    private String cidade;
+    private String cidadeEnderecoModel;
 
 }

@@ -2,14 +2,12 @@ package com.system.application.pizzaria.external.database.entity.adapter;
 
 import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.entity.Pedido;
-import com.system.application.pizzaria.entity.enums.ErrorTypeApplication;
 import com.system.application.pizzaria.exception.AtendenteException;
 import com.system.application.pizzaria.external.database.entity.AtendenteModel;
 import com.system.application.pizzaria.util.ConfigUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class AtendenteModelAdapter {
 
