@@ -1,10 +1,8 @@
 package com.system.application.pizzaria.external.database.entity;
 
-import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.enums.StatusPedido;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

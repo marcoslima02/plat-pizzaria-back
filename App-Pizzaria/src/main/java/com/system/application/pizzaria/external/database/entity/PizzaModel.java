@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
@@ -18,6 +19,9 @@ public class PizzaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer idPizzaModel;
+
+    @Column(name = "PRECO_PIZZA", nullable = false, columnDefinition = "DOUBLE")
+    private BigDecimal precoPizzaModel;
 
     @Column(name = "INGREDIENTES")
     @OneToMany(mappedBy = "pizzaModel")

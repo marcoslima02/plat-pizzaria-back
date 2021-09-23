@@ -16,6 +16,7 @@ public class AtendenteModel extends FuncionarioModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer idAtendenteModel;
 
     @OneToMany(mappedBy = "atendenteModel")

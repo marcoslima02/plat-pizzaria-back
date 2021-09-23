@@ -4,6 +4,7 @@ import com.system.application.pizzaria.entity.enums.CategoriaPizza;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -11,6 +12,7 @@ import java.util.List;
 public class PizzaVM {
 
     private Integer idPizzaVM;
+    private BigDecimal precoPizzaVM;
     private List<IngredienteVM> listaIngredientesPizzaVM;
     private CategoriaPizza categoriaPizzaVM;
 }

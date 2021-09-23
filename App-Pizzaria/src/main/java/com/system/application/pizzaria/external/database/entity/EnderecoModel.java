@@ -18,22 +18,22 @@ public class EnderecoModel {
     @Column(name = "ID")
     private Integer idEndereco;
 
-    @Column(name = "CEP", nullable = false, columnDefinition = "VARCHAR(9)")
+    @Column(name = "CEP", columnDefinition = "VARCHAR(9)")
     private String cepEnderecoModel;
 
-    @Column(name = "RUA", nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(name = "RUA", columnDefinition = "VARCHAR(100)")
     private String ruaEnderecoModel;
 
-    @Column(name = "NUMERO", nullable = false, columnDefinition = "INTEGER")
+    @Column(name = "NUMERO", columnDefinition = "INTEGER")
     private Integer numeroEnderecoModel;
 
-    @Column(name = "COMPLEMENTO", nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(name = "COMPLEMENTO", columnDefinition = "VARCHAR(100)")
     private String complementoEnderecoModel;
 
-    @Column(name = "BAIRRO", nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(name = "BAIRRO", columnDefinition = "VARCHAR(50)")
     private String bairroEnderecoModel;
 
-    @Column(name = "CIDADE", nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(name = "CIDADE", columnDefinition = "VARCHAR(50)")
     private String cidadeEnderecoModel;
 
 }
