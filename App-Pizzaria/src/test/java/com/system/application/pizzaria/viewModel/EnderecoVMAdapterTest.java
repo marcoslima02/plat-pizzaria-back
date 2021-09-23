@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.viewModel;
 
 import com.system.application.pizzaria.entity.Endereco;
+import com.system.application.pizzaria.exception.EnderecoException;
 import com.system.application.pizzaria.viewmodel.EnderecoVM;
 import com.system.application.pizzaria.viewmodel.adapter.EnderecoVMAdapter;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class EnderecoVMAdapterTest {
 
 
     @Test
-    public void shouldAdapterCorrectlyVMToEntityTest() {
+    public void shouldAdapterCorrectlyVMToEntityTest() throws EnderecoException {
         //Arrange
         Endereco enderecoExpected = criaEntidadeEndereco();
         //Act
@@ -24,7 +25,7 @@ public class EnderecoVMAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToVM() {
+    public void shouldAdapterCorrectlyEntityToVM() throws EnderecoException {
         //Arrange
         EnderecoVM enderecoVMExpected = criaEntidadeEnderecoVM();
         //Act

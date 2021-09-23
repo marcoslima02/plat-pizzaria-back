@@ -20,19 +20,4 @@ public class Endereco {
     private String complementoEndereco;
     private String bairroEndereco;
     private String cidadeEndereco;
-
-    public Endereco(EnderecoModel enderecoModel){
-        this.idEndereco = enderecoModel.getIdEndereco();
-        this.cepEndereco = enderecoModel.getCepEnderecoModel();
-        this.ruaEndereco = enderecoModel.getRuaEnderecoModel();
-        this.numeroEndereco = enderecoModel.getNumeroEnderecoModel();
-        this.complementoEndereco = enderecoModel.getComplementoEnderecoModel();
-        this.bairroEndereco = enderecoModel.getBairroEnderecoModel();
-        this.cidadeEndereco = enderecoModel.getCidadeEnderecoModel();
-    }
-    public Endereco(){}
-
-    public static List<Endereco> converter(List<EnderecoModel> enderecoModels){
-        return enderecoModels.stream().map(Endereco::new).collect(Collectors.toList());
-    }
 }

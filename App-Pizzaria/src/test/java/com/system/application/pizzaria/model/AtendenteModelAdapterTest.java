@@ -2,6 +2,7 @@ package com.system.application.pizzaria.model;
 
 
 import com.system.application.pizzaria.entity.Atendente;
+import com.system.application.pizzaria.exception.AtendenteException;
 import com.system.application.pizzaria.external.database.entity.AtendenteModel;
 import com.system.application.pizzaria.external.database.entity.adapter.AtendenteModelAdapter;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class AtendenteModelAdapterTest {
 
     @Test
-    public void shouldAdapterCorrectlyModelToEntityTest() {
+    public void shouldAdapterCorrectlyModelToEntityTest() throws AtendenteException {
         //Arrange
         Atendente atendenteExpected = criaEntidadeAtendente();
         AtendenteModel atendenteModel = criaEntidadeAtendenteModel();
@@ -26,7 +27,7 @@ public class AtendenteModelAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToModelTest() {
+    public void shouldAdapterCorrectlyEntityToModelTest() throws AtendenteException {
         //Arrange
         AtendenteModel atendenteExpected = criaEntidadeAtendenteModel();
         Atendente atendenteEntity = criaEntidadeAtendente();

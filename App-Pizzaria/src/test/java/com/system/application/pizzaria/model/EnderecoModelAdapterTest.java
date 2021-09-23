@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.model;
 
 import com.system.application.pizzaria.entity.Endereco;
+import com.system.application.pizzaria.exception.EnderecoException;
 import com.system.application.pizzaria.external.database.entity.EnderecoModel;
 import com.system.application.pizzaria.external.database.entity.adapter.EnderecoModelAdapter;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class EnderecoModelAdapterTest {
 
 
     @Test
-    public void shouldAdapterCorrectlyModelToEntityTest() {
+    public void shouldAdapterCorrectlyModelToEntityTest() throws EnderecoException {
         //Arrange
         Endereco enderecoExpected = criaEntidadeEndereco();
         //Act
@@ -24,7 +25,7 @@ public class EnderecoModelAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToModel() {
+    public void shouldAdapterCorrectlyEntityToModel() throws EnderecoException {
         //Arrange
         EnderecoModel enderecoModelExpected = criaEntidadeEnderecoModel();
         //Act

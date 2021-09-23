@@ -1,32 +1,12 @@
 package com.system.application.pizzaria.exception;
 
-import com.system.application.pizzaria.entity.enums.ErrorTypeApplication;
-import lombok.Getter;
+import com.system.application.pizzaria.entity.enums.ErrorType;
+import org.springframework.http.HttpStatus;
 
-import static com.system.application.pizzaria.entity.enums.ErrorTypeApplication.ERRO_ATENDENTE;
+import java.util.Date;
 
-public class EnderecoException extends RuntimeException{
-
-    @Getter
-    private final ErrorType errorType;
-
-    @Getter
-    private final String message;
-
-    public EnderecoException(EnderecoException.ErrorType errorType, String message) {
-        this.errorType = errorType;
-        this.message = message;
-    }
-
-    public enum ErrorType{
-        VALIDATIONS(ERRO_ATENDENTE, ERRO_ATENDENTE);
-
-        private final ErrorTypeApplication codigoErro;
-        private final ErrorTypeApplication message;
-
-        ErrorType(ErrorTypeApplication codigoErro, ErrorTypeApplication messageErro) {
-            this.codigoErro = codigoErro;
-            this.message = messageErro;
-        }
+public class EnderecoException extends GenericException {
+    public EnderecoException(ErrorType errorType, String message, Date localDateTime, HttpStatus httpStatus) {
+        super(errorType, message, localDateTime, httpStatus);
     }
 }

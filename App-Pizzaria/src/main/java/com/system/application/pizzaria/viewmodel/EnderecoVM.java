@@ -21,21 +21,4 @@ public class EnderecoVM {
     private String complementoEnderecoVM;
     private String bairroEnderecoVM;
     private String cidadeEnderecoVM;
-
-    public EnderecoVM(Endereco endereco) {
-        this.idEnderecoVM = endereco.getIdEndereco();
-        this.cepEnderecoVM = endereco.getCepEndereco();
-        this.ruaEnderecoVM = endereco.getRuaEndereco();
-        this.numeroEnderecoVM = endereco.getNumeroEndereco();
-        this.complementoEnderecoVM = endereco.getComplementoEndereco();
-        this.bairroEnderecoVM = endereco.getBairroEndereco();
-        this.cidadeEnderecoVM = endereco.getCidadeEndereco();
-    }
-
-    public EnderecoVM() {
-    }
-
-    public static List<EnderecoVM> converter(List<Endereco> enderecos){
-        return enderecos.stream().map(EnderecoVM::new).collect(Collectors.toList());
-    }
 }

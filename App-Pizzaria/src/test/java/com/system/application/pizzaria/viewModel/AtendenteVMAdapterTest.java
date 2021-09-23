@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.viewModel;
 
 import com.system.application.pizzaria.entity.Atendente;
+import com.system.application.pizzaria.exception.AtendenteException;
 import com.system.application.pizzaria.viewmodel.AtendenteVM;
 import com.system.application.pizzaria.viewmodel.adapter.AtendenteVMAdapter;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class AtendenteVMAdapterTest {
     private AtendenteVM atendenteVMToProcess = criaEntidadeAtendenteVM();
 
     @Test
-    public void shouldAdapterCorrectlyEntityToViewModelTest() {
+    public void shouldAdapterCorrectlyEntityToViewModelTest() throws AtendenteException {
         //Arrange
         AtendenteVM atendenteExpected = criaEntidadeAtendenteVM();
         //Act
@@ -26,7 +27,7 @@ public class AtendenteVMAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyViewModelToEntityTest(){
+    public void shouldAdapterCorrectlyViewModelToEntityTest() throws AtendenteException {
         //Arrange
         Atendente atendenteExpected = criaEntidadeAtendente();
         //Act
