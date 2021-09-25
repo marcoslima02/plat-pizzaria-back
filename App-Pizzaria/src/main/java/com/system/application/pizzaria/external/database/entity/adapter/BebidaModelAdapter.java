@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 
 public class BebidaModelAdapter {
-
     public static Bebida modelToEntity(BebidaModel bebidaModel) throws BebidaException {
         Bebida bebida = new Bebida();
         try {

@@ -36,4 +36,7 @@ public class EnderecoModel {
     @Column(name = "CIDADE", columnDefinition = "VARCHAR(50)")
     private String cidadeEnderecoModel;
 
+    @ManyToOne
+    private ClienteModel clienteModelEnderecoModel;
+
 }
