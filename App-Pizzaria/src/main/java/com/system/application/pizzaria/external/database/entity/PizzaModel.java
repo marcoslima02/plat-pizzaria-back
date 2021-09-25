@@ -2,6 +2,7 @@ package com.system.application.pizzaria.external.database.entity;
 
 
 import com.system.application.pizzaria.entity.enums.CategoriaPizza;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 @Table(name = "TB_PIZZAS")
 public class PizzaModel {
 

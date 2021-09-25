@@ -18,9 +18,8 @@ public class PizzaModelAdapter {
         try {
             pizza.setIdPizza(pizzaModel.getIdPizzaModel());
             pizza.setPrecoPizza(pizzaModel.getPrecoPizzaModel());
-            pizza.setListaIngredientesPizza(pizzaModel.getListaIngredientesPizzaModel());
+            //pizza.setListaIngredientesPizza(pizzaModel.getListaIngredientesPizzaModel());
             pizza.setCategoriaPizza(pizzaModel.getCategoriaPizzaModel());
-
             return pizza;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PizzaModel para Pizza");
@@ -29,11 +28,11 @@ public class PizzaModelAdapter {
     }
 
     public static PizzaModel entityToModel(Pizza pizza) throws PizzaException {
+        PizzaModel pizzaModel = new PizzaModel();
         try {
-            PizzaModel pizzaModel = new PizzaModel();
             pizzaModel.setIdPizzaModel(pizza.getIdPizza());
             pizzaModel.setPrecoPizzaModel(pizza.getPrecoPizza());
-            pizzaModel.setListaIngredientesPizzaModel(pizza.getListaIngredientesPizza());
+            //pizzaModel.setListaIngredientesPizzaModel(pizza.getListaIngredientesPizza());
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
 
             return pizzaModel;
@@ -55,7 +54,7 @@ public class PizzaModelAdapter {
         return pizzaModelList;
     }
 
-    public static List<Pizza> modelListToEntityList(List<PizzaModel>pizzaModelList) {
+    public static List<Pizza> modelListToEntityList(List<PizzaModel> pizzaModelList) {
         List<Pizza> pizzaList = new ArrayList<>();
         pizzaModelList.forEach(pizzaModel -> {
             try {

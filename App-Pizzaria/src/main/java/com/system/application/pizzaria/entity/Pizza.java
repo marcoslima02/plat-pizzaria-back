@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.entity;
 
 import com.system.application.pizzaria.entity.enums.CategoriaPizza;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Pizza {
 
     private Integer idPizza;
