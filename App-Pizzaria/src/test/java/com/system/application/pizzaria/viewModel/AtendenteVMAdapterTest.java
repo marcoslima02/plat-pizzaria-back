@@ -73,13 +73,13 @@ public class AtendenteVMAdapterTest {
     public AtendenteVM criaEntidadeAtendenteVM(){
         AtendenteVM atendenteVM = new AtendenteVM();
         atendenteVM.setIdAtendenteVM(9);
-        atendenteVM.setNome("Sarina Briones");
-        atendenteVM.setCpf("123.456.789.-12");
-        atendenteVM.setApelido("Sarinita");
-        atendenteVM.setSenha("sari@123;");
-        atendenteVM.setTelefone("+55 (12) 9 9701-4672");
-        atendenteVM.setHorarioTrabalho(LocalDateTime.of(2000, 05, 20, 23, 40));
-        atendenteVM.setSalario(new BigDecimal("5000"));
+        atendenteVM.setNomeUserVM("Sarina Briones");
+        atendenteVM.setCpfUserVM("123.456.789.-12");
+        atendenteVM.setApelidoUserVM("Sarinita");
+        atendenteVM.setSenhaUserVM("sari@123;");
+        atendenteVM.setTelefoneUserVM("+55 (12) 9 9701-4672");
+        atendenteVM.setHorarioTrabalhoFuncionarioVM(LocalDateTime.of(2000, 05, 20, 23, 40));
+        atendenteVM.setSalarioFuncionarioVM(new BigDecimal("5000"));
 
         return atendenteVM;
     }

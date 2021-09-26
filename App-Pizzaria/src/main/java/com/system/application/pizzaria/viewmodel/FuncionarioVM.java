@@ -11,6 +11,6 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class FuncionarioVM extends UserVM{
 
-    private LocalDateTime horarioTrabalho;
-    private BigDecimal Salario;
+    private LocalDateTime horarioTrabalhoFuncionarioVM;
+    private BigDecimal SalarioFuncionarioVM;
 }
