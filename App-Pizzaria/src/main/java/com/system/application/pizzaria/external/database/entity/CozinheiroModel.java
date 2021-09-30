@@ -1,12 +1,11 @@
 package com.system.application.pizzaria.external.database.entity;
 
-import com.system.application.pizzaria.entity.Ingrediente;
-import com.system.application.pizzaria.entity.Pedido;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,11 +19,11 @@ public class CozinheiroModel {
     private Integer idCozinheiroModel;
 
     @Column(name = "PIZZAS")
-    @OneToMany(mappedBy = "CozinheiroModel")
-    private set<PedidoModel> listaPizzaPedidoModel;
+    @OneToMany(mappedBy = "cozinheiroModel")
+    private Set<PedidoModel> listaPizzaPedidoModel;
 
     @Column(name = "INGREDIENTES")
-    @OneToMany(mappedBy = "CozinheiroModel")
-    private set<IngredienteModel> listaIngredientesPizzaModel;
+    @OneToMany(mappedBy = "cozinheiroModel")
+    private Set<IngredienteModel> listaIngredientesPizzaModel;
 
 }
