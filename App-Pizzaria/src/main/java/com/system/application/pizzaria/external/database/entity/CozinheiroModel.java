@@ -20,11 +20,11 @@ public class CozinheiroModel {
     private Integer idCozinheiroModel;
 
     @Column(name = "PIZZAS")
-    @OneToMany(mappedBy = "cozinheiroModel")
+    @OneToMany(mappedBy = "CozinheiroModel")
     private set<PedidoModel> listaPizzaPedidoModel;
 
     @Column(name = "INGREDIENTES")
-    @OneToMany(mappedBy = "cozinheiroModel")
+    @OneToMany(mappedBy = "CozinheiroModel")
     private set<IngredienteModel> listaIngredientesPizzaModel;
 
 }
