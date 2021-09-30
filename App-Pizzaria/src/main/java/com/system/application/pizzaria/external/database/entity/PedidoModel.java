@@ -34,6 +34,9 @@ public class PedidoModel {
     @ManyToOne
     private AtendenteModel atendenteModel;
 
+    @ManyToOne
+    private CozinheiroModel cozinheiroModel;
+
     @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "DATETIME")
     private String horarioPedidoModel;
 

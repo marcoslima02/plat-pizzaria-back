@@ -1,7 +1,6 @@
 package com.system.application.pizzaria.endpoint;
 
 import com.system.application.pizzaria.entity.Endereco;
-import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.EnderecoException;
 import com.system.application.pizzaria.usecase.endereco.GetAllEndereco;
 import com.system.application.pizzaria.usecase.endereco.GetEnderecoById;
@@ -13,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @RestController

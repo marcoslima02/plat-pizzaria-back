@@ -1,7 +1,6 @@
 package com.system.application.pizzaria.viewmodel;
 
-import com.system.application.pizzaria.entity.Ingrediente;
-import com.system.application.pizzaria.entity.Pedido;
+import com.system.application.pizzaria.external.database.entity.FuncionarioModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,11 +8,9 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CozinheiroVM {
+public class CozinheiroVM extends FuncionarioModel {
 
     private Integer idCozinheiroVM;
-    private List<Pedido> listaPizzaPedidoVM;
-    private List<Ingrediente> listaIngredientesPizzaVM;
-
-
+    private List<PedidoVM> listaPizzaPedidoVM;
+    private List<IngredienteVM> listaIngredientesPizzaVM;
 }
