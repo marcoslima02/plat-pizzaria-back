@@ -7,9 +7,11 @@ import lombok.Setter;
 @Setter
 public abstract class UserVM {
 
-    private String nome;
-    private String cpf;
-    private String apelido;
-    private String senha;
-    private String telefone;
+    private Integer idUserVM;
+    private String nomeVM;
+    private String cpfVM;
+    private String apelidoVM;
+    private String senhaVM;
+    private String telefoneVM;
+
 }

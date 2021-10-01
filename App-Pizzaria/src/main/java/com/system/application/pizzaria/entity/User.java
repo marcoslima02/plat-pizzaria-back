@@ -7,9 +7,11 @@ import lombok.Setter;
 @Setter
 public abstract class User {
 
+    private Integer idUser;
     private String nome;
     private String cpf;
     private String apelido;
     private String senha;
     private String telefone;
+
 }
