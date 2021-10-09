@@ -1,5 +1,6 @@
 package com.system.application.pizzaria.external.database.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @Table (name = "TB_INGREDIENTES")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class IngredienteModel {
 
     @Id
