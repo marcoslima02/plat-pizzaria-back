@@ -7,14 +7,8 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "TB_USER")
+@MappedSuperclass
 public abstract class UserModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer idUserModel;
 
     @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nomeModel;

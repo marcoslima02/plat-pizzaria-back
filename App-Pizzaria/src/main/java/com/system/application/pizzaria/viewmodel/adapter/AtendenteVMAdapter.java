@@ -21,13 +21,13 @@ public class AtendenteVMAdapter {
 
         try {
             atendenteVM.setIdAtendenteVM(atendente.getIdAtendente());
-            atendenteVM.setNomeUserVM(atendente.getNome());
-            atendenteVM.setCpfUserVM(atendente.getCpf());
-            atendenteVM.setApelidoUserVM(atendente.getApelido());
-            atendenteVM.setSenhaUserVM(atendente.getSenha());
-            atendenteVM.setTelefoneUserVM(atendente.getTelefone());
-            atendenteVM.setHorarioTrabalhoFuncionarioVM(atendente.getHorarioTrabalho());
-            atendenteVM.setSalarioFuncionarioVM(atendente.getSalario());
+            atendenteVM.setNomeVM(atendente.getNome());
+            atendenteVM.setCpfVM(atendente.getCpf());
+            atendenteVM.setApelidoVM(atendente.getApelido());
+            atendenteVM.setSenhaVM(atendente.getSenha());
+            atendenteVM.setTelefoneVM(atendente.getTelefone());
+            atendenteVM.setHorarioTrabalhoVM(atendente.getHorarioTrabalho());
+            atendenteVM.setSalarioVM(atendente.getSalario());
 
             //TODO: Trazer o adapter de Pedido entityToViewModel
 //        for (Pedido pedido : atendente.getListapedidoAtendente()) {
@@ -47,13 +47,13 @@ public class AtendenteVMAdapter {
 
         try {
             atendente.setIdAtendente(atendenteVM.getIdAtendenteVM());
-            atendente.setNome(atendenteVM.getNomeUserVM());
-            atendente.setCpf(atendenteVM.getCpfUserVM());
-            atendente.setApelido(atendenteVM.getApelidoUserVM());
-            atendente.setSenha(atendenteVM.getSenhaUserVM());
-            atendente.setTelefone(atendenteVM.getTelefoneUserVM());
-            atendente.setHorarioTrabalho(atendenteVM.getHorarioTrabalhoFuncionarioVM());
-            atendente.setSalario(atendenteVM.getSalarioFuncionarioVM());
+            atendente.setNome(atendenteVM.getNomeVM());
+            atendente.setCpf(atendenteVM.getCpfVM());
+            atendente.setApelido(atendenteVM.getApelidoVM());
+            atendente.setSenha(atendenteVM.getSenhaVM());
+            atendente.setTelefone(atendenteVM.getTelefoneVM());
+            atendente.setHorarioTrabalho(atendenteVM.getHorarioTrabalhoVM());
+            atendente.setSalario(atendenteVM.getSalarioVM());
 
             //TODO: Trazer o adapter de Pedido viewModelToEntity
 //        for (PedidoVM pedido: atendenteVM.getListapedidoAtendente()) {

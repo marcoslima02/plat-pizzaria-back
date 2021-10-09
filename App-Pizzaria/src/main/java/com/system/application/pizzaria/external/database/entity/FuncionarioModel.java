@@ -10,14 +10,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "TB_FUNCIONARIO")
+@MappedSuperclass
 public abstract class FuncionarioModel extends UserModel{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer idFuncionarioModel;
 
     @Column(name = "HORARIO_TRABALHO", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime horarioTrabalhoModel;
