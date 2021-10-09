@@ -32,8 +32,8 @@ public class IngredienteModelAdapter {
             IngredienteModel ingredienteModel = new IngredienteModel();
             ingredienteModel.setIdIngredienteModel(ingrediente.getIdIngrediente());
             ingredienteModel.setNomeIngredienteModel(ingrediente.getNomeIngrediente());
-            ingredienteModel.setNomeIngredienteModel(ingrediente.getQuantidadeIngrediente());
-            ingredienteModel.setNomeIngredienteModel(ingrediente.getPrecoIngrediente());
+            ingredienteModel.setQuantidadeIngredienteModel(ingrediente.getQuantidadeIngrediente());
+            ingredienteModel.setPrecoIngredienteModel(ingrediente.getPrecoIngrediente());
             return ingredienteModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Ingrediente para IngredienteModel");
