@@ -37,7 +37,7 @@ public class IngredienteModelAdapter {
             return ingredienteModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Ingrediente para IngredienteModel");
-            throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter entityToModel Endereco is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter entityToModel Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

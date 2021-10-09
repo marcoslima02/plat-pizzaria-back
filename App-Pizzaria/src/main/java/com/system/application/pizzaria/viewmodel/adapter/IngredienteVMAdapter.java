@@ -37,7 +37,7 @@ public class IngredienteVMAdapter {
             return ingrediente;
         }catch (Exception e){
             ConfigUtils.logger.warning("Error ao fazer adapter de IngredienteVM para Ingrediente");
-            throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter VMToEntity Endereco is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter VMToEntity Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
