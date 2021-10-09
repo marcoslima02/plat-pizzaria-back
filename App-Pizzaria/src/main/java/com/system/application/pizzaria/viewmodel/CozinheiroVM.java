@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CozinheiroVM extends FuncionarioModel {
+public class CozinheiroVM extends FuncionarioVM {
 
     private Integer idCozinheiroVM;
     private List<PedidoVM> listaPizzaPedidoVM;

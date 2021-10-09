@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "TB_COZINHEIRO")
-public class CozinheiroModel {
+public class CozinheiroModel extends FuncionarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

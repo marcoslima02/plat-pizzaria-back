@@ -20,13 +20,13 @@ public class AtendenteModelAdapter {
 
         try{
             atendenteEntity.setIdAtendente(atendenteModel.getIdAtendenteModel());
-            atendenteEntity.setNome(atendenteModel.getNome());
-            atendenteEntity.setCpf(atendenteModel.getCpf());
-            atendenteEntity.setApelido(atendenteModel.getApelido());
-            atendenteEntity.setSenha(atendenteModel.getSenha());
-            atendenteEntity.setTelefone(atendenteModel.getTelefone());
-            atendenteEntity.setHorarioTrabalho(atendenteModel.getHorarioTrabalho());
-            atendenteEntity.setSalario(atendenteModel.getSalario());
+            atendenteEntity.setNome(atendenteModel.getNomeModel());
+            atendenteEntity.setCpf(atendenteModel.getCpfModel());
+            atendenteEntity.setApelido(atendenteModel.getApelidoModel());
+            atendenteEntity.setSenha(atendenteModel.getSenhaModel());
+            atendenteEntity.setTelefone(atendenteModel.getTelefoneModel());
+            atendenteEntity.setHorarioTrabalho(atendenteModel.getHorarioTrabalhoModel());
+            atendenteEntity.setSalario(atendenteModel.getSalarioModel());
             //TODO: colocar Pedido
             return atendenteEntity;
 
@@ -41,13 +41,13 @@ public class AtendenteModelAdapter {
 
         try {
             atendenteModel.setIdAtendenteModel(atendenteEntity.getIdAtendente());
-            atendenteModel.setNome(atendenteEntity.getNome());
-            atendenteModel.setCpf(atendenteEntity.getCpf());
-            atendenteModel.setApelido(atendenteEntity.getApelido());
-            atendenteModel.setSenha(atendenteEntity.getSenha());
-            atendenteModel.setTelefone(atendenteEntity.getTelefone());
-            atendenteModel.setHorarioTrabalho(atendenteEntity.getHorarioTrabalho());
-            atendenteModel.setSalario(atendenteEntity.getSalario());
+            atendenteModel.setNomeModel(atendenteEntity.getNome());
+            atendenteModel.setCpfModel(atendenteEntity.getCpf());
+            atendenteModel.setApelidoModel(atendenteEntity.getApelido());
+            atendenteModel.setSenhaModel(atendenteEntity.getSenha());
+            atendenteModel.setTelefoneModel(atendenteEntity.getTelefone());
+            atendenteModel.setHorarioTrabalhoModel(atendenteEntity.getHorarioTrabalho());
+            atendenteModel.setSalarioModel(atendenteEntity.getSalario());
             //TODO: colocar Pedido
 
             return atendenteModel;
