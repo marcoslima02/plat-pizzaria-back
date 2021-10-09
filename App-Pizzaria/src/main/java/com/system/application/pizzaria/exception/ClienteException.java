@@ -10,5 +10,4 @@ public class ClienteException extends GenericException{
     public ClienteException(ErrorType errorType, String message, Date date, HttpStatus httpStatus) {
         super(errorType,message,date, httpStatus);
     }
-
 }
