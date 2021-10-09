@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class Funcionario extends User {
 
+    private Integer idFuncionario;
     private LocalDateTime horarioTrabalho;
     private BigDecimal salario;
+
 }

@@ -28,4 +28,7 @@ public class IngredienteModel {
 
     @ManyToOne
     private PizzaModel pizzaModel;
+
+    @ManyToOne
+    private CozinheiroModel cozinheiroModel;
 }
