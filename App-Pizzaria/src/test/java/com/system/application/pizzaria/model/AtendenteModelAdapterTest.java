@@ -76,13 +76,13 @@ public class AtendenteModelAdapterTest {
     public AtendenteModel criaEntidadeAtendenteModel() {
         AtendenteModel atendenteModel = new AtendenteModel();
         atendenteModel.setIdAtendenteModel(9);
-        atendenteModel.setNome("Sarina Briones");
-        atendenteModel.setCpf("123.456.789.-12");
-        atendenteModel.setApelido("Sarinita");
-        atendenteModel.setSenha("sari@123;");
-        atendenteModel.setTelefone("+55 (12) 9 9701-4672");
-        atendenteModel.setHorarioTrabalho(LocalDateTime.of(2000, 05, 20, 23, 40));
-        atendenteModel.setSalario(new BigDecimal("5000"));
+        atendenteModel.setNomeModel("Sarina Briones");
+        atendenteModel.setCpfModel("123.456.789.-12");
+        atendenteModel.setApelidoModel("Sarinita");
+        atendenteModel.setSenhaModel("sari@123;");
+        atendenteModel.setTelefoneModel("+55 (12) 9 9701-4672");
+        atendenteModel.setHorarioTrabalhoModel(LocalDateTime.of(2000, 05, 20, 23, 40));
+        atendenteModel.setSalarioModel(new BigDecimal("5000"));
 
         return atendenteModel;
     }
