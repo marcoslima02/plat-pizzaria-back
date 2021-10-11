@@ -16,8 +16,10 @@ import java.util.List;
 public class ClienteVMAdapter {
 
     public static ClienteVM entityToViewModel(Cliente cliente) throws ClienteException {
+        ClienteVM clienteVM = new ClienteVM();
+        //TODO: Criar a lista do Tipo EnderecoVM
         try {
-            ClienteVM clienteVM = new ClienteVM();
+
             clienteVM.setIdClienteVM(cliente.getIdCliente());
             clienteVM.setNomeVM(cliente.getNome());
             clienteVM.setCpfVM(cliente.getCpf());
@@ -28,12 +30,13 @@ public class ClienteVMAdapter {
             //cliente.setPedidoCliente(clienteVM.getPedidoVMClienteVM());
             clienteVM.getListaEnderecoVMClienteVM().forEach(enderecoModel -> {
                 try {
-                    cliente.getListaEnderecoCliente()
-                            .add(EnderecoVMAdapter.viewModelToEntity(enderecoModel));
+                    //TODO: Substiuir esse método para chamar a variavel lista
+                    cliente.getListaEnderecoCliente().add(EnderecoVMAdapter.viewModelToEntity(enderecoModel));
                 } catch (EnderecoException e) {
                     e.printStackTrace();
                 }
             });
+            //TODO: Setar o atributo Lista de endereco do Cliente
             return clienteVM;
         } catch (Exception e) {
             throw new ClienteException(ErrorType.VALIDATIONS, "Adapter entityToVM Cliente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);

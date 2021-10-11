@@ -28,8 +28,7 @@ public class ClienteModelAdapter {
             cliente.setTelefone(clienteModel.getTelefoneModel());
             clienteModel.getListaEnderecoModelClienteModel().forEach(enderecoModel -> {
                 try {
-                    enderecoList
-                            .add(EnderecoModelAdapter.modelToEntity(enderecoModel));
+                    enderecoList.add(EnderecoModelAdapter.modelToEntity(enderecoModel));
                 } catch (EnderecoException e) {
                     e.printStackTrace();
                 }
