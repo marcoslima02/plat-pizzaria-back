@@ -1,6 +1,5 @@
 package com.system.application.pizzaria.model;
 
-import com.system.application.pizzaria.endpoint.EnderecoController;
 import com.system.application.pizzaria.entity.Cliente;
 import com.system.application.pizzaria.entity.Endereco;
 import com.system.application.pizzaria.exception.ClienteException;

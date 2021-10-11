@@ -8,7 +8,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Cliente extends User{
+@EqualsAndHashCode
+public class Cliente extends User {
 
     private Integer idCliente;
     private List<Endereco> listaEnderecoCliente;
