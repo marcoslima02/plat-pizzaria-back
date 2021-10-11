@@ -1,5 +1,6 @@
 package com.system.application.pizzaria.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
