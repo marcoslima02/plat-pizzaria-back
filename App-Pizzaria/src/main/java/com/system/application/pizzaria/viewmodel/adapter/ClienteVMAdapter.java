@@ -1,11 +1,14 @@
 package com.system.application.pizzaria.viewmodel.adapter;
 
 import com.system.application.pizzaria.entity.Cliente;
+import com.system.application.pizzaria.entity.Endereco;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.exception.EnderecoException;
+import com.system.application.pizzaria.external.database.entity.EnderecoModel;
 import com.system.application.pizzaria.external.database.entity.adapter.EnderecoModelAdapter;
 import com.system.application.pizzaria.viewmodel.ClienteVM;
+import com.system.application.pizzaria.viewmodel.EnderecoVM;
 import org.springframework.http.HttpStatus;
 
 
@@ -17,7 +20,8 @@ public class ClienteVMAdapter {
 
     public static ClienteVM entityToViewModel(Cliente cliente) throws ClienteException {
         ClienteVM clienteVM = new ClienteVM();
-        //TODO: Criar a lista do Tipo EnderecoVM
+        List<EnderecoVM> enderecoVMList = new ArrayList<>();
+        //Criar a lista do Tipo EnderecoVM
         try {
 
             clienteVM.setIdClienteVM(cliente.getIdCliente());
@@ -26,16 +30,19 @@ public class ClienteVMAdapter {
             clienteVM.setApelidoVM(cliente.getApelido());
             clienteVM.setSenhaVM(cliente.getSenha());
             clienteVM.setTelefoneVM(cliente.getTelefone());
-            //TODO: Converter PedidoVM para Pedido
+            //Converter PedidoVM para Pedido
             //cliente.setPedidoCliente(clienteVM.getPedidoVMClienteVM());
-            clienteVM.getListaEnderecoVMClienteVM().forEach(enderecoModel -> {
+            clienteVM.getListaEnderecoVMClienteVM().forEach(endereco -> {
                 try {
-                    //TODO: Substiuir esse método para chamar a variavel lista
-                    cliente.getListaEnderecoCliente().add(EnderecoVMAdapter.viewModelToEntity(enderecoModel));
+                    //Substiuir esse método para chamar a variavel lista
+                    enderecoVMList
+                            .add(EnderecoVMAdapter.entityToViewModel(endereco));
                 } catch (EnderecoException e) {
                     e.printStackTrace();
                 }
             });
+
+            clienteVM.setListaEnderecoVMClienteVM(enderecoVMList);
             //TODO: Setar o atributo Lista de endereco do Cliente
             return clienteVM;
         } catch (Exception e) {
@@ -44,8 +51,10 @@ public class ClienteVMAdapter {
     }
 
     public static Cliente viewModelToEntity(ClienteVM clienteVM) throws ClienteException {
+        Cliente cliente = new Cliente();
+        List<EnderecoVM> enderecoVMList2 = new ArrayList<>();
+
         try{
-            Cliente cliente = new Cliente();
             cliente.setIdCliente(clienteVM.getIdClienteVM());
             cliente.setNome(clienteVM.getNomeVM());
             cliente.setCpf(clienteVM.getCpfVM());
@@ -54,14 +63,16 @@ public class ClienteVMAdapter {
             cliente.setTelefone(clienteVM.getTelefoneVM());
             //TODO: Converter PedidoVM para Pedido
             //cliente.setPedidoCliente(clienteVM.getPedidoVMClienteVM());
-            clienteVM.getListaEnderecoVMClienteVM().forEach(enderecoModel -> {
+            clienteVM.getListaEnderecoVMClienteVM().forEach(endereco -> {
                 try {
-                    cliente.getListaEnderecoCliente()
-                            .add(EnderecoVMAdapter.viewModelToEntity(enderecoModel));
+                    enderecoVMList2
+                            .add(EnderecoVMAdapter.entityToViewModel(endereco));
                 } catch (EnderecoException e) {
                     e.printStackTrace();
                 }
             });
+
+            clienteVM.setListaEnderecoVMClienteVM(enderecoVMList2);
             return cliente;
         }catch (Exception e){
             throw new ClienteException(ErrorType.VALIDATIONS, "Adapter VMToEntity Cliente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
