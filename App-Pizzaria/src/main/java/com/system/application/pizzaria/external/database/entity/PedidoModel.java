@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.external.database.entity;
 
 import com.system.application.pizzaria.entity.enums.StatusPedido;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Table(name = "TB_PEDIDOS")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class PedidoModel {
 
     @Id
@@ -25,11 +27,11 @@ public class PedidoModel {
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<PizzaModel> pizzaPedidoModel;
+    private Set<PizzaModel> listaPizzaModelPedidoModel;
 
     @Column(name = "BEBIDAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<BebidaModel> bebidaPedidoModel;
+    private Set<BebidaModel> listaBebidaModelPedidoModel;
 
     @ManyToOne
     private AtendenteModel atendenteModel;
