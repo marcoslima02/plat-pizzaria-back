@@ -26,7 +26,7 @@ public class AtendenteController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<AtendenteVM>> getAllAtendentes() {
+    public ResponseEntity<List<AtendenteVM>> getAllAtendentesController() {
         List<Atendente> listaAtendenteEntity = getAllAtendente.getAllAtendentes();
         List<AtendenteVM> listAtendenteVM = AtendenteVMAdapter.entityListToViewModelList(listaAtendenteEntity);
         return ResponseEntity.ok().body(listAtendenteVM);
@@ -35,7 +35,7 @@ public class AtendenteController {
 
     @GetMapping("/{idAtendente}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<AtendenteVM> getAtendeteById(@PathVariable Integer idAtendente) throws AtendenteException {
+    public ResponseEntity<AtendenteVM> getAtendeteByIdController(@PathVariable Integer idAtendente) throws AtendenteException {
         Atendente atendenteEntity = getAtendenteById.getAtendeteById(idAtendente);
         AtendenteVM atendenteVM = AtendenteVMAdapter.entityToViewModel(atendenteEntity);
         return ResponseEntity.ok().body(atendenteVM);

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface EnderecoPersistenceDataBase {
     List<Endereco> getAllEnderecos();
+
     Endereco getEnderecoById(Integer idEndereco) throws EnderecoException;
 }
