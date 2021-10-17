@@ -25,6 +25,7 @@ public class ClienteVMAdapter {
             cliente.setCpf(clienteVM.getCpfVM());
             cliente.setApelido(clienteVM.getApelidoVM());
             cliente.setSenha(clienteVM.getSenhaVM());
+            cliente.setEmailCliente(clienteVM.getEmailClienteVM());
             cliente.setTelefone(clienteVM.getTelefoneVM());
             clienteVM.getListaEnderecoVMClienteVM().forEach(enderecoVM -> {
                 try {
@@ -54,6 +55,7 @@ public class ClienteVMAdapter {
             clienteVM.setCpfVM(cliente.getCpf());
             clienteVM.setApelidoVM(cliente.getApelido());
             clienteVM.setSenhaVM(cliente.getSenha());
+            clienteVM.setEmailClienteVM(clienteVM.getEmailClienteVM());
             clienteVM.setTelefoneVM(cliente.getTelefone());
             cliente.getListaEnderecoCliente().forEach(endereco -> {
                 try {

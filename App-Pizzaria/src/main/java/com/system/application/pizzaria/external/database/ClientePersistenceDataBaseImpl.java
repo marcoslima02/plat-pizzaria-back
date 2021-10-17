@@ -5,6 +5,7 @@ import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.external.ClientePersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.ClienteModel;
+import com.system.application.pizzaria.external.database.entity.adapter.ClienteCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.ClienteModelAdapter;
 import com.system.application.pizzaria.external.database.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,37 @@ public class ClientePersistenceDataBaseImpl implements ClientePersistenceDataBas
 
     @Override
     public Cliente getClienteById(Integer idCliente) throws ClienteException {
-        return null;
+        ClienteModel clienteModel = clienteRepository.getById(idCliente);
+        return ClienteModelAdapter.modelToEntity(clienteModel);
+    }
+
+    @Override
+    public Cliente getClienteByCPF(String cpfCliente) throws ClienteException {
+        ClienteModel clienteModel = clienteRepository.findByCpfModel(cpfCliente);
+        return ClienteModelAdapter.modelToEntity(clienteModel);
     }
 
     @Override
     public Cliente getValidateClienteLogin(String cpfCliente, String senhaCliente) throws ClienteException {
         ClienteModel clienteModel = null;
-        try{
-        if (clienteRepository.existsByCpfModel(cpfCliente) && clienteRepository.existsBySenhaModel(senhaCliente)){
-           clienteModel = clienteRepository.findByCpfModel(cpfCliente);
+        try {
+            if (clienteRepository.existsByCpfModel(cpfCliente) && clienteRepository.existsBySenhaModel(senhaCliente)) {
+                clienteModel = clienteRepository.findByCpfModel(cpfCliente);
+            }
+            return ClienteModelAdapter.modelToEntity(clienteModel);
+        } catch (Exception e) {
+            throw new ClienteException(ErrorType.DATA_BASE_NOT_FOUND, "CPF ou SENHA invalida", new Date(), HttpStatus.NOT_FOUND);
         }
-        return ClienteModelAdapter.modelToEntity(clienteModel);
-        }catch (Exception e){
-            throw new ClienteException(ErrorType.DATA_BASE_NOT_FOUND, "CPF ou SENHA invalida", new Date(),HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    public Cliente saveCliente(Cliente cliente) throws ClienteException {
+        ClienteModel clienteModel = ClienteCadastroModelAdapter.entityToModel(cliente);
+        try {
+            clienteRepository.save(clienteModel);
+            return ClienteModelAdapter.modelToEntity(clienteModel);
+        } catch (Exception e) {
+            throw new ClienteException(ErrorType.ERROR_DATABASE_SAVE, "Erro ao salvar Cliente", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

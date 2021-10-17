@@ -66,6 +66,7 @@ public class ClienteModelAdapterTest {
         cliente.setNome("marcio");
         cliente.setCpf("123.456.789-12");
         cliente.setApelido("marcin");
+        cliente.setEmailCliente("marcin@gmail.com");
         cliente.setSenha("lasanha");
         cliente.setTelefone("+55 (19) 9 9892-0167");
         cliente.setListaEnderecoCliente(listEndereco);
@@ -100,6 +101,7 @@ public class ClienteModelAdapterTest {
         clienteModel.setIdClienteModel(1);
         clienteModel.setNomeModel("marcio");
         clienteModel.setCpfModel("123.456.789-12");
+        clienteModel.setEmailClienteModel("marcin@gmail.com");
         clienteModel.setApelidoModel("marcin");
         clienteModel.setSenhaModel("lasanha");
         clienteModel.setTelefoneModel("+55 (19) 9 9892-0167");

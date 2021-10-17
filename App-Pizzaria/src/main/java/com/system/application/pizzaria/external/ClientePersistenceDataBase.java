@@ -11,6 +11,10 @@ public interface ClientePersistenceDataBase {
 
     Cliente getClienteById(Integer idCliente) throws ClienteException;
 
+    Cliente getClienteByCPF(String cpfCliente) throws ClienteException;
+
     Cliente getValidateClienteLogin(String cpfCliente,String senhaCliente) throws ClienteException;
+
+    Cliente saveCliente(Cliente cliente) throws ClienteException;
 
 }
