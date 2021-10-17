@@ -30,7 +30,7 @@ public class PizzaModel {
     private Set<IngredienteModel> listaIngredientesPizzaModel;
 
     @Column(name = "CATEGORIA", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private CategoriaPizza categoriaPizzaModel;
 
     @ManyToOne
