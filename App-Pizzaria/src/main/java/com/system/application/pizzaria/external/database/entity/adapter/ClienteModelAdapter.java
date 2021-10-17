@@ -25,6 +25,7 @@ public class ClienteModelAdapter {
             cliente.setCpf(clienteModel.getCpfModel());
             cliente.setApelido(clienteModel.getApelidoModel());
             cliente.setSenha(clienteModel.getSenhaModel());
+            cliente.setEmailCliente(clienteModel.getEmailClienteModel());
             cliente.setTelefone(clienteModel.getTelefoneModel());
             clienteModel.getListaEnderecoModelClienteModel().forEach(enderecoModel -> {
                 try {
@@ -53,6 +54,7 @@ public class ClienteModelAdapter {
             clienteModel.setNomeModel(cliente.getNome());
             clienteModel.setCpfModel(cliente.getCpf());
             clienteModel.setApelidoModel(cliente.getApelido());
+            clienteModel.setEmailClienteModel(cliente.getEmailCliente());
             clienteModel.setSenhaModel(cliente.getSenha());
             clienteModel.setTelefoneModel(cliente.getTelefone());
             cliente.getListaEnderecoCliente().forEach(endereco -> {

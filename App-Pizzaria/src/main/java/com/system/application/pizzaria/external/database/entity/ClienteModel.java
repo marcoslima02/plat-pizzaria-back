@@ -19,6 +19,9 @@ public class ClienteModel extends UserModel {
     @Column(name = "ID")
     private Integer idClienteModel;
 
+    @Column(name = "EMAIL_CLIENTE", nullable = true, columnDefinition = "VARCHAR(300)")
+    private String emailClienteModel;
+
     @Column(name = "ENDERECO_CLIENTE")
     @OneToMany(mappedBy = "clienteModelEnderecoModel")
     private List<EnderecoModel> listaEnderecoModelClienteModel;

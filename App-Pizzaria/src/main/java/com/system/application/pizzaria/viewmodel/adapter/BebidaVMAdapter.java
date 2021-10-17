@@ -52,7 +52,7 @@ public class BebidaVMAdapter {
         return bebidaList;
     }
 
-    public static List<BebidaVM> entityListToEntityList(List<Bebida> bebidaList){
+    public static List<BebidaVM> entityListToViewModelList(List<Bebida> bebidaList){
         List<BebidaVM> bebidaVMList = new ArrayList<>();
         bebidaList.forEach(bebida -> {
             try {
