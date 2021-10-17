@@ -10,6 +10,7 @@ import com.system.application.pizzaria.exception.PizzaException;
 import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.PedidoVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
+import com.system.application.pizzaria.viewmodel.BebidaVM;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class PedidoVMAdapter {
     public static PedidoVM entityToViewModel(Pedido pedido) throws PedidoException {
         PedidoVM pedidoVM = new PedidoVM();
         List<PizzaVM> pizzaVMList = new ArrayList<>();
-        List<PedidoVM> bebidaVMList = new ArrayList<>();
+        List<BebidaVM> bebidaVMList = new ArrayList<>();
 
         try {
             pedidoVM.setIdPedidoVM(pedido.getIdPedido());
