@@ -42,13 +42,13 @@ public class PedidoVMAdapter {
                 }
             });
             pedido.setHorarioPedido(pedidoVM.getHorarioPedidoVM());
-            pedido.setHorarioEstimado(pedidoVM.getHorarioEstimadoPedidoVM());
+            pedido.setHorarioEstimadoPedido(pedidoVM.getHorarioEstimadoPedidoVM());
             pedido.setPrecoPedido(pedidoVM.getPrecoPedidoVM());
             pedido.setComentarioPedido(pedidoVM.getComentarioPedidoVM());
             return pedido;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PedidoModel para Pedido");
-            throw new PedidoException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity( Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new PedidoException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -75,7 +75,7 @@ public class PedidoVMAdapter {
                 }
             });
             pedidoVM.setHorarioPedidoVM(pedido.getHorarioPedido());
-            pedidoVM.setHorarioEstimadoPedidoVM(pedido.getHorarioEstimado());
+            pedidoVM.setHorarioEstimadoPedidoVM(pedido.getHorarioEstimadoPedido());
             pedidoVM.setPrecoPedidoVM(pedido.getPrecoPedido());
             pedidoVM.setComentarioPedidoVM(pedido.getComentarioPedido());
             return pedidoVM;

@@ -51,7 +51,7 @@ public class PedidoVMAdapterTest {
         try {
             PedidoVMAdapter.entityToViewModel(null);
         } catch (PedidoException e) {
-            assertEquals("Adapter entityToVM Pedido is Null", e.getMessage());
+            assertEquals("Adapter entityToViewModel Pedido is Null", e.getMessage());
         }
     }
 
@@ -61,7 +61,7 @@ public class PedidoVMAdapterTest {
         try {
             PedidoVMAdapter.viewModelToEntity(null);
         } catch (PedidoException e) {
-            assertEquals("Adapter VMToEntity Pedido is Null", e.getMessage());
+            assertEquals("Adapter viewModelToEntity Pedido is Null", e.getMessage());
         }
     }
 
@@ -77,7 +77,6 @@ public class PedidoVMAdapterTest {
         pedido.setHorarioEstimadoPedido(LocalDateTime.now());
         pedido.setPrecoPedido(new BigDecimal("59.00"));
         pedido.setComentarioPedido("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
-        return pedido;
 
         Pizza pizza = new Pizza();
         pizza.setIdPizza(1);
@@ -93,6 +92,8 @@ public class PedidoVMAdapterTest {
 
         listPizza.add(pizza);
         listBebida.add(bebida);
+
+        return pedido;
     }
 
     public PedidoVM criaEntidadePedidoVM() {
@@ -107,7 +108,6 @@ public class PedidoVMAdapterTest {
         pedidoVM.setHorarioEstimadoPedidoVM(LocalDateTime.now());
         pedidoVM.setPrecoPedidoVM(new BigDecimal("59.00"));
         pedidoVM.setComentarioPedidoVM("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
-        return pedidoVM;
 
         PizzaVM pizzaVM = new PizzaVM();
         pizzaVM.setIdPizzaVM(1);
@@ -123,6 +123,8 @@ public class PedidoVMAdapterTest {
 
         listPizzaVM.add(pizzaVM);
         listBebidaVM.add(bebidaVM);
+
+        return pedidoVM;
     }
 
 }

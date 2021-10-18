@@ -77,7 +77,6 @@ public class PedidoModelAdapterTest {
         pedido.setHorarioEstimadoPedido(LocalDateTime.now());
         pedido.setPrecoPedido(new BigDecimal("59.00"));
         pedido.setComentarioPedido("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
-        return pedido;
 
         Pizza pizza = new Pizza();
         pizza.setIdPizza(1);
@@ -94,6 +93,7 @@ public class PedidoModelAdapterTest {
         listPizza.add(pizza);
         listBebida.add(bebida);
 
+        return pedido;
     }
 
     private PedidoModel criaEntidadePedidoModel() {
