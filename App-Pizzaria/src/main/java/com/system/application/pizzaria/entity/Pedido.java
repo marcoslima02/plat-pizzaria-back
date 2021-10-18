@@ -1,8 +1,6 @@
 package com.system.application.pizzaria.entity;
 
 import com.system.application.pizzaria.entity.enums.StatusPedido;
-import com.system.application.pizzaria.external.database.entity.PedidoModel;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
