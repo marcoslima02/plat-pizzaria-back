@@ -1,11 +1,12 @@
 package com.system.application.pizzaria.model;
 
+import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.Pedido;
+import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.CategoriaPizza;
 import com.system.application.pizzaria.entity.enums.StatusPedido;
 import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.database.entity.BebidaModel;
-import com.system.application.pizzaria.external.database.entity.EnderecoModel;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
 import com.system.application.pizzaria.external.database.entity.PizzaModel;
 import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,16 +67,33 @@ public class PedidoModelAdapterTest {
 
     private Pedido criaEntidadePedido() {
         Pedido pedido = new Pedido();
-
+        List<Pizza> listPizza = new ArrayList<>();
+        List<Bebida> listBebida = new ArrayList<>();
         pedido.setIdPedido(1);
         pedido.setStatusPedido(StatusPedido.AGUARDANDO);
-        pedido.setListaPizzaPedido();
-        pedido.setListaBebidaPedido();
-        pedido.setHorarioPedido("17:00");
-        pedido.setHorarioEstimadoPedido("17:00");
+        pedido.setListaPizzaPedido(listPizza);
+        pedido.setListaBebidaPedido(listBebida);
+        pedido.setHorarioPedido(LocalDateTime.now());
+        pedido.setHorarioEstimadoPedido(LocalDateTime.now());
         pedido.setPrecoPedido(new BigDecimal("59.00"));
         pedido.setComentarioPedido("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
         return pedido;
+
+        Pizza pizza = new Pizza();
+        pizza.setIdPizza(1);
+        pizza.setPrecoPizza(new BigDecimal("59.00"));
+        //pizza.setListaIngredientesPizza();
+        pizza.setCategoriaPizza(CategoriaPizza.LIGHT);
+
+        Bebida bebida = new Bebida();
+        bebida.setIdBebida(1);
+        bebida.setNomeBebida("Sua mãe");
+        bebida.setQuantidadeBebida(17);
+        bebida.setPrecoBebida(new BigDecimal("59.00"));
+
+        listPizza.add(pizza);
+        listBebida.add(bebida);
+
     }
 
     private PedidoModel criaEntidadePedidoModel() {
@@ -85,8 +104,8 @@ public class PedidoModelAdapterTest {
         pedidoModel.setStatusPedidoModel(StatusPedido.AGUARDANDO);
         pedidoModel.setListaPizzaModelPedidoModel(listPizzaModel);
         pedidoModel.setListaBebidaModelPedidoModel(listBebidaModel);
-        pedidoModel.setHorarioPedidoModel("17:00");
-        pedidoModel.setHorarioEstimadoPedidoModel("17:00");
+        pedidoModel.setHorarioPedidoModel(LocalDateTime.now());
+        pedidoModel.setHorarioEstimadoPedidoModel(LocalDateTime.now());
         pedidoModel.setPrecoPedidoModel(new BigDecimal("59.00"));
         pedidoModel.setComentarioPedidoModel("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
 

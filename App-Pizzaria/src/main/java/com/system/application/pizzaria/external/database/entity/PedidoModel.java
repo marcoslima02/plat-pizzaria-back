@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,11 +29,11 @@ public class PedidoModel {
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<PizzaModel> listaPizzaModelPedidoModel;
+    private List<PizzaModel> listaPizzaModelPedidoModel;
 
     @Column(name = "BEBIDAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<BebidaModel> listaBebidaModelPedidoModel;
+    private List<BebidaModel> listaBebidaModelPedidoModel;
 
     @ManyToOne
     private AtendenteModel atendenteModel;
@@ -40,10 +42,10 @@ public class PedidoModel {
     private CozinheiroModel cozinheiroModel;
 
     @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "DATETIME")
-    private String horarioPedidoModel;
+    private LocalDateTime horarioPedidoModel;
 
     @Column(name = "HORARIO_ESTIMADO", nullable = false, columnDefinition = "DATETIME")
-    private String horarioEstimadoPedidoModel;
+    private LocalDateTime horarioEstimadoPedidoModel;
 
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
     private BigDecimal precoPedidoModel;
