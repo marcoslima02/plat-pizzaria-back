@@ -44,7 +44,7 @@ public class PedidoModelAdapter {
             });
 
             pedido.setHorarioPedido(pedidoModel.getHorarioPedidoModel());
-            pedido.setHorarioEstimado(pedidoModel.getHorarioEstimadoPedidoModel());
+            pedido.setHorarioEstimadoPedido(pedidoModel.getHorarioEstimadoPedidoModel());
             pedido.setPrecoPedido(pedidoModel.getPrecoPedidoModel());
             pedido.setComentarioPedido(pedidoModel.getComentarioPedidoModel());
             return pedido;
@@ -77,7 +77,7 @@ public class PedidoModelAdapter {
                 }
             });
             pedidoModel.setHorarioPedidoModel(pedido.getHorarioPedido());
-            pedidoModel.setHorarioEstimadoPedidoModel(pedido.getHorarioEstimado());
+            pedidoModel.setHorarioEstimadoPedidoModel(pedido.getHorarioEstimadoPedido());
             pedidoModel.setPrecoPedidoModel(pedido.getPrecoPedido());
             pedidoModel.setComentarioPedidoModel(pedido.getComentarioPedido());
             return pedidoModel;

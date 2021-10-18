@@ -19,7 +19,8 @@ public class Pedido {
     private List<Pizza> listaPizzaPedido;
     private List<Bebida> listaBebidaPedido;
     private LocalDateTime horarioPedido;
-    private LocalDateTime horarioEstimado;
+    private LocalDateTime horarioEstimadoPedido;
     private BigDecimal precoPedido;
     private String comentarioPedido;
+
 }
