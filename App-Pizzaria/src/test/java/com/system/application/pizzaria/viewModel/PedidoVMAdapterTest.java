@@ -56,7 +56,7 @@ public class PedidoVMAdapterTest {
     }
 
     @Test
-    public void shouldExceptionWithModelNullTest() {
+    public void shouldExceptionWithViewModelNullTest() {
         //Act
         try {
             PedidoVMAdapter.viewModelToEntity(null);
