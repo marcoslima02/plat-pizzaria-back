@@ -1,13 +1,10 @@
 package com.system.application.pizzaria.model;
 
-import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.CategoriaPizza;
 import com.system.application.pizzaria.exception.PizzaException;
-import com.system.application.pizzaria.external.database.entity.PedidoModel;
 import com.system.application.pizzaria.external.database.entity.PizzaModel;
 import com.system.application.pizzaria.external.database.entity.adapter.PizzaModelAdapter;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -43,6 +40,5 @@ public class PizzaModelAdapterTest {
         pizzaModel.setCategoriaPizzaModel(CategoriaPizza.LIGHT);
         return pizzaModel;
     }
-
 
 }
