@@ -29,6 +29,7 @@ public class PizzaVMAdapter {
                     e.printStackTrace();
                 }
             });
+            pizzaVM.setListaIngredientesPizzaVM(ingredienteVMList);
             return pizzaVM;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToVM Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,6 +50,7 @@ public class PizzaVMAdapter {
                     e.printStackTrace();
                 }
             });
+            pizza.setListaIngredientesPizza(ingredienteList);
             return pizza;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter VMToEntity Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);

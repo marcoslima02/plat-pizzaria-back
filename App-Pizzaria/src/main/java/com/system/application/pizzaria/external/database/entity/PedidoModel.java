@@ -23,7 +23,7 @@ public class PedidoModel {
     private Integer idPedidoModel;
 
     @Column(name = "STATUS", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private StatusPedido statusPedidoModel = StatusPedido.AGUARDANDO;
 
     @Column(name = "PIZZAS")

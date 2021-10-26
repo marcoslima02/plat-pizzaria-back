@@ -41,6 +41,8 @@ public class PedidoVMAdapter {
                     e.printStackTrace();
                 }
             });
+            pedido.setListaBebidaPedido(bebidaList);
+            pedido.setListaPizzaPedido(pizzaList);
             pedido.setHorarioPedido(pedidoVM.getHorarioPedidoVM());
             pedido.setHorarioEstimadoPedido(pedidoVM.getHorarioEstimadoPedidoVM());
             pedido.setPrecoPedido(pedidoVM.getPrecoPedidoVM());
@@ -74,13 +76,15 @@ public class PedidoVMAdapter {
                     e.printStackTrace();
                 }
             });
+            pedidoVM.setListaPizzaVMPedidoVM(pizzaVMList);
+            pedidoVM.setListaBebidaVMPedidoVM(bebidaVMList);
             pedidoVM.setHorarioPedidoVM(pedido.getHorarioPedido());
             pedidoVM.setHorarioEstimadoPedidoVM(pedido.getHorarioEstimadoPedido());
             pedidoVM.setPrecoPedidoVM(pedido.getPrecoPedido());
             pedidoVM.setComentarioPedidoVM(pedido.getComentarioPedido());
             return pedidoVM;
         } catch (Exception e) {
-            ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoModel");
+            ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoViewModel");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter entityToViewModel Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

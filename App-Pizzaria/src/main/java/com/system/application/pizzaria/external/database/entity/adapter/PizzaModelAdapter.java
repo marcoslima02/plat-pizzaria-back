@@ -29,6 +29,7 @@ public class PizzaModelAdapter {
                     e.printStackTrace();
                 }
             });
+            pizza.setListaIngredientesPizza(ingredienteList);
             pizza.setCategoriaPizza(pizzaModel.getCategoriaPizzaModel());
             return pizza;
         } catch (Exception e) {
@@ -50,6 +51,7 @@ public class PizzaModelAdapter {
                     e.printStackTrace();
                 }
             });
+            pizzaModel.setListaIngredientesPizzaModelPizzaModel(ingredienteModelList);
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
 
             return pizzaModel;

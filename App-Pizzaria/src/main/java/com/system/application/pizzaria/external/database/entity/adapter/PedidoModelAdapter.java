@@ -42,7 +42,8 @@ public class PedidoModelAdapter {
                     e.printStackTrace();
                 }
             });
-
+            pedido.setListaPizzaPedido(pizzaList);
+            pedido.setListaBebidaPedido(bebidaList);
             pedido.setHorarioPedido(pedidoModel.getHorarioPedidoModel());
             pedido.setHorarioEstimadoPedido(pedidoModel.getHorarioEstimadoPedidoModel());
             pedido.setPrecoPedido(pedidoModel.getPrecoPedidoModel());
@@ -76,6 +77,8 @@ public class PedidoModelAdapter {
                     e.printStackTrace();
                 }
             });
+            pedidoModel.setListaPizzaModelPedidoModel(pizzaModelList);
+            pedidoModel.setListaBebidaModelPedidoModel(bebidaModelList);
             pedidoModel.setHorarioPedidoModel(pedido.getHorarioPedido());
             pedidoModel.setHorarioEstimadoPedidoModel(pedido.getHorarioEstimadoPedido());
             pedidoModel.setPrecoPedidoModel(pedido.getPrecoPedido());
