@@ -33,6 +33,7 @@ public class PedidoCadastroModelAdapter {
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+
         return pedido;
     }
      */
