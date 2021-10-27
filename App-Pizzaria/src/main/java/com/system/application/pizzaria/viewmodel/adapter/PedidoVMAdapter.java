@@ -78,6 +78,8 @@ public class PedidoVMAdapter {
             pedidoVM.setHorarioEstimadoPedidoVM(pedido.getHorarioEstimadoPedido());
             pedidoVM.setPrecoPedidoVM(pedido.getPrecoPedido());
             pedidoVM.setComentarioPedidoVM(pedido.getComentarioPedido());
+            pedidoVM.setNomeAtendenteVM(AtendenteVMAdapter.entityToViewModel(pedido.getAtendenteResponsavelPedido()));
+            pedidoVM.setNomeCozinheiroVM(CozinheiroVMAdapter.entityToViewModel(pedido.getCozinheiroResponsavelPedido()));
             return pedidoVM;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoViewModel");

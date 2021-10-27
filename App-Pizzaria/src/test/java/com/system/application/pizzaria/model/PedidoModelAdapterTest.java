@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,8 +110,8 @@ public class PedidoModelAdapterTest {
         List<IngredienteModel> listIntedienteModel = new ArrayList<>();
         pedidoModel.setIdPedidoModel(1);
         pedidoModel.setStatusPedidoModel(StatusPedido.AGUARDANDO);
-        pedidoModel.setListaPizzaModelPedidoModel(listPizzaModel);
-        pedidoModel.setListaBebidaModelPedidoModel(listBebidaModel);
+        pedidoModel.setListaPizzaModel(listPizzaModel);
+        pedidoModel.setListaBebidaModel(listBebidaModel);
         pedidoModel.setPrecoPedidoModel(new BigDecimal("59.00"));
         pedidoModel.setComentarioPedidoModel("fnfsjngdsnofgjlig, dhufsufhsfgbhsbgf fdhiuashfihasidf.");
 

@@ -71,7 +71,7 @@ public class CozinheiroVMAdapterTest {
         List<Pedido> listPedido = new ArrayList<>();
         List<Ingrediente> listIngrediente = new ArrayList<>();
         cozinheiro.setIdCozinheiro(1);
-        cozinheiro.setListaPizzaPedidoCozinheiro(listPedido);
+        cozinheiro.setListaPedidoCozinheiro(listPedido);
         cozinheiro.setListaIngredientesPizzaCozinheiro(listIngrediente);
 
         Pedido pedido = new Pedido();
@@ -118,7 +118,7 @@ public class CozinheiroVMAdapterTest {
         List<PedidoVM> listPedidoVM = new ArrayList<>();
         List<IngredienteVM> listIngredienteVM = new ArrayList<>();
         cozinheiroVM.setIdCozinheiroVM(1);
-        cozinheiroVM.setListaPizzaPedidoVMCozinheiroVM(listPedidoVM);
+        cozinheiroVM.setListaPedidoVMCozinheiroVM(listPedidoVM);
         cozinheiroVM.setListaIngredientesPizzaVMCozinheiroVM(listIngredienteVM);
 
         PedidoVM pedidoVM = new PedidoVM();

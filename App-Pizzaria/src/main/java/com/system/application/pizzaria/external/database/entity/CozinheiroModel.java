@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.external.database.entity;
 
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "TB_COZINHEIRO")
+@EqualsAndHashCode
 public class CozinheiroModel extends FuncionarioModel {
 
     @Id
@@ -22,23 +24,9 @@ public class CozinheiroModel extends FuncionarioModel {
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "cozinheiroModel")
-    private List<PedidoModel> listaPizzaPedidoModelCozinheiroModel;
+    private List<PedidoModel> listaPedidoModelCozinheiroModel;
 
     @Column(name = "INGREDIENTES")
     @OneToMany(mappedBy = "cozinheiroModel")
     private List<IngredienteModel> listaIngredientesPizzaModelCozinheiroModel;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CozinheiroModel that = (CozinheiroModel) o;
-        return Objects.equals(idCozinheiroModel, that.idCozinheiroModel);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
 }

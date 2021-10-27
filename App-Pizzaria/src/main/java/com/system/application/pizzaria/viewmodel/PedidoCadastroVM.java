@@ -16,5 +16,6 @@ public class PedidoCadastroVM {
     private List<BebidaVM> bebidaVMList;
     private BigDecimal precoTotalPedido;
     private String comentarioPedidoCadastroVM;
-
+    private AtendenteVM atendenteResponsavelVM;
+    private CozinheiroVM cozinheiroResponsavelVM;
 }

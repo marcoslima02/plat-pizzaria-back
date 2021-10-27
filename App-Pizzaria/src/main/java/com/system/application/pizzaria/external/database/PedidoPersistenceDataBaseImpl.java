@@ -2,9 +2,11 @@ package com.system.application.pizzaria.external.database;
 
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.enums.ErrorType;
+import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.PedidoPersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
+import com.system.application.pizzaria.external.database.entity.adapter.PedidoCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
 import com.system.application.pizzaria.external.database.repository.PedidoRepository;
@@ -20,7 +22,6 @@ public class PedidoPersistenceDataBaseImpl implements PedidoPersistenceDataBase 
 
     @Autowired
     private PedidoRepository pedidoRepository;
-    private PedidoModelAdapter PedidoCadastroModelAdapter;
 
     @Override
     public List<Pedido> getAllPedidos() {
@@ -43,8 +44,8 @@ public class PedidoPersistenceDataBaseImpl implements PedidoPersistenceDataBase 
         PedidoModel pedidoModel = PedidoCadastroModelAdapter.entityToModel(pedido);
         try {
             pedidoRepository.save(pedidoModel);
-            return PedidoModelAdapter.modelToEntity(pedidoModel);
-        } catch (Exception e) {
+            return PedidoCadastroModelAdapter.modelToEntity(pedidoModel);
+        }catch (Exception e){
             throw new PedidoException(ErrorType.ERROR_DATABASE_SAVE, "Erro ao salvar Pedido", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

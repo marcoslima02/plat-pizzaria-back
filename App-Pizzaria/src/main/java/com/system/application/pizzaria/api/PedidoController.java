@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.exception.PedidoException;
@@ -46,12 +46,10 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedidoVM);
     }
 
-
-//    @PostMapping("/cadastro")
-//    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
-//        Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
-//        PedidoCadastroVM pedidoCadastroReturnDataBase = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
-//        return ResponseEntity.status(200).body(pedidoCadastroReturnDataBase);
-//    }
-
+    @PostMapping("/cadastro")
+    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
+        Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
+        PedidoCadastroVM pedidoCadastroVMRetornado = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
+        return ResponseEntity.ok().body(pedidoCadastroVMRetornado);
+    }
 }

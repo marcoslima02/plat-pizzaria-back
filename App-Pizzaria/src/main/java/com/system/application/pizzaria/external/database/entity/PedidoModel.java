@@ -30,11 +30,11 @@ public class PedidoModel {
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private List<PizzaModel> listaPizzaModelPedidoModel;
+    private List<PizzaModel> listaPizzaModel;
 
     @Column(name = "BEBIDAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private List<BebidaModel> listaBebidaModelPedidoModel;
+    private List<BebidaModel> listaBebidaModel;
 
     @ManyToOne
     private AtendenteModel atendenteModel;

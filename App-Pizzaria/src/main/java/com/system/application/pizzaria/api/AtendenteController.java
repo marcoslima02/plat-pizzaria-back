@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.exception.AtendenteException;
