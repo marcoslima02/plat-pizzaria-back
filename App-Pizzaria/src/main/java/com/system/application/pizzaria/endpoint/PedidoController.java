@@ -47,11 +47,11 @@ public class PedidoController {
     }
 
 
-    @PostMapping("/cadastro")
-    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
-        Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
-        PedidoCadastroVM pedidoCadastroReturnDataBase = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
-        return ResponseEntity.status(200).body(pedidoCadastroReturnDataBase);
-    }
+//    @PostMapping("/cadastro")
+//    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
+//        Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
+//        PedidoCadastroVM pedidoCadastroReturnDataBase = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
+//        return ResponseEntity.status(200).body(pedidoCadastroReturnDataBase);
+//    }
 
 }

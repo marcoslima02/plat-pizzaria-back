@@ -22,13 +22,9 @@ public class PizzaModelAdapter {
         try {
             pizza.setIdPizza(pizzaModel.getIdPizzaModel());
             pizza.setPrecoPizza(pizzaModel.getPrecoPizzaModel());
-            pizzaModel.getListaIngredientesPizzaModelPizzaModel().forEach(ingredienteModel -> {
-                try {
-                    ingredienteList.add(IngredienteModelAdapter.modelToEntity(ingredienteModel));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            pizza.setNomePizza(pizzaModel.getNomePizzaModel());
+            pizza.setQuantidadePizza(pizzaModel.getQuantidadePizzaModel());
+            percorreListaIngredienteModelToEntity(pizzaModel, ingredienteList);
             pizza.setListaIngredientesPizza(ingredienteList);
             pizza.setCategoriaPizza(pizzaModel.getCategoriaPizzaModel());
             return pizza;
@@ -38,19 +34,25 @@ public class PizzaModelAdapter {
         }
     }
 
+    private static void percorreListaIngredienteModelToEntity(PizzaModel pizzaModel, List<Ingrediente> ingredienteList) {
+        pizzaModel.getListaIngredientesPizzaModelPizzaModel().forEach(ingredienteModel -> {
+            try {
+                ingredienteList.add(IngredienteModelAdapter.modelToEntity(ingredienteModel));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     public static PizzaModel entityToModel(Pizza pizza) throws PizzaException {
         PizzaModel pizzaModel = new PizzaModel();
         List<IngredienteModel> ingredienteModelList = new ArrayList<>();
         try {
             pizzaModel.setIdPizzaModel(pizza.getIdPizza());
             pizzaModel.setPrecoPizzaModel(pizza.getPrecoPizza());
-            pizza.getListaIngredientesPizza().forEach(ingrediente -> {
-                try {
-                    ingredienteModelList.add(IngredienteModelAdapter.entityToModel(ingrediente));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            pizzaModel.setNomePizzaModel(pizza.getNomePizza());
+            pizzaModel.setQuantidadePizzaModel(pizza.getQuantidadePizza());
+            percorreListaIngredienteEntityToModel(pizza, ingredienteModelList);
             pizzaModel.setListaIngredientesPizzaModelPizzaModel(ingredienteModelList);
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
 
@@ -59,6 +61,16 @@ public class PizzaModelAdapter {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pizza para PizzaModel");
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToModel Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void percorreListaIngredienteEntityToModel(Pizza pizza, List<IngredienteModel> ingredienteModelList) {
+        pizza.getListaIngredientesPizza().forEach(ingrediente -> {
+            try {
+                ingredienteModelList.add(IngredienteModelAdapter.entityToModel(ingrediente));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static List<PizzaModel> entityListToModelList(List<Pizza> pizzaList) {
