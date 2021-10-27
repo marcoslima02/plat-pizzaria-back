@@ -22,4 +22,7 @@ public class Pedido {
     private LocalDateTime horarioEstimadoPedido;
     private BigDecimal precoPedido;
     private String comentarioPedido;
+    private Atendente atendenteResponsavelPedido;
+    private Cozinheiro cozinheiroResponsavelPedido;
+
 }

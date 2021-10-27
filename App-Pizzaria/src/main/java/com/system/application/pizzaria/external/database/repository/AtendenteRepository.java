@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AtendenteRepository extends JpaRepository<AtendenteModel, Integer> {
+
+    Boolean existsByCpfModel(String cpfAtendente);
+    AtendenteModel findByCpfModel(String cpfAtendente);
 }

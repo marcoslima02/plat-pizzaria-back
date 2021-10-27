@@ -4,7 +4,9 @@ import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.AtendenteException;
+import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.database.entity.AtendenteModel;
+import com.system.application.pizzaria.external.database.entity.PedidoModel;
 import com.system.application.pizzaria.util.ConfigUtils;
 import org.springframework.http.HttpStatus;
 
@@ -27,7 +29,7 @@ public class AtendenteModelAdapter {
             atendenteEntity.setTelefone(atendenteModel.getTelefoneModel());
             atendenteEntity.setHorarioTrabalho(atendenteModel.getHorarioTrabalhoModel());
             atendenteEntity.setSalario(atendenteModel.getSalarioModel());
-            //TODO: colocar Pedido
+            validaListaPedidoIsNull(atendenteModel, listaPedido, atendenteEntity);
             return atendenteEntity;
 
         }catch (Exception e){
@@ -36,9 +38,26 @@ public class AtendenteModelAdapter {
         }
     }
 
+    private static void validaListaPedidoIsNull(AtendenteModel atendenteModel, List<Pedido> listaPedido, Atendente atendenteEntity) {
+        if(atendenteModel.getPedidoModel() != null){
+            percorreListaPedidoModel(atendenteModel, listaPedido);
+            atendenteEntity.setListapedidoAtendente(listaPedido);
+        }
+    }
+
+    private static void percorreListaPedidoModel(AtendenteModel atendenteModel, List<Pedido> listaPedido) {
+        atendenteModel.getPedidoModel().forEach(pedidoModel -> {
+            try {
+                listaPedido.add(PedidoModelAdapter.modelToEntity(pedidoModel));
+            } catch (PedidoException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     public static AtendenteModel entityToModel(Atendente atendenteEntity) throws AtendenteException {
         AtendenteModel atendenteModel = new AtendenteModel();
-
+        List<PedidoModel> pedidoModelList = new ArrayList<>();
         try {
             atendenteModel.setIdAtendenteModel(atendenteEntity.getIdAtendente());
             atendenteModel.setNomeModel(atendenteEntity.getNome());
@@ -48,13 +67,28 @@ public class AtendenteModelAdapter {
             atendenteModel.setTelefoneModel(atendenteEntity.getTelefone());
             atendenteModel.setHorarioTrabalhoModel(atendenteEntity.getHorarioTrabalho());
             atendenteModel.setSalarioModel(atendenteEntity.getSalario());
-            //TODO: colocar Pedido
-
+            validaListaPedidoIsNull(atendenteEntity, pedidoModelList);
             return atendenteModel;
         }catch (Exception e){
             ConfigUtils.logger.warning("Error ao fazer adapter de Atendente para AtendenteModel");
             throw new AtendenteException(ErrorType.VALIDATIONS, "Adapter entityToModel Atendente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void validaListaPedidoIsNull(Atendente atendenteEntity, List<PedidoModel> pedidoModelList) {
+        if(atendenteEntity.getListapedidoAtendente() != null){
+            percorreListaPedidoEntity(atendenteEntity, pedidoModelList);
+        }
+    }
+
+    private static void percorreListaPedidoEntity(Atendente atendenteEntity, List<PedidoModel> pedidoModelList) {
+        atendenteEntity.getListapedidoAtendente().forEach(pedido -> {
+            try {
+                pedidoModelList.add(PedidoModelAdapter.entityToModel(pedido));
+            } catch (PedidoException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static List<AtendenteModel> entityListToModelList(List<Atendente> atendenteList){

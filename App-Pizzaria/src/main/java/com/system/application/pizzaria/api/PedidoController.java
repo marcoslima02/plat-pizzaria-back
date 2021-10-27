@@ -1,13 +1,13 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.usecase.Pedido.GetAllPedido;
 import com.system.application.pizzaria.usecase.Pedido.GetPedidoById;
 import com.system.application.pizzaria.usecase.Pedido.SavePedido;
-import com.system.application.pizzaria.viewmodel.PedidoCadastroVM;
+import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PedidoVM;
-import com.system.application.pizzaria.viewmodel.adapter.PedidoCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.cadastro.PedidoCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.PedidoVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,11 +46,10 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedidoVM);
     }
 
-
     @PostMapping("/cadastro")
     public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
         Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
-        PedidoCadastroVM pedidoCadastroReturnDataBase = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
-        return ResponseEntity.status(200).body(pedidoCadastroReturnDataBase);
+        PedidoCadastroVM pedidoCadastroVMRetornado = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
+        return ResponseEntity.ok().body(pedidoCadastroVMRetornado);
     }
 }

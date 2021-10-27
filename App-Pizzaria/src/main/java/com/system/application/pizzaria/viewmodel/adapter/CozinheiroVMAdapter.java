@@ -20,25 +20,43 @@ public class CozinheiroVMAdapter {
 
         try {
             cozinheiro.setIdCozinheiro(cozinheiroVM.getIdCozinheiroVM());
-            cozinheiroVM.getListaPizzaPedidoVMCozinheiroVM().forEach(pedidoVM -> {
-                try {
-                    pedidoList.add(PedidoVMAdapter.viewModelToEntity(pedidoVM));
-                } catch (PedidoException e) {
-                    e.printStackTrace();
-                }
-            });
-            cozinheiroVM.getListaIngredientesPizzaVMCozinheiroVM().forEach(ingredienteVM -> {
-                try {
-                    ingredienteList.add(IngredienteVMAdapter.viewModelToEntity(ingredienteVM));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            cozinheiro.setIdCozinheiro(cozinheiroVM.getIdCozinheiroVM());
+            cozinheiro.setNome(cozinheiroVM.getNomeVM());
+            cozinheiro.setCpf(cozinheiroVM.getCpfVM());
+            cozinheiro.setApelido(cozinheiroVM.getApelidoVM());
+            cozinheiro.setSenha(cozinheiroVM.getSenhaVM());
+            cozinheiro.setTelefone(cozinheiroVM.getTelefoneVM());
+            cozinheiro.setHorarioTrabalho(cozinheiroVM.getHorarioTrabalhoVM());
+            cozinheiro.setSalario(cozinheiroVM.getSalarioVM());
+            percorreListaPedidoVM(cozinheiroVM, pedidoList);
+            percorreListaIngredienteVM(cozinheiroVM, ingredienteList);
+            cozinheiro.setListaPedidoCozinheiro(pedidoList);
+            cozinheiro.setListaIngredientesPizzaCozinheiro(ingredienteList);
             return cozinheiro;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de CozinheiroModel para Cozinheiro");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void percorreListaIngredienteVM(CozinheiroVM cozinheiroVM, List<Ingrediente> ingredienteList) {
+        cozinheiroVM.getListaIngredientesPizzaVMCozinheiroVM().forEach(ingredienteVM -> {
+            try {
+                ingredienteList.add(IngredienteVMAdapter.viewModelToEntity(ingredienteVM));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private static void percorreListaPedidoVM(CozinheiroVM cozinheiroVM, List<Pedido> pedidoList) {
+        cozinheiroVM.getListaPedidoVMCozinheiroVM().forEach(pedidoVM -> {
+            try {
+                pedidoList.add(PedidoVMAdapter.viewModelToEntity(pedidoVM));
+            } catch (PedidoException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static CozinheiroVM entityToViewModel(Cozinheiro cozinheiro) throws CozinheiroException {
@@ -48,25 +66,44 @@ public class CozinheiroVMAdapter {
 
         try {
             cozinheiroVM.setIdCozinheiroVM(cozinheiro.getIdCozinheiro());
-            cozinheiro.getListaPizzaPedidoCozinheiro().forEach(pedido -> {
-                try {
-                    pedidoVMList.add(PedidoVMAdapter.entityToViewModel(pedido));
-                } catch (PedidoException e) {
-                    e.printStackTrace();
-                }
-            });
-            cozinheiro.getListaIngredientesPizzaCozinheiro().forEach(ingrediente -> {
-                try {
-                    ingredienteVMList.add(IngredienteVMAdapter.entityToViewModel(ingrediente));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            cozinheiroVM.setIdCozinheiroVM(cozinheiro.getIdCozinheiro());
+            cozinheiroVM.setNomeVM(cozinheiro.getNome());
+            cozinheiroVM.setCpfVM(cozinheiro.getCpf());
+            cozinheiroVM.setApelidoVM(cozinheiro.getApelido());
+            cozinheiroVM.setSenhaVM(cozinheiro.getSenha());
+            cozinheiroVM.setTelefoneVM(cozinheiro.getTelefone());
+            cozinheiroVM.setHorarioTrabalhoVM(cozinheiro.getHorarioTrabalho());
+            cozinheiroVM.setSalarioVM(cozinheiro.getSalario());
+            cozinheiroVM.setIdCozinheiroVM(cozinheiro.getIdCozinheiro());
+            percorreListaPedidoEntity(cozinheiro, pedidoVMList);
+            percorreListaIngredienteEntity(cozinheiro, ingredienteVMList);
+            cozinheiroVM.setListaPedidoVMCozinheiroVM(pedidoVMList);
+            cozinheiroVM.setListaIngredientesPizzaVMCozinheiroVM(ingredienteVMList);
             return cozinheiroVM;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Cozinheiro para CozinheiroModel");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter entityToViewModel Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void percorreListaIngredienteEntity(Cozinheiro cozinheiro, List<IngredienteVM> ingredienteVMList) {
+        cozinheiro.getListaIngredientesPizzaCozinheiro().forEach(ingrediente -> {
+            try {
+                ingredienteVMList.add(IngredienteVMAdapter.entityToViewModel(ingrediente));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private static void percorreListaPedidoEntity(Cozinheiro cozinheiro, List<PedidoVM> pedidoVMList) {
+        cozinheiro.getListaPedidoCozinheiro().forEach(pedido -> {
+            try {
+                pedidoVMList.add(PedidoVMAdapter.entityToViewModel(pedido));
+            } catch (PedidoException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static List<CozinheiroVM> entityListToViewModelList(List<Cozinheiro> cozinheiroList) {

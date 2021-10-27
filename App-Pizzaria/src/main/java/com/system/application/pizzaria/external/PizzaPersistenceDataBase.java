@@ -6,7 +6,8 @@ import com.system.application.pizzaria.exception.PizzaException;
 import java.util.List;
 
 public interface PizzaPersistenceDataBase {
-    List<Pizza> getAllPizzas();
+
+    List<Pizza> getAllPizzas() throws PizzaException;
 
     Pizza getPizzaById(Integer idPizza) throws PizzaException;
 }

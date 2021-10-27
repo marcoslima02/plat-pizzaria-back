@@ -11,5 +11,9 @@ public interface AtendentePersistenceDataBase {
 
     Atendente getAtendenteById(Integer idAtendente) throws AtendenteException;
 
-    Atendente getAtendenteByCPF(String cpfAtendente);
+    Atendente saveAtendente(Atendente atendente) throws AtendenteException;
+
+    Boolean validateAtendenteByCPF(String cpfAtendente)throws AtendenteException;
+
+    Atendente getAtendenteByCPF(String cpfAtendente) throws AtendenteException;
 }
