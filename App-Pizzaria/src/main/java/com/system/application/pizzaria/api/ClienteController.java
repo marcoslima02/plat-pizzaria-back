@@ -73,13 +73,8 @@ public class ClienteController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<ClienteCadastroVM> saveClienteController(@RequestBody final ClienteCadastroVM clienteCadastroVM) throws ClienteException {
-        if (!validateClienteByCPF.getValidationClienteByCPF(clienteCadastroVM.getCpfVM())) {
-            Cliente cliente = ClienteCadastroVMAdapter.viewModelToEntity(clienteCadastroVM);
-            ClienteCadastroVM clienteCadastroReturnDataBase = ClienteCadastroVMAdapter.entityToViewModel(saveCliente.saveCliente(cliente));
-            return ResponseEntity.status(201).body(clienteCadastroReturnDataBase);
-        } else {
-            throw new ClienteException(ErrorType.DATA_DUPLICATE, "CPF Ja existente", new Date(), HttpStatus.BAD_REQUEST);
-        }
-
+        Cliente cliente = ClienteCadastroVMAdapter.viewModelToEntity(clienteCadastroVM);
+        ClienteCadastroVM clienteCadastroReturnDataBase = ClienteCadastroVMAdapter.entityToViewModel(saveCliente.saveCliente(cliente));
+        return ResponseEntity.status(201).body(clienteCadastroReturnDataBase);
     }
 }
