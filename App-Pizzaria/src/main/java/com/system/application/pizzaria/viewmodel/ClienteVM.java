@@ -12,6 +12,7 @@ import java.util.List;
 public class ClienteVM extends UserVM{
 
     private Integer idClienteVM;
+    private String emailClienteVM;
     private List<EnderecoVM> listaEnderecoVMClienteVM;
     private PedidoVM pedidoVMClienteVM;
 }

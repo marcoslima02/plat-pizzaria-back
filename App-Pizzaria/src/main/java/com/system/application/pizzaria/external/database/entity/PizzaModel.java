@@ -1,19 +1,18 @@
 package com.system.application.pizzaria.external.database.entity;
 
-
 import com.system.application.pizzaria.entity.enums.CategoriaPizza;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode
 @Table(name = "TB_PIZZA")
 public class PizzaModel {
 
@@ -27,12 +26,25 @@ public class PizzaModel {
 
     @Column(name = "INGREDIENTES")
     @OneToMany(mappedBy = "pizzaModel")
-    private Set<IngredienteModel> listaIngredientesPizzaModel;
+    private List<IngredienteModel> listaIngredientesPizzaModelPizzaModel;
 
     @Column(name = "CATEGORIA", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private CategoriaPizza categoriaPizzaModel;
 
     @ManyToOne
     private PedidoModel pedidoModel;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        PizzaModel that = (PizzaModel) o;
+        return Objects.equals(idPizzaModel, that.idPizzaModel);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

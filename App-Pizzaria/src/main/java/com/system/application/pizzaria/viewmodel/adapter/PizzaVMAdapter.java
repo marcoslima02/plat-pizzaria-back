@@ -3,6 +3,7 @@ package com.system.application.pizzaria.viewmodel.adapter;
 import com.system.application.pizzaria.entity.Ingrediente;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.ErrorType;
+import com.system.application.pizzaria.exception.IngredienteException;
 import com.system.application.pizzaria.exception.PizzaException;
 import com.system.application.pizzaria.viewmodel.IngredienteVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
@@ -16,11 +17,18 @@ public class PizzaVMAdapter {
 
     public static PizzaVM entityToViewModel(Pizza pizza) throws PizzaException {
         PizzaVM pizzaVM = new PizzaVM();
+        List<IngredienteVM> ingredienteVMList = new ArrayList<>();
         try {
             pizzaVM.setIdPizzaVM(pizza.getIdPizza());
             pizzaVM.setPrecoPizzaVM(pizza.getPrecoPizza());
             pizzaVM.setCategoriaPizzaVM(pizza.getCategoriaPizza());
-            //  pizza.getListaIngredientesPizza().forEach(ingrediente -> pizzaVM.getListaIngredientesPizzaVM().add(Iingrediente);
+            pizza.getListaIngredientesPizza().forEach(ingrediente -> {
+                try {
+                    ingredienteVMList.add(IngredienteVMAdapter.entityToViewModel(ingrediente));
+                } catch (IngredienteException e) {
+                    e.printStackTrace();
+                }
+            });
             return pizzaVM;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToVM Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -29,12 +37,18 @@ public class PizzaVMAdapter {
 
     public static Pizza viewModelToEntity(PizzaVM pizzaVM) throws PizzaException {
         Pizza pizza = new Pizza();
+        List<Ingrediente> ingredienteList = new ArrayList<>();
         try {
             pizza.setIdPizza(pizzaVM.getIdPizzaVM());
             pizza.setPrecoPizza(pizzaVM.getPrecoPizzaVM());
             pizza.setCategoriaPizza(pizzaVM.getCategoriaPizzaVM());
-
-            //pizzaVM.getListaIngredientesPizzaVM().forEach(ingredienteVM -> pizza.getListaIngredientesPizza().add(ingredienteVM));
+            pizzaVM.getListaIngredientesPizzaVM().forEach(ingredienteVM -> {
+                try {
+                    ingredienteList.add(IngredienteVMAdapter.viewModelToEntity(ingredienteVM));
+                } catch (IngredienteException e) {
+                    e.printStackTrace();
+                }
+            });
             return pizza;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter VMToEntity Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);

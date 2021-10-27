@@ -12,6 +12,7 @@ import java.util.List;
 public class Cliente extends User {
 
     private Integer idCliente;
+    private String emailCliente;
     private List<Endereco> listaEnderecoCliente;
     private Pedido pedidoCliente;
 }

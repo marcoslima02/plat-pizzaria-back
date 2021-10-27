@@ -3,10 +3,13 @@ package com.system.application.pizzaria.external.database.entity;
 import com.system.application.pizzaria.entity.enums.StatusPedido;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TB_PEDIDOS")
@@ -25,11 +28,11 @@ public class PedidoModel {
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<PizzaModel> pizzaPedidoModel;
+    private List<PizzaModel> listaPizzaModelPedidoModel;
 
     @Column(name = "BEBIDAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private Set<BebidaModel> bebidaPedidoModel;
+    private List<BebidaModel> listaBebidaModelPedidoModel;
 
     @ManyToOne
     private AtendenteModel atendenteModel;
@@ -38,10 +41,10 @@ public class PedidoModel {
     private CozinheiroModel cozinheiroModel;
 
     @Column(name = "HORARIO_PEDIDO", nullable = false, columnDefinition = "DATETIME")
-    private String horarioPedidoModel;
+    private LocalDateTime horarioPedidoModel;
 
     @Column(name = "HORARIO_ESTIMADO", nullable = false, columnDefinition = "DATETIME")
-    private String horarioEstimadoPedidoModel;
+    private LocalDateTime horarioEstimadoPedidoModel;
 
     @Column(name = "PRECO", nullable = false, columnDefinition = "DOUBLE")
     private BigDecimal precoPedidoModel;
@@ -49,4 +52,16 @@ public class PedidoModel {
     @Column(name = "COMENTARIO", nullable = true, columnDefinition = "VARCHAR(300)")
     private String comentarioPedidoModel;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        PedidoModel that = (PedidoModel) o;
+        return Objects.equals(idPedidoModel, that.idPedidoModel);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
