@@ -29,13 +29,19 @@ public class AtendenteModelAdapter {
             atendenteEntity.setTelefone(atendenteModel.getTelefoneModel());
             atendenteEntity.setHorarioTrabalho(atendenteModel.getHorarioTrabalhoModel());
             atendenteEntity.setSalario(atendenteModel.getSalarioModel());
-            percorreListaPedidoModel(atendenteModel, listaPedido);
-            atendenteEntity.setListapedidoAtendente(listaPedido);
+            validaListaPedidoIsNull(atendenteModel, listaPedido, atendenteEntity);
             return atendenteEntity;
 
         }catch (Exception e){
             ConfigUtils.logger.warning("Error ao fazer adapter de AtendenteModel para Atendente");
             throw new AtendenteException(ErrorType.VALIDATIONS, "Adapter modelToEntity Atendente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validaListaPedidoIsNull(AtendenteModel atendenteModel, List<Pedido> listaPedido, Atendente atendenteEntity) {
+        if(atendenteModel.getPedidoModel() != null){
+            percorreListaPedidoModel(atendenteModel, listaPedido);
+            atendenteEntity.setListapedidoAtendente(listaPedido);
         }
     }
 
@@ -61,11 +67,17 @@ public class AtendenteModelAdapter {
             atendenteModel.setTelefoneModel(atendenteEntity.getTelefone());
             atendenteModel.setHorarioTrabalhoModel(atendenteEntity.getHorarioTrabalho());
             atendenteModel.setSalarioModel(atendenteEntity.getSalario());
-            percorreListaPedidoEntity(atendenteEntity, pedidoModelList);
+            validaListaPedidoIsNull(atendenteEntity, pedidoModelList);
             return atendenteModel;
         }catch (Exception e){
             ConfigUtils.logger.warning("Error ao fazer adapter de Atendente para AtendenteModel");
             throw new AtendenteException(ErrorType.VALIDATIONS, "Adapter entityToModel Atendente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validaListaPedidoIsNull(Atendente atendenteEntity, List<PedidoModel> pedidoModelList) {
+        if(atendenteEntity.getListapedidoAtendente() != null){
+            percorreListaPedidoEntity(atendenteEntity, pedidoModelList);
         }
     }
 

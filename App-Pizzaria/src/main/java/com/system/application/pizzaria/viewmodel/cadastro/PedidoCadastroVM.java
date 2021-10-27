@@ -1,5 +1,9 @@
-package com.system.application.pizzaria.viewmodel;
+package com.system.application.pizzaria.viewmodel.cadastro;
 
+import com.system.application.pizzaria.viewmodel.AtendenteVM;
+import com.system.application.pizzaria.viewmodel.BebidaVM;
+import com.system.application.pizzaria.viewmodel.CozinheiroVM;
+import com.system.application.pizzaria.viewmodel.PizzaVM;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,6 @@
-package com.system.application.pizzaria.viewmodel.adapter;
+package com.system.application.pizzaria.viewmodel.adapter.cadastro;
 
 import com.system.application.pizzaria.entity.Bebida;
-import com.system.application.pizzaria.entity.Cozinheiro;
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.ErrorType;
@@ -11,7 +10,11 @@ import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.exception.PizzaException;
 import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
-import com.system.application.pizzaria.viewmodel.PedidoCadastroVM;
+import com.system.application.pizzaria.viewmodel.adapter.AtendenteVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.BebidaVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.CozinheiroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.PizzaVMAdapter;
+import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
 import org.springframework.http.HttpStatus;
 

@@ -10,9 +10,9 @@ import com.system.application.pizzaria.entity.enums.StatusPedido;
 import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.IngredienteVM;
-import com.system.application.pizzaria.viewmodel.PedidoCadastroVM;
+import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
-import com.system.application.pizzaria.viewmodel.adapter.PedidoCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.cadastro.PedidoCadastroVMAdapter;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
