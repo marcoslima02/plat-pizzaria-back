@@ -1,17 +1,17 @@
 package com.system.application.pizzaria.entity;
 
 import com.system.application.pizzaria.entity.enums.StatusPedido;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.Hibernate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Pedido {
 
     private Integer idPedido;
@@ -22,18 +22,4 @@ public class Pedido {
     private LocalDateTime horarioEstimadoPedido;
     private BigDecimal precoPedido;
     private String comentarioPedido;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Pedido that = (Pedido) o;
-        return Objects.equals(idPedido, that.idPedido);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
 }
