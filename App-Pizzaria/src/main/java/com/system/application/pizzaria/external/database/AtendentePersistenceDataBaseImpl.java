@@ -49,11 +49,7 @@ public class AtendentePersistenceDataBaseImpl implements AtendentePersistenceDat
 
     @Override
     public Boolean validateAtendenteByCPF(String cpfAtendente) throws AtendenteException {
-        if (atendenteRepository.existsByCpfModel(cpfAtendente)) {
-            return true;
-        } else {
-            throw new AtendenteException(ErrorType.DATA_DUPLICATE, String.format("Funcionario ja existente com o CPF: %s", cpfAtendente), new Date(), HttpStatus.BAD_REQUEST);
-        }
+        return atendenteRepository.existsByCpfModel(cpfAtendente);
     }
 
     @Override

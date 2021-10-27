@@ -1,14 +1,11 @@
 package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Atendente;
-import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.AtendenteException;
-import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.usecase.atendente.GetAllAtendente;
 import com.system.application.pizzaria.usecase.atendente.GetAtendenteById;
 import com.system.application.pizzaria.usecase.atendente.SaveAtendente;
 import com.system.application.pizzaria.usecase.atendente.ValidateAtendenteByCPF;
-import com.system.application.pizzaria.usecase.cliente.ValidateClienteByCPF;
 import com.system.application.pizzaria.viewmodel.AtendenteVM;
 import com.system.application.pizzaria.viewmodel.adapter.AtendenteVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.cadastro.AtendenteCadastroVMAdapter;
@@ -19,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -58,12 +54,9 @@ public class AtendenteController {
     @PostMapping("/cadastro")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<AtendenteCadastroVM> saveAtendente(@RequestBody AtendenteCadastroVM atendenteCadastroVM) throws AtendenteException {
-        if(validateAtendenteByCPF.getValidationAtendenteCPF(atendenteCadastroVM.getCpfVM())){
-            Atendente atendente = AtendenteCadastroVMAdapter.viewModelToEntity(atendenteCadastroVM);
-            AtendenteCadastroVM atendenteCadastradoRetornado = AtendenteCadastroVMAdapter.entityToViewModel(saveAtendente.saveAtendente(atendente));
-            return ResponseEntity.ok().body(atendenteCadastradoRetornado);
-        }else {
-            throw new AtendenteException(ErrorType.DATA_DUPLICATE, String.format("Funcionario ja existente com o CPF: %s", atendenteCadastroVM.getCpfVM()), new Date(), HttpStatus.BAD_REQUEST);
-        }
+        Atendente atendente = AtendenteCadastroVMAdapter.viewModelToEntity(atendenteCadastroVM);
+        AtendenteCadastroVM atendenteCadastradoRetornado = AtendenteCadastroVMAdapter.entityToViewModel(saveAtendente.saveAtendente(atendente));
+        return ResponseEntity.ok().body(atendenteCadastradoRetornado);
+
     }
 }
