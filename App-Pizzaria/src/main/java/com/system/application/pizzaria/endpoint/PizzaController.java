@@ -6,7 +6,9 @@ import com.system.application.pizzaria.exception.PizzaException;
 
 import com.system.application.pizzaria.usecase.Pizza.GetAllPizza;
 import com.system.application.pizzaria.usecase.Pizza.GetPizzaById;
+import com.system.application.pizzaria.viewmodel.PizzaCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
+import com.system.application.pizzaria.viewmodel.adapter.PizzaCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.PizzaVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,4 +43,12 @@ public class PizzaController {
         PizzaVM pizzaVM = PizzaVMAdapter.entityToViewModel(pizzaEntity);
         return ResponseEntity.ok().body(pizzaVM);
     }
+
+    @PostMapping("/cadastro")
+    public ResponseEntity<PizzaCadastroVM> savePizzaController(@RequestBody final PizzaCadastroVM pizzaCadastroVM) throws PizzaException {
+        Pizza pizza = PizzaCadastroVMAdapter.viewModelToEntity(pizzaCadastroVM);
+        PizzaCadastroVM pizzaCadastroReturnDataBase = PizzaCadastroVMAdapter.entityToViewModel(savePizza.savePizza(pizza));
+        return ResponseEntity.status(200).body(pizzaCadastroReturnDataBase);
+    }
+
 }
