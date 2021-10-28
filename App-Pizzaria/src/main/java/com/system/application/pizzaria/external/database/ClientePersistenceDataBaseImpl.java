@@ -62,4 +62,9 @@ public class ClientePersistenceDataBaseImpl implements ClientePersistenceDataBas
             throw new ClienteException(ErrorType.ERROR_DATABASE_SAVE, "Erro ao salvar Cliente", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    public Boolean getvalidateCPF(String cpfCliente) throws ClienteException {
+        return clienteRepository.existsByCpfModel(cpfCliente);
+    }
 }

@@ -11,23 +11,13 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class PizzaVM {
 
     private Integer idPizzaVM;
+    private String nomePizzaVM;
     private BigDecimal precoPizzaVM;
+    private Integer quantidadePizzaVM;
     private List<IngredienteVM> listaIngredientesPizzaVM;
     private CategoriaPizza categoriaPizzaVM;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        PizzaVM that = (PizzaVM) o;
-        return Objects.equals(idPizzaVM, that.idPizzaVM);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }

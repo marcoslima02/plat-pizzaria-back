@@ -21,18 +21,25 @@ public class PizzaVMAdapter {
         try {
             pizzaVM.setIdPizzaVM(pizza.getIdPizza());
             pizzaVM.setPrecoPizzaVM(pizza.getPrecoPizza());
+            pizzaVM.setNomePizzaVM(pizza.getNomePizza());
+            pizzaVM.setQuantidadePizzaVM(pizza.getQuantidadePizza());
             pizzaVM.setCategoriaPizzaVM(pizza.getCategoriaPizza());
-            pizza.getListaIngredientesPizza().forEach(ingrediente -> {
-                try {
-                    ingredienteVMList.add(IngredienteVMAdapter.entityToViewModel(ingrediente));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            percorreIngredienteEntityToVM(pizza, ingredienteVMList);
+            pizzaVM.setListaIngredientesPizzaVM(ingredienteVMList);
             return pizzaVM;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToVM Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void percorreIngredienteEntityToVM(Pizza pizza, List<IngredienteVM> ingredienteVMList) {
+        pizza.getListaIngredientesPizza().forEach(ingrediente -> {
+            try {
+                ingredienteVMList.add(IngredienteVMAdapter.entityToViewModel(ingrediente));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static Pizza viewModelToEntity(PizzaVM pizzaVM) throws PizzaException {
@@ -42,17 +49,24 @@ public class PizzaVMAdapter {
             pizza.setIdPizza(pizzaVM.getIdPizzaVM());
             pizza.setPrecoPizza(pizzaVM.getPrecoPizzaVM());
             pizza.setCategoriaPizza(pizzaVM.getCategoriaPizzaVM());
-            pizzaVM.getListaIngredientesPizzaVM().forEach(ingredienteVM -> {
-                try {
-                    ingredienteList.add(IngredienteVMAdapter.viewModelToEntity(ingredienteVM));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
+            pizza.setNomePizza(pizzaVM.getNomePizzaVM());
+            pizza.setQuantidadePizza(pizzaVM.getQuantidadePizzaVM());
+            percorreIngredienteVMToEntity(pizzaVM, ingredienteList);
+            pizza.setListaIngredientesPizza(ingredienteList);
             return pizza;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter VMToEntity Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static void percorreIngredienteVMToEntity(PizzaVM pizzaVM, List<Ingrediente> ingredienteList) {
+        pizzaVM.getListaIngredientesPizzaVM().forEach(ingredienteVM -> {
+            try {
+                ingredienteList.add(IngredienteVMAdapter.viewModelToEntity(ingredienteVM));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static List<Pizza> viewModelListToEntityList(List<PizzaVM> pizzaVMList) {

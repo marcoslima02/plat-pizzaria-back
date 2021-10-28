@@ -53,7 +53,7 @@ public class IngredienteVMAdapter {
         return ingredienteList;
     }
 
-    public static List<IngredienteVM> entityListToEntityList(List<Ingrediente> ingredienteList) {
+    public static List<IngredienteVM> entityListToViewModelList(List<Ingrediente> ingredienteList) {
         List<IngredienteVM> ingredienteVMList = new ArrayList<>();
         ingredienteList.forEach(ingrediente -> {
             try {

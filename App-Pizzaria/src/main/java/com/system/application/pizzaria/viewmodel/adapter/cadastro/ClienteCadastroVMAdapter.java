@@ -1,10 +1,10 @@
-package com.system.application.pizzaria.viewmodel.adapter;
+package com.system.application.pizzaria.viewmodel.adapter.cadastro;
 
 import com.system.application.pizzaria.entity.Cliente;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.util.ConfigUtils;
-import com.system.application.pizzaria.viewmodel.ClienteCadastroVM;
+import com.system.application.pizzaria.viewmodel.cadastro.ClienteCadastroVM;
 import org.springframework.http.HttpStatus;
 
 import java.util.Date;

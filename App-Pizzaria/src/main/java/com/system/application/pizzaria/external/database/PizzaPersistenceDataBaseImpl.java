@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,13 @@ public class PizzaPersistenceDataBaseImpl implements PizzaPersistenceDataBase {
     private PizzaRepository pizzaRepository;
 
     @Override
-    public List<Pizza> getAllPizzas() {
-        List<PizzaModel> pizzaModelList = pizzaRepository.findAll();
-        return PizzaModelAdapter.modelListToEntityList(pizzaModelList);
+    public List<Pizza> getAllPizzas() throws PizzaException{
+        try{
+            List<PizzaModel> pizzaModelList = pizzaRepository.findAll();
+            return PizzaModelAdapter.modelListToEntityList(pizzaModelList);
+        }catch (Exception e){
+            throw new PizzaException(ErrorType.DATA_BASE_NOT_FOUND, "Erro Interno ao procurar todos os pedidos", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
