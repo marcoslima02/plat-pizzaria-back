@@ -15,10 +15,7 @@ public class PizzaCadastroVMAdapter {
         Pizza pizza = new Pizza();
 
         try {
-            pizza.setIdPizza(pizza.getIdPizza());
-            pizza.setCategoriaPizza(pizza.getCategoriaPizza());
-            pizza.setListaIngredientesPizza(pizza.getListaIngredientesPizza());
-            pizza.setPrecoPizza(pizza.getPrecoPizza());
+            pizza.setCategoriaPizza(pizzaCadastroVM.getCategoriaPizzaCadastroVM());
 
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PizzaCadastroVM para Pizza");
@@ -31,10 +28,7 @@ public class PizzaCadastroVMAdapter {
     public static PizzaCadastroVM entityToViewModel(Pizza pizza) throws PizzaException {
         PizzaCadastroVM pizzaCadastroVM = new PizzaCadastroVM();
         try {
-            pizzaCadastroVM.setIdPizzaVM(pizza.getIdPizza());
-            pizzaCadastroVM.setCategoriaPizzaVM(pizza.getCategoriaPizza());
-            pizzaCadastroVM.setListaIngredientesPizzaVM(pizza.getListaIngredientesPizza());
-            pizzaCadastroVM.setPrecoPizzaVM(pizza.getPrecoPizza());
+            pizzaCadastroVM.setCategoriaPizzaCadastroVM(pizza.getCategoriaPizza());
 
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pizza para PizzaCadastroVM");

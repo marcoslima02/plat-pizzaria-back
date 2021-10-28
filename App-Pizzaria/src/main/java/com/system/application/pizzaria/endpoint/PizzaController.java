@@ -6,6 +6,7 @@ import com.system.application.pizzaria.exception.PizzaException;
 
 import com.system.application.pizzaria.usecase.Pizza.GetAllPizza;
 import com.system.application.pizzaria.usecase.Pizza.GetPizzaById;
+import com.system.application.pizzaria.usecase.Pizza.SavePizza;
 import com.system.application.pizzaria.viewmodel.PizzaCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
 import com.system.application.pizzaria.viewmodel.adapter.PizzaCadastroVMAdapter;
@@ -27,6 +28,9 @@ public class PizzaController {
 
     @Autowired
     private GetPizzaById getPizzaById;
+
+    @Autowired
+    private SavePizza savePizza;
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)

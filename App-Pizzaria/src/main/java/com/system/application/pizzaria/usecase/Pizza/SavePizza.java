@@ -15,5 +15,4 @@ public class SavePizza {
     public Pizza savePizza(Pizza pizza) throws PizzaException {
         return pizzaPersistenceDataBase.savePizza(pizza);
     }
-
 }
