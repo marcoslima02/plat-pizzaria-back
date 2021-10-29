@@ -5,8 +5,12 @@ import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.exception.BebidaException;
 import com.system.application.pizzaria.usecase.bebida.GetAllBebida;
 import com.system.application.pizzaria.usecase.bebida.GetBebidaByld;
+import com.system.application.pizzaria.usecase.bebida.SaveBebida;
+import com.system.application.pizzaria.usecase.ingrediente.SaveIngrediente;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.adapter.BebidaVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.cadastro.BebidaCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.cadastro.BebidaCadastroVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +22,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/bebida", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BebidaController {
+
+    @Autowired
+    private SaveBebida saveBebida;
 
     @Autowired
     private GetAllBebida getAllBebida;
@@ -41,6 +48,14 @@ public class BebidaController {
         BebidaVM bebidaVM = BebidaVMAdapter.entityToViewModel(bebidaEntity);
         return ResponseEntity.ok().body(bebidaVM);
     }
+
+    @PostMapping("/cadastro")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<BebidaCadastroVM> saveBebida(@RequestBody BebidaCadastroVM bebidaCadastroVM) throws BebidaException {
+        Bebida bebida = BebidaCadastroVMAdapter.viewModelToEntity(bebidaCadastroVM);
+        BebidaCadastroVM bebidaCadastradoRetornado = BebidaCadastroVMAdapter.entityToViewModel(saveBebida.saveBebida(bebida));
+        return ResponseEntity.ok().body(bebidaCadastradoRetornado);
+
+    }
+
 }
-
-

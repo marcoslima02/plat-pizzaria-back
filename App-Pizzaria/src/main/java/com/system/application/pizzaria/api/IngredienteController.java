@@ -1,12 +1,20 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 
+import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.entity.Ingrediente;
+import com.system.application.pizzaria.exception.AtendenteException;
 import com.system.application.pizzaria.exception.IngredienteException;
+import com.system.application.pizzaria.usecase.atendente.SaveAtendente;
 import com.system.application.pizzaria.usecase.ingrediente.GetAllIngrediente;
 import com.system.application.pizzaria.usecase.ingrediente.GetIngredienteByld;
+import com.system.application.pizzaria.usecase.ingrediente.SaveIngrediente;
 import com.system.application.pizzaria.viewmodel.IngredienteVM;
 import com.system.application.pizzaria.viewmodel.adapter.IngredienteVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.cadastro.AtendenteCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.cadastro.IngredienteCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.cadastro.AtendenteCadastroVM;
+import com.system.application.pizzaria.viewmodel.cadastro.IngredienteCadastroVm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +26,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/ingrediente", produces = MediaType.APPLICATION_JSON_VALUE)
 public class IngredienteController {
+
+    @Autowired
+    private SaveIngrediente saveIngrediente;
 
     @Autowired
     private GetAllIngrediente getAllIngrediente;
@@ -41,6 +52,16 @@ public class IngredienteController {
         IngredienteVM ingredienteVM = IngredienteVMAdapter.entityToViewModel(ingredienteEntity);
         return ResponseEntity.ok().body(ingredienteVM);
     }
+
+    @PostMapping("/cadastro")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<com.system.application.pizzaria.viewmodel.cadastro.IngredienteCadastroVm> saveIngrediente(@RequestBody IngredienteCadastroVm ingredienteCadastroVM) throws IngredienteException {
+        Ingrediente ingrediente = IngredienteCadastroVMAdapter.viewModelToEntity(ingredienteCadastroVM);
+        IngredienteCadastroVm ingredienteCadastradoRetornado = IngredienteCadastroVMAdapter.entityToViewModel(saveIngrediente.saveIngrediente(ingrediente));
+        return ResponseEntity.ok().body(ingredienteCadastradoRetornado);
+
+    }
+
 }
 
 
