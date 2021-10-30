@@ -1,16 +1,12 @@
 package com.system.application.pizzaria.external.database;
 
 import com.system.application.pizzaria.entity.Bebida;
-import com.system.application.pizzaria.entity.Ingrediente;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.BebidaException;
-import com.system.application.pizzaria.exception.IngredienteException;
 import com.system.application.pizzaria.external.BebidaPersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.BebidaModel;
-import com.system.application.pizzaria.external.database.entity.IngredienteModel;
-import com.system.application.pizzaria.external.database.entity.adapter.BebidaCadastroModelAdapter;
+import com.system.application.pizzaria.external.database.entity.adapter.cadastro.BebidaCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.BebidaModelAdapter;
-import com.system.application.pizzaria.external.database.entity.adapter.IngredienteCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.repository.BebidaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

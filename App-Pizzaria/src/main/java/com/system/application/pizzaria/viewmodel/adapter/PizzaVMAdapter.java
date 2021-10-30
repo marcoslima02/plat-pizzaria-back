@@ -24,11 +24,17 @@ public class PizzaVMAdapter {
             pizzaVM.setNomePizzaVM(pizza.getNomePizza());
             pizzaVM.setQuantidadePizzaVM(pizza.getQuantidadePizza());
             pizzaVM.setCategoriaPizzaVM(pizza.getCategoriaPizza());
-            percorreIngredienteEntityToVM(pizza, ingredienteVMList);
+            validadeIsNullEntityToVM(pizza, ingredienteVMList);
             pizzaVM.setListaIngredientesPizzaVM(ingredienteVMList);
             return pizzaVM;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToVM Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validadeIsNullEntityToVM(Pizza pizza, List<IngredienteVM> ingredienteVMList) {
+        if(pizza.getListaIngredientesPizza() != null){
+            percorreIngredienteEntityToVM(pizza, ingredienteVMList);
         }
     }
 
@@ -51,11 +57,17 @@ public class PizzaVMAdapter {
             pizza.setCategoriaPizza(pizzaVM.getCategoriaPizzaVM());
             pizza.setNomePizza(pizzaVM.getNomePizzaVM());
             pizza.setQuantidadePizza(pizzaVM.getQuantidadePizzaVM());
-            percorreIngredienteVMToEntity(pizzaVM, ingredienteList);
+            validateIsNullVMToEntity(pizzaVM, ingredienteList);
             pizza.setListaIngredientesPizza(ingredienteList);
             return pizza;
         } catch (Exception e) {
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter VMToEntity Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullVMToEntity(PizzaVM pizzaVM, List<Ingrediente> ingredienteList) {
+        if(pizzaVM.getListaIngredientesPizzaVM() != null){
+            percorreIngredienteVMToEntity(pizzaVM, ingredienteList);
         }
     }
 

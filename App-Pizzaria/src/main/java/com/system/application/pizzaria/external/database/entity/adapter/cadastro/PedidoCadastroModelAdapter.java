@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.external.database.entity.adapter;
+package com.system.application.pizzaria.external.database.entity.adapter.cadastro;
 
 import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.Pedido;
@@ -10,7 +10,9 @@ import com.system.application.pizzaria.exception.PizzaException;
 import com.system.application.pizzaria.external.database.entity.BebidaModel;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
 import com.system.application.pizzaria.external.database.entity.PizzaModel;
+import com.system.application.pizzaria.external.database.entity.adapter.*;
 import com.system.application.pizzaria.util.ConfigUtils;
+import com.system.application.pizzaria.viewmodel.adapter.PedidoVMAdapter;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -30,14 +32,25 @@ public class PedidoCadastroModelAdapter {
             pedidoModel.setComentarioPedidoModel(pedido.getComentarioPedido());
             pedidoModel.setHorarioPedidoModel(pedido.getHorarioPedido());
             pedidoModel.setHorarioEstimadoPedidoModel(pedido.getHorarioEstimadoPedido());
-            percorreListaPizza(pedido, pizzaModelList);
-            percorreListaBebida(pedido, bebidaModelList);
+            validateIsExistsNUll(pedido, pedidoModel, pizzaModelList, bebidaModelList);
             pedidoModel.setListaPizzaModel(pizzaModelList);
             pedidoModel.setListaBebidaModel(bebidaModelList);
+            //TODO: Descomentar quando estiver pronto API cozinhiero
+           // pedidoModel.setCozinheiroModel(CozinheiroModelAdapter.entityToModel(pedido.getCozinheiroResponsavelPedido()));
+            pedidoModel.setAtendenteModel(AtendenteModelAdapter.entityToModel(pedido.getAtendenteResponsavelPedido()));
             return pedidoModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer cadastro adapter de Pedido para PedidoModel");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter entityToModel Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsExistsNUll(Pedido pedido, PedidoModel pedidoModel, List<PizzaModel> pizzaModelList, List<BebidaModel> bebidaModelList) {
+        if(pedido.getListaBebidaPedido() != null){
+            percorreListaBebida(pedido, bebidaModelList);
+        }
+        if(pedido.getListaPizzaPedido() != null){
+            percorreListaPizza(pedido, pizzaModelList);
         }
     }
 
@@ -71,14 +84,25 @@ public class PedidoCadastroModelAdapter {
             pedido.setComentarioPedido(pedidoModel.getComentarioPedidoModel());
             pedido.setHorarioPedido(pedidoModel.getHorarioPedidoModel());
             pedido.setHorarioEstimadoPedido(pedidoModel.getHorarioEstimadoPedidoModel());
-            percorreListaPizzaModel(pedidoModel, pizzaList);
-            percorreListaBebidaModel(pedidoModel, bebidaList);
+            validateIsNullModelToEntity(pedidoModel, pizzaList, bebidaList);
             pedido.setListaPizzaPedido(pizzaList);
             pedido.setListaBebidaPedido(bebidaList);
+            //TODO: Descomentar quando estiver pronto API cozinhiero
+            // pedidoModel.setCozinheiroModel(CozinheiroModelAdapter.entityToModel(pedido.getCozinheiroResponsavelPedido()));
+            pedido.setAtendenteResponsavelPedido(AtendenteModelAdapter.modelToEntity(pedidoModel.getAtendenteModel()));
             return pedido;
         }catch (Exception e){
             ConfigUtils.logger.warning("Error ao fazer cadastro adapter de PedidoModel para Pedido");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter modelToEntity Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullModelToEntity(PedidoModel pedidoModel, List<Pizza> pizzaList, List<Bebida> bebidaList) {
+        if(pedidoModel.getListaBebidaModel() != null){
+            percorreListaBebidaModel(pedidoModel, bebidaList);
+        }
+        if(pedidoModel.getListaPizzaModel() != null){
+            percorreListaPizzaModel(pedidoModel, pizzaList);
         }
     }
 

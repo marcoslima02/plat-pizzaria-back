@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.viewmodel.adapter.cadastro;
+package com.system.application.pizzaria.viewmodel.adapter.forms;
 
 import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.enums.ErrorType;
@@ -7,7 +7,6 @@ import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.cadastro.BebidaCadastroVM;
 import org.springframework.http.HttpStatus;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class BebidaCadastroVMAdapter {

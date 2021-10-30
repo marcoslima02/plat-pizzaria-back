@@ -24,13 +24,19 @@ public class PizzaModelAdapter {
             pizza.setPrecoPizza(pizzaModel.getPrecoPizzaModel());
             pizza.setNomePizza(pizzaModel.getNomePizzaModel());
             pizza.setQuantidadePizza(pizzaModel.getQuantidadePizzaModel());
-            percorreListaIngredienteModelToEntity(pizzaModel, ingredienteList);
+            validateIsNUllModelToEntity(pizzaModel, ingredienteList);
             pizza.setListaIngredientesPizza(ingredienteList);
             pizza.setCategoriaPizza(pizzaModel.getCategoriaPizzaModel());
             return pizza;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PizzaModel para Pizza");
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter modelToEntity Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNUllModelToEntity(PizzaModel pizzaModel, List<Ingrediente> ingredienteList) {
+        if(pizzaModel.getListaIngredientesPizzaModelPizzaModel() != null){
+            percorreListaIngredienteModelToEntity(pizzaModel, ingredienteList);
         }
     }
 
@@ -52,7 +58,7 @@ public class PizzaModelAdapter {
             pizzaModel.setPrecoPizzaModel(pizza.getPrecoPizza());
             pizzaModel.setNomePizzaModel(pizza.getNomePizza());
             pizzaModel.setQuantidadePizzaModel(pizza.getQuantidadePizza());
-            percorreListaIngredienteEntityToModel(pizza, ingredienteModelList);
+            validateIsNullEntityToModel(pizza, ingredienteModelList);
             pizzaModel.setListaIngredientesPizzaModelPizzaModel(ingredienteModelList);
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
 
@@ -60,6 +66,12 @@ public class PizzaModelAdapter {
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pizza para PizzaModel");
             throw new PizzaException(ErrorType.VALIDATIONS, "Adapter entityToModel Pizza is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullEntityToModel(Pizza pizza, List<IngredienteModel> ingredienteModelList) {
+        if(pizza.getListaIngredientesPizza() != null){
+            percorreListaIngredienteEntityToModel(pizza, ingredienteModelList);
         }
     }
 

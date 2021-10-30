@@ -5,7 +5,7 @@ import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.external.ClientePersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.ClienteModel;
-import com.system.application.pizzaria.external.database.entity.adapter.ClienteCadastroModelAdapter;
+import com.system.application.pizzaria.external.database.entity.adapter.cadastro.ClienteCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.ClienteModelAdapter;
 import com.system.application.pizzaria.external.database.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

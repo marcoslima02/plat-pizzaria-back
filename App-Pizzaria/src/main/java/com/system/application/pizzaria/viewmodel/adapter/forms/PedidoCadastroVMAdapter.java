@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.viewmodel.adapter.cadastro;
+package com.system.application.pizzaria.viewmodel.adapter.forms;
 
 import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.Pedido;
@@ -12,7 +12,6 @@ import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.adapter.AtendenteVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.BebidaVMAdapter;
-import com.system.application.pizzaria.viewmodel.adapter.CozinheiroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.PizzaVMAdapter;
 import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
@@ -31,8 +30,9 @@ public class PedidoCadastroVMAdapter {
         List<Pizza> listPizzas = new ArrayList<>();
 
         try {
-            pedido.setAtendenteResponsavelPedido(AtendenteVMAdapter.viewModelToEntity(pedidoCadastroVM.getAtendenteResponsavelVM()));
-            pedido.setCozinheiroResponsavelPedido(CozinheiroVMAdapter.viewModelToEntity(pedidoCadastroVM.getCozinheiroResponsavelVM()));
+            pedido.setAtendenteResponsavelPedido(AtendenteVMAdapter.viewModelToEntityInfo(pedidoCadastroVM.getAtendenteResponsavelVM()));
+            //TODO: API COZINHEIRO PR0NTA
+            //pedido.setCozinheiroResponsavelPedido(CozinheiroVMAdapter.viewModelToEntity(pedidoCadastroVM.getCozinheiroResponsavelVM()));
             pedido.setStatusPedido(StatusPedido.AGUARDANDO);
             pedido.setHorarioPedido(LocalDate.now().atStartOfDay());
             pedido.setHorarioEstimadoPedido(pedido.getHorarioPedido().plusHours(1));
@@ -42,8 +42,6 @@ public class PedidoCadastroVMAdapter {
             percorreListaPizza(pedidoCadastroVM, listPizzas);
             pedido.setListaBebidaPedido(listBebidas);
             pedido.setListaPizzaPedido(listPizzas);
-            pedido.setAtendenteResponsavelPedido(AtendenteVMAdapter.viewModelToEntity(pedidoCadastroVM.getAtendenteResponsavelVM()));
-            pedido.setCozinheiroResponsavelPedido(CozinheiroVMAdapter.viewModelToEntity(pedidoCadastroVM.getCozinheiroResponsavelVM()));
             return pedido;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer cadastro adapter de PedidoCadastroVM para Pedido");
@@ -56,8 +54,9 @@ public class PedidoCadastroVMAdapter {
         List<BebidaVM> listBebidasVM = new ArrayList<>();
         List<PizzaVM> listPizzasVM = new ArrayList<>();
         try {
-            pedidoCadastroVM.setAtendenteResponsavelVM(AtendenteVMAdapter.entityToViewModel(pedido.getAtendenteResponsavelPedido()));
-            pedidoCadastroVM.setCozinheiroResponsavelVM(CozinheiroVMAdapter.entityToViewModel(pedido.getCozinheiroResponsavelPedido()));
+            pedidoCadastroVM.setAtendenteResponsavelVM(AtendenteVMAdapter.entityToViewModelInfo(pedido.getAtendenteResponsavelPedido()));
+            //TODO: Api cozinhiero pronta
+            //pedidoCadastroVM.setCozinheiroResponsavelVM(CozinheiroVMAdapter.entityToViewModel(pedido.getCozinheiroResponsavelPedido()));
             pedidoCadastroVM.setPrecoTotalPedido(pedido.getPrecoPedido());
             pedidoCadastroVM.setComentarioPedidoCadastroVM(pedido.getComentarioPedido());
             percorreListaBebidaEntity(pedido, listBebidasVM);

@@ -38,6 +38,26 @@ public class AtendenteModelAdapter {
         }
     }
 
+    public static Atendente modelToEntityAtendenteInfo(AtendenteModel atendenteModel) throws AtendenteException {
+        Atendente atendenteEntity = new Atendente();
+
+        try{
+            atendenteEntity.setIdAtendente(atendenteModel.getIdAtendenteModel());
+            atendenteEntity.setNome(atendenteModel.getNomeModel());
+            atendenteEntity.setCpf(atendenteModel.getCpfModel());
+            atendenteEntity.setApelido(atendenteModel.getApelidoModel());
+            atendenteEntity.setSenha(atendenteModel.getSenhaModel());
+            atendenteEntity.setTelefone(atendenteModel.getTelefoneModel());
+            atendenteEntity.setHorarioTrabalho(atendenteModel.getHorarioTrabalhoModel());
+            atendenteEntity.setSalario(atendenteModel.getSalarioModel());
+            return atendenteEntity;
+
+        }catch (Exception e){
+            ConfigUtils.logger.warning("Error ao fazer adapter de AtendenteModel para Atendente");
+            throw new AtendenteException(ErrorType.VALIDATIONS, "Adapter modelToEntity Atendente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     private static void validaListaPedidoIsNull(AtendenteModel atendenteModel, List<Pedido> listaPedido, Atendente atendenteEntity) {
         if(atendenteModel.getPedidoModel() != null){
             percorreListaPedidoModel(atendenteModel, listaPedido);
