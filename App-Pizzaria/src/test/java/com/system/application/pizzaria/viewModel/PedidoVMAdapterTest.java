@@ -28,7 +28,7 @@ public class PedidoVMAdapterTest {
 
 
     @Test
-    public void shouldAdapterCorrectlyVMToEntityTest() throws PedidoException {
+    public void shouldAdapterCorrectlyViewModelToEntityTest() throws PedidoException {
         //Arrange
         Pedido pedidoExpected = criaEntidadePedido();
         //Act
@@ -38,7 +38,7 @@ public class PedidoVMAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToVM() throws PedidoException {
+    public void shouldAdapterCorrectlyEntityToViewModelTest() throws PedidoException {
         //Arrange
         PedidoVM pedidoVMExpected = criaEntidadePedidoVM();
         //Act

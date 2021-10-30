@@ -36,7 +36,7 @@ public class PedidoModelAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToModel() throws PedidoException {
+    public void shouldAdapterCorrectlyEntityToModelTest() throws PedidoException {
         //Arrange
         PedidoModel pedidoModelExpected = criaEntidadePedidoModel();
         //Act

@@ -26,7 +26,7 @@ public class CozinheiroVMAdapterTest {
 
 
     @Test
-    public void shouldAdapterCorrectlyVMToEntityTest() throws CozinheiroException {
+    public void shouldAdapterCorrectlyViewModelToEntityTest() throws CozinheiroException {
         //Arrange
         Cozinheiro cozinheiroExpected = criaEntidadeCozinheiro();
         //Act
@@ -36,7 +36,7 @@ public class CozinheiroVMAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToVM() throws CozinheiroException {
+    public void shouldAdapterCorrectlyEntityToViewModelTest() throws CozinheiroException {
         //Arrange
         CozinheiroVM cozinheiroVMExpected = criaEntidadeCozinheiroVM();
         //Act

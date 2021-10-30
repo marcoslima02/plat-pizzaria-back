@@ -1,6 +1,5 @@
 package com.system.application.pizzaria.external.database;
 
-import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.PizzaException;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +21,14 @@ public class PizzaPersistenceDataBaseImpl implements PizzaPersistenceDataBase {
     @Autowired
     private PizzaRepository pizzaRepository;
 
+
     @Override
     public List<Pizza> getAllPizzas() throws PizzaException{
         try{
             List<PizzaModel> pizzaModelList = pizzaRepository.findAll();
             return PizzaModelAdapter.modelListToEntityList(pizzaModelList);
         }catch (Exception e){
-            throw new PizzaException(ErrorType.DATA_BASE_NOT_FOUND, "Erro Interno ao procurar todos os pedidos", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new PizzaException(ErrorType.DATA_BASE_NOT_FOUND, "Erro Interno ao procurar todas as pizzas", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -48,7 +47,7 @@ public class PizzaPersistenceDataBaseImpl implements PizzaPersistenceDataBase {
         PizzaModel pizzaModel = PizzaCadastroModelAdapter.entityToModel(pizza);
         try {
             pizzaRepository.save(pizzaModel);
-            return PizzaModelAdapter.modelToEntity(pizzaModel);
+            return PizzaCadastroModelAdapter.modelToEntity(pizzaModel);
         } catch (Exception e) {
             throw new PizzaException(ErrorType.ERROR_DATABASE_SAVE, "Erro ao salvar Pizza", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

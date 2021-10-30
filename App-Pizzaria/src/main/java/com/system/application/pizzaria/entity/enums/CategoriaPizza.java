@@ -5,13 +5,13 @@ import lombok.Getter;
 @Getter
 public enum CategoriaPizza {
 
-    TRADICIONAL(01),
-    VEGANA(02),
-    LIGHT(03),
-    SEM_GLUTEN(04),
-    SEM_LACTOSE(05),
-    ESPECIAL(06),
-    DOCE(07);
+    TRADICIONAL(00),
+    VEGANA(01),
+    LIGHT(02),
+    SEM_GLUTEN(03),
+    SEM_LACTOSE(04),
+    ESPECIAL(05),
+    DOCE(06);
 
     private final Integer codigo;
 

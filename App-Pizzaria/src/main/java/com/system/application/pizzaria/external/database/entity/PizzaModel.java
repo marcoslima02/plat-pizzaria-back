@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "TB_PIZZA")
 @EqualsAndHashCode
+
 public class PizzaModel {
 
     @Id

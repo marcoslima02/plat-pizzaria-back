@@ -32,7 +32,7 @@ public class ClienteModelAdapterTest {
     }
 
     @Test
-    public void shouldAdapterCorrectlyEntityToModel() throws ClienteException {
+    public void shouldAdapterCorrectlyEntityToModelTest() throws ClienteException {
         //Arrange
         ClienteModel clienteModelExpected = criaEntidadeClienteModel();
         //Act
