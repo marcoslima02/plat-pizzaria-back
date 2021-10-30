@@ -20,15 +20,15 @@ public class PizzaCadastroModelAdapter {
 
     public static Pizza modelToEntity(PizzaModel pizzaModel) throws PizzaException {
         Pizza pizza = new Pizza();
-        List<Ingrediente> listaIngrediente = new ArrayList<>();
+        List<Ingrediente> listIngrediente = new ArrayList<>();
         try {
             pizza.setIdPizza(pizzaModel.getIdPizzaModel());
             pizza.setNomePizza(pizzaModel.getNomePizzaModel());
             pizza.setPrecoPizza(pizzaModel.getPrecoPizzaModel());
             pizza.setQuantidadePizza(pizzaModel.getQuantidadePizzaModel());
             pizza.setCategoriaPizza(pizzaModel.getCategoriaPizzaModel());
-            percorreListaIngrediente(pizzaModel, listaIngrediente);
-            pizza.setListaIngredientesPizza(listaIngrediente);
+            percorreListaIngredienteModelToEntity(pizzaModel, listIngrediente);
+            pizza.setListaIngredientesPizza(listIngrediente);
             return pizza;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PizzaCadastroModel para PizzaCadastro");
@@ -45,8 +45,8 @@ public class PizzaCadastroModelAdapter {
             pizzaModel.setPrecoPizzaModel(pizza.getPrecoPizza());
             pizzaModel.setQuantidadePizzaModel(pizza.getQuantidadePizza());
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
-            percorreListaIngrediente(pizza, ingredienteListaModel);
-            pizzaModel.setListaIngredientesPizzaModelPizzaModel(ingredienteListaModel);
+            percorreListaIngredienteEntityToModel(pizza, ingredienteListaModel);
+            pizzaModel.setListaIngredientesPizzaModel(ingredienteListaModel);
 
             return pizzaModel;
         } catch (Exception e) {
@@ -55,24 +55,23 @@ public class PizzaCadastroModelAdapter {
         }
     }
 
-    private static void percorreListaIngrediente(Pizza pizza, List<IngredienteModel> listaIngrediente) {
+    private static void percorreListaIngredienteModelToEntity(PizzaModel pizzaModel, List<Ingrediente> ingredienteList) {
+        pizzaModel.getListaIngredientesPizzaModel().forEach(ingredienteModel -> {
+            try {
+                ingredienteList.add(IngredienteModelAdapter.modelToEntity(ingredienteModel));
+            } catch (IngredienteException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private static void percorreListaIngredienteEntityToModel(Pizza pizza, List<IngredienteModel> ingredienteModelList) {
         pizza.getListaIngredientesPizza().forEach(ingrediente -> {
             try {
-                listaIngrediente.add(IngredienteModelAdapter.entityToModel(ingrediente));
+                ingredienteModelList.add(IngredienteModelAdapter.entityToModel(ingrediente));
             } catch (IngredienteException e) {
                 e.printStackTrace();
             }
         });
     }
-
-    private static void percorreListaIngrediente(PizzaModel pizzaModel, List<IngredienteModel> ingredienteListaModel) {
-        pizzaModel.getListaIngredientesPizzaModelPizzaModel().forEach(ingrediente -> {
-            try {
-                ingredienteListaModel.add(IngredienteModelAdapter.entityToModel(ingrediente));
-            } catch (IngredienteException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
 }

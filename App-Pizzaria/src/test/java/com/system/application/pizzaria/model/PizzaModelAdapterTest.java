@@ -86,7 +86,7 @@ public class PizzaModelAdapterTest {
         List<IngredienteModel> listIngredienteModel = new ArrayList<>();
         pizzaModel.setIdPizzaModel(1);
         pizzaModel.setPrecoPizzaModel(new BigDecimal("59.00"));
-        pizzaModel.setListaIngredientesPizzaModelPizzaModel(listIngredienteModel);
+        pizzaModel.setListaIngredientesPizzaModel(listIngredienteModel);
         pizzaModel.setCategoriaPizzaModel(CategoriaPizza.LIGHT);
 
         IngredienteModel ingredienteModel = new IngredienteModel();

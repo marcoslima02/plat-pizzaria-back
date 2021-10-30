@@ -33,7 +33,7 @@ public class PizzaModel {
 
     @Column(name = "INGREDIENTES")
     @OneToMany(mappedBy = "pizzaModel")
-    private List<IngredienteModel> listaIngredientesPizzaModelPizzaModel;
+    private List<IngredienteModel> listaIngredientesPizzaModel;
 
     @Column(name = "CATEGORIA", nullable = false)
     @Enumerated(EnumType.ORDINAL)

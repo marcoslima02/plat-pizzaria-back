@@ -148,7 +148,7 @@ public class ClienteModelAdapterTest {
         PizzaModel pizzaModel = new PizzaModel();
         pizzaModel.setIdPizzaModel(1);
         pizzaModel.setPrecoPizzaModel(new BigDecimal("59.00"));
-        pizzaModel.setListaIngredientesPizzaModelPizzaModel(listIntedienteModel);
+        pizzaModel.setListaIngredientesPizzaModel(listIntedienteModel);
         pizzaModel.setCategoriaPizzaModel(CategoriaPizza.LIGHT);
 
         BebidaModel bebidaModel = new BebidaModel();

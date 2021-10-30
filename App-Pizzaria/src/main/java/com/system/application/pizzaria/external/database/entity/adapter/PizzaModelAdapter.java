@@ -35,7 +35,7 @@ public class PizzaModelAdapter {
     }
 
     private static void percorreListaIngredienteModelToEntity(PizzaModel pizzaModel, List<Ingrediente> ingredienteList) {
-        pizzaModel.getListaIngredientesPizzaModelPizzaModel().forEach(ingredienteModel -> {
+        pizzaModel.getListaIngredientesPizzaModel().forEach(ingredienteModel -> {
             try {
                 ingredienteList.add(IngredienteModelAdapter.modelToEntity(ingredienteModel));
             } catch (IngredienteException e) {
@@ -53,7 +53,7 @@ public class PizzaModelAdapter {
             pizzaModel.setNomePizzaModel(pizza.getNomePizza());
             pizzaModel.setQuantidadePizzaModel(pizza.getQuantidadePizza());
             percorreListaIngredienteEntityToModel(pizza, ingredienteModelList);
-            pizzaModel.setListaIngredientesPizzaModelPizzaModel(ingredienteModelList);
+            pizzaModel.setListaIngredientesPizzaModel(ingredienteModelList);
             pizzaModel.setCategoriaPizzaModel(pizza.getCategoriaPizza());
 
             return pizzaModel;

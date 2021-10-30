@@ -143,7 +143,7 @@ public class CozinheiroModelAdapterTest {
         PizzaModel pizzaModel = new PizzaModel();
         pizzaModel.setIdPizzaModel(1);
         pizzaModel.setPrecoPizzaModel(new BigDecimal("59.00"));
-        pizzaModel.setListaIngredientesPizzaModelPizzaModel(listIngredienteModel);
+        pizzaModel.setListaIngredientesPizzaModel(listIngredienteModel);
         pizzaModel.setCategoriaPizzaModel(CategoriaPizza.LIGHT);
 
         BebidaModel bebidaModel = new BebidaModel();
