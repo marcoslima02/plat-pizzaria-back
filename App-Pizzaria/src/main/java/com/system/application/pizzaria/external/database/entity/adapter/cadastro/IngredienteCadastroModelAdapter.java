@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.external.database.entity.adapter;
+package com.system.application.pizzaria.external.database.entity.adapter.cadastro;
 
 import com.system.application.pizzaria.entity.Ingrediente;
 import com.system.application.pizzaria.entity.enums.ErrorType;

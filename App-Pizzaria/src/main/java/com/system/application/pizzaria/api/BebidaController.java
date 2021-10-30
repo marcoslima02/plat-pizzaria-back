@@ -2,7 +2,10 @@ package com.system.application.pizzaria.api;
 
 
 import com.system.application.pizzaria.entity.Bebida;
+import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.exception.BebidaException;
+import com.system.application.pizzaria.exception.PedidoException;
+import com.system.application.pizzaria.usecase.Pedido.EnricherPedido;
 import com.system.application.pizzaria.usecase.bebida.GetAllBebida;
 import com.system.application.pizzaria.usecase.bebida.GetBebidaByld;
 import com.system.application.pizzaria.usecase.bebida.SaveBebida;
@@ -31,6 +34,9 @@ public class BebidaController {
     @Autowired
     private GetBebidaByld getBebidaById;
 
+    @Autowired
+    private EnricherPedido enricherPedido;
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<BebidaVM>> getAllBebidasController() {
@@ -50,11 +56,14 @@ public class BebidaController {
 
     @PostMapping("/cadastro")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BebidaCadastroVM> saveBebida(@RequestBody BebidaCadastroVM bebidaCadastroVM) throws BebidaException {
+    public ResponseEntity<BebidaCadastroVM> saveBebida(@RequestBody BebidaCadastroVM bebidaCadastroVM) throws BebidaException, PedidoException {
         Bebida bebida = BebidaCadastroVMAdapter.viewModelToEntity(bebidaCadastroVM);
+        if(bebida.getIdentificacaoPedido() != null){
+            Pedido pedidoEnriquecido = enricherPedido.enricherPedido(bebida.getIdentificacaoPedido());
+            bebida.setPedidoEntidade(pedidoEnriquecido);
+        }
         BebidaCadastroVM bebidaCadastradoRetornado = BebidaCadastroVMAdapter.entityToViewModel(saveBebida.saveBebida(bebida));
         return ResponseEntity.ok().body(bebidaCadastradoRetornado);
-
     }
 
 }

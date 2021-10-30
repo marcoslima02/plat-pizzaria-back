@@ -1,9 +1,8 @@
-package com.system.application.pizzaria.usecase.Pedido;
+package com.system.application.pizzaria.usecase.atendente;
 
 import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.exception.AtendenteException;
-import com.system.application.pizzaria.usecase.atendente.GetAtendenteById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

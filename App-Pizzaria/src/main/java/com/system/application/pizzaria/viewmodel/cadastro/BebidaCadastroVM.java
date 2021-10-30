@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 public class BebidaCadastroVM {
 
     private String nomeBebidaVM;
-    private Integer quantidadeBebidaVM
-            ;
-
+    private Integer quantidadeBebidaVM;
+    private BigDecimal precoBebidaVM;
+    private Integer idPedidoVM;
 }
 

@@ -5,7 +5,7 @@ import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.IngredienteException;
 import com.system.application.pizzaria.external.IngredientePersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.IngredienteModel;
-import com.system.application.pizzaria.external.database.entity.adapter.IngredienteCadastroModelAdapter;
+import com.system.application.pizzaria.external.database.entity.adapter.cadastro.IngredienteCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.IngredienteModelAdapter;
 
 import com.system.application.pizzaria.external.database.repository.IngredienteRepository;

@@ -13,16 +13,10 @@ import java.util.Date;
 @Service
 public class SaveBebida {
 
-        @Autowired
-        private BebidaPersistenceDataBase bebidaPersistenceDataBase;
+    @Autowired
+    private BebidaPersistenceDataBase bebidaPersistenceDataBase;
 
-        @Autowired
-        private ValidateBebidaPreco validateBebidaPreco;
-
-        public Bebida saveBebida(Bebida bebida) throws BebidaException {
-            if(validateBebidaPreco.isBebidaValorCorrect(bebida)){
-                return bebidaPersistenceDataBase.saveBebida(bebida);
-            }
-            throw new BebidaException(ErrorType.ERRO_TOTAL_PRICE_PEDIDO, "Preço da Bebida esta errado", new Date(), HttpStatus.BAD_REQUEST);
-        }
+    public Bebida saveBebida(Bebida bebida) throws BebidaException {
+        return bebidaPersistenceDataBase.saveBebida(bebida);
     }
+}

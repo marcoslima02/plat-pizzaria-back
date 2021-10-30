@@ -17,6 +17,7 @@ public class IngredienteCadastroVMAdapter {
         try {
             ingrediente.setNomeIngrediente(ingredienteCadastroVM.getNomeIngredienteVM());
             ingrediente.setQuantidadeIngrediente(ingredienteCadastroVM.getQuantidadeIngredienteVM());
+            ingrediente.setPrecoIngrediente(ingredienteCadastroVM.getPrecoIngredienteVM());
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de IngredienteCadastroVM para Ingrediente");
             throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -29,6 +30,7 @@ public class IngredienteCadastroVMAdapter {
         try {
             ingredienteCadastroVM.setNomeIngredienteVM(ingrediente.getNomeIngrediente());
             ingredienteCadastroVM.setQuantidadeIngredienteVM(ingrediente.getQuantidadeIngrediente());
+            ingredienteCadastroVM.setPrecoIngredienteVM(ingrediente.getPrecoIngrediente());
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Ingrediente para IngredienteCadastroVM");
             throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);

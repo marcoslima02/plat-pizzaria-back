@@ -3,7 +3,9 @@ package com.system.application.pizzaria.external.database.entity.adapter.cadastr
 import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.BebidaException;
+import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.database.entity.BebidaModel;
+import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
 import com.system.application.pizzaria.util.ConfigUtils;
 import org.springframework.http.HttpStatus;
 
@@ -31,13 +33,18 @@ public class BebidaCadastroModelAdapter {
             bebidaModel.setNomeBebidaModel(bebida.getNomeBebida());
             bebidaModel.setQuantidadeBebidaModel(bebida.getQuantidadeBebida());
             bebidaModel.setPrecoBebidaModel(bebida.getPrecoBebida());
+            validatePedidoIsNUllEnityToModel(bebida, bebidaModel);
             return bebidaModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de BebidaCadastro para BebidaCadastroModel");
             throw new BebidaException(ErrorType.VALIDATIONS, "Adapter entityToModel Bebida is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
-
+    private static void validatePedidoIsNUllEnityToModel(Bebida bebida, BebidaModel bebidaModel) throws PedidoException {
+        if (bebida.getPedidoEntidade() != null) {
+            bebidaModel.setPedidoModel(PedidoModelAdapter.entityToModel(bebida.getPedidoEntidade()));
+        }
     }
 
 }
