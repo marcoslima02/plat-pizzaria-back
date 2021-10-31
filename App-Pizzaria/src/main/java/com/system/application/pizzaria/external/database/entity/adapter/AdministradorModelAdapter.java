@@ -1,13 +1,9 @@
 package com.system.application.pizzaria.external.database.entity.adapter;
 
-import com.system.application.pizzaria.entity.Administrador;
-import com.system.application.pizzaria.entity.Cozinheiro;
-import com.system.application.pizzaria.entity.Ingrediente;
-import com.system.application.pizzaria.entity.Pedido;
+import com.system.application.pizzaria.entity.*;
 import com.system.application.pizzaria.entity.enums.ErrorType;
-import com.system.application.pizzaria.exception.CozinheiroException;
-import com.system.application.pizzaria.exception.IngredienteException;
-import com.system.application.pizzaria.exception.PedidoException;
+import com.system.application.pizzaria.exception.*;
+import com.system.application.pizzaria.external.database.entity.AdministradorModel;
 import com.system.application.pizzaria.external.database.entity.CozinheiroModel;
 import com.system.application.pizzaria.external.database.entity.IngredienteModel;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
@@ -22,27 +18,21 @@ public class AdministradorModelAdapter {
 
     public static Administrador modelToEntity(AdministradorModel administradorModel) throws AdministradorException {
         Administrador administrador = new Administrador();
-        //List<Pedido> pedidoList = new ArrayList<>();
+        List<Pagamento> pagamentoList = new ArrayList<>();
 
         try {
-            administrador.setIdCozinheiro(administradorModel.getIdCozinheiroModel());
-            cozinheiroModel.getListaPizzaPedidoModelCozinheiroModel().forEach(pedidoModel -> {
+            administrador.setIdAdministrador(administradorModel.getIdAdministradorModel());
+            administrador.setStatusPedidoAdministrador(administradorModel.getStatusPedidoModelAdministradorModel());
+
+            administradorModel.getListaPagamentoModelAdministradorModel().forEach(pagamentoModel -> {
                 try {
-                    pedidoList.add(PedidoModelAdapter.modelToEntity(pedidoModel));
-                } catch (PedidoException e) {
+                    pagamentoList.add(PagamentoModelAdapter.modelToEntity(pagamentoModel));
+                } catch (PagamentoException e) {
                     e.printStackTrace();
                 }
             });
 
-            cozinheiroModel.getListaIngredientesPizzaModelCozinheiroModel().forEach(ingredienteModel -> {
-                try {
-                    ingredienteList.add(IngredienteModelAdapter.modelToEntity(ingredienteModel));
-                } catch (IngredienteException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            return cozinheiro;
+            return administrador;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de CozinheiroModel para Cozinheiro");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter modelToEntity Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -22,7 +22,7 @@ public class AdministradorModel {
 
     @Column(name = "STATUS", nullable = false)
     @Enumerated(EnumType.STRING)
-    private StatusPedido statusPedidoAdministrador = StatusPedido.CONCLUIDO;
+    private StatusPedido statusPedidoModelAdministradorModel = StatusPedido.CONCLUIDO;
 
     @Column(name = "PAGAMENTOS")
     @OneToMany(mappedBy = "administradorModel")
