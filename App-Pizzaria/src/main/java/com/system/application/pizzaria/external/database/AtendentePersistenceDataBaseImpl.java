@@ -21,9 +21,13 @@ public class AtendentePersistenceDataBaseImpl implements AtendentePersistenceDat
     private AtendenteRepository atendenteRepository;
 
     @Override
-    public List<Atendente> getAllAtendentes() {
-        List<AtendenteModel> atendenteModelList = atendenteRepository.findAll();
-        return AtendenteModelAdapter.modelListToEntityList(atendenteModelList);
+    public List<Atendente> getAllAtendentes() throws AtendenteException {
+        try{
+            List<AtendenteModel> atendenteModelList = atendenteRepository.findAll();
+            return AtendenteModelAdapter.modelListToEntityList(atendenteModelList);
+        }catch (Exception e){
+            throw new AtendenteException(ErrorType.DATA_BASE_NOT_FOUND, "Erro ao trazer todos Atendentes", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
@@ -31,9 +35,25 @@ public class AtendentePersistenceDataBaseImpl implements AtendentePersistenceDat
         try {
             AtendenteModel atendenteModel = atendenteRepository.getById(idAtendente);
             return AtendenteModelAdapter.modelToEntity(atendenteModel);
-        }catch (Exception e){
-            throw new AtendenteException(ErrorType.DATA_BASE_NOT_FOUND, String.format("DATABASE atendente NOT FOUND FOR ID: %d", idAtendente),new Date() , HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            throw new AtendenteException(ErrorType.DATA_BASE_NOT_FOUND, String.format("DATABASE atendente NOT FOUND FOR ID: %d", idAtendente), new Date(), HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Override
+    public Atendente saveAtendente(Atendente atendente) throws AtendenteException {
+        AtendenteModel atendenteModel = AtendenteModelAdapter.entityToModel(atendente);
+        try {
+            atendenteRepository.save(atendenteModel);
+            return AtendenteModelAdapter.modelToEntity(atendenteModel);
+        } catch (Exception e) {
+            throw new AtendenteException(ErrorType.ERROR_DATABASE_SAVE, "Erro ao salvar Atendente no Banco de Dados", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public Boolean validateAtendenteByCPF(String cpfAtendente) throws AtendenteException {
+        return atendenteRepository.existsByCpfModel(cpfAtendente);
     }
 
     @Override

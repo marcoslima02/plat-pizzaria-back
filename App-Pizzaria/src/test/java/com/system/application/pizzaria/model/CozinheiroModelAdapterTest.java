@@ -67,7 +67,13 @@ public class CozinheiroModelAdapterTest {
         List<Pedido> listPedido = new ArrayList<>();
         List<Ingrediente> listIngrediente = new ArrayList<>();
         cozinheiro.setIdCozinheiro(1);
-        cozinheiro.setListaPizzaPedidoCozinheiro(listPedido);
+        cozinheiro.setNome("Bolacha");
+        cozinheiro.setCpf("431.654.989-60");
+        cozinheiro.setApelido("Leo");
+        cozinheiro.setSenha("leo123");
+        cozinheiro.setTelefone("3219370234");
+        cozinheiro.setSalario(new BigDecimal(6000.00));
+        cozinheiro.setListaPedidoCozinheiro(listPedido);
         cozinheiro.setListaIngredientesPizzaCozinheiro(listIngrediente);
 
         Pedido pedido = new Pedido();
@@ -85,7 +91,7 @@ public class CozinheiroModelAdapterTest {
         Pizza pizza = new Pizza();
         pizza.setIdPizza(1);
         pizza.setPrecoPizza(new BigDecimal("59.00"));
-        //pizza.setListaIngredientesPizza();
+        pizza.setListaIngredientesPizza(listIngrediente);
         pizza.setCategoriaPizza(CategoriaPizza.LIGHT);
 
         Bebida bebida = new Bebida();
@@ -113,7 +119,13 @@ public class CozinheiroModelAdapterTest {
         List<PedidoModel> listPedidoModel = new ArrayList<>();
         List<IngredienteModel> listIngredienteModel = new ArrayList<>();
         cozinheiroModel.setIdCozinheiroModel(1);
-        cozinheiroModel.setListaPizzaPedidoModelCozinheiroModel(listPedidoModel);
+        cozinheiroModel.setNomeModel("Bolacha");
+        cozinheiroModel.setCpfModel("431.654.989-60");
+        cozinheiroModel.setApelidoModel("Leo");
+        cozinheiroModel.setSenhaModel("leo123");
+        cozinheiroModel.setTelefoneModel("3219370234");
+        cozinheiroModel.setSalarioModel(new BigDecimal(6000.00));
+        cozinheiroModel.setListaPedidoModelCozinheiroModel(listPedidoModel);
         cozinheiroModel.setListaIngredientesPizzaModelCozinheiroModel(listIngredienteModel);
 
         PedidoModel pedidoModel = new PedidoModel();
@@ -121,8 +133,8 @@ public class CozinheiroModelAdapterTest {
         List<BebidaModel> listBebidaModel = new ArrayList<>();
         pedidoModel.setIdPedidoModel(1);
         pedidoModel.setStatusPedidoModel(StatusPedido.AGUARDANDO);
-        pedidoModel.setListaPizzaModelPedidoModel(listPizzaModel);
-        pedidoModel.setListaBebidaModelPedidoModel(listBebidaModel);
+        pedidoModel.setListaPizzaModel(listPizzaModel);
+        pedidoModel.setListaBebidaModel(listBebidaModel);
         pedidoModel.setHorarioPedidoModel(LocalDateTime.now());
         pedidoModel.setHorarioEstimadoPedidoModel(LocalDateTime.now());
         pedidoModel.setPrecoPedidoModel(new BigDecimal("59.00"));
@@ -131,7 +143,7 @@ public class CozinheiroModelAdapterTest {
         PizzaModel pizzaModel = new PizzaModel();
         pizzaModel.setIdPizzaModel(1);
         pizzaModel.setPrecoPizzaModel(new BigDecimal("59.00"));
-        //pizzaModel.setListaIngredientesPizzaModel();
+        pizzaModel.setListaIngredientesPizzaModelPizzaModel(listIngredienteModel);
         pizzaModel.setCategoriaPizzaModel(CategoriaPizza.LIGHT);
 
         BebidaModel bebidaModel = new BebidaModel();

@@ -3,8 +3,10 @@ package com.system.application.pizzaria.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.PropertyValues;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Getter
@@ -16,5 +18,7 @@ public class Bebida {
     private String nomeBebida;
     private Integer quantidadeBebida;
     private BigDecimal precoBebida;
-
+    private Integer identificacaoPedido;
+    private Pedido pedidoEntidade;
+    private List<Bebida> listaBebidas;
 }

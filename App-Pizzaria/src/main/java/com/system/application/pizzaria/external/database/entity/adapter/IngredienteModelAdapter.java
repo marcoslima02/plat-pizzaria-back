@@ -41,16 +41,16 @@ public class IngredienteModelAdapter {
         }
     }
 
-    public static List<IngredienteModel> entityListToModelList(List<Ingrediente> ingredienteList) {
-        List<IngredienteModel> ingredienteModelList = new ArrayList<>();
-        ingredienteList.forEach(ingrediente -> {
+    public static List<Ingrediente> modelListToEntityList(List<IngredienteModel> ingredienteModelList) {
+        List<Ingrediente> ingredienteList = new ArrayList<>();
+        ingredienteModelList.forEach(ingrediente -> {
             try {
-                ingredienteModelList.add(entityToModel(ingrediente));
+                ingredienteList.add(modelToEntity(ingrediente));
             } catch (IngredienteException e) {
                 e.printStackTrace();
             }
         });
-        return ingredienteModelList;
+        return ingredienteList;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.system.application.pizzaria.external.database.entity;
 
 import com.system.application.pizzaria.entity.enums.StatusPedido;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
@@ -15,6 +16,7 @@ import java.util.Objects;
 @Table(name = "TB_PEDIDOS")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class PedidoModel {
 
     @Id
@@ -23,16 +25,16 @@ public class PedidoModel {
     private Integer idPedidoModel;
 
     @Column(name = "STATUS", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private StatusPedido statusPedidoModel = StatusPedido.AGUARDANDO;
 
     @Column(name = "PIZZAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private List<PizzaModel> listaPizzaModelPedidoModel;
+    private List<PizzaModel> listaPizzaModel;
 
     @Column(name = "BEBIDAS")
     @OneToMany(mappedBy = "pedidoModel")
-    private List<BebidaModel> listaBebidaModelPedidoModel;
+    private List<BebidaModel> listaBebidaModel;
 
     @ManyToOne
     private AtendenteModel atendenteModel;
@@ -51,17 +53,4 @@ public class PedidoModel {
 
     @Column(name = "COMENTARIO", nullable = true, columnDefinition = "VARCHAR(300)")
     private String comentarioPedidoModel;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        PedidoModel that = (PedidoModel) o;
-        return Objects.equals(idPedidoModel, that.idPedidoModel);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +20,5 @@ public class AtendenteModel extends FuncionarioModel{
     private Integer idAtendenteModel;
 
     @OneToMany(mappedBy = "atendenteModel")
-    private Set<PedidoModel> pedidoModel;
+    private List<PedidoModel> pedidoModel;
 }

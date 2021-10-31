@@ -1,12 +1,12 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Cliente;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.usecase.cliente.*;
-import com.system.application.pizzaria.viewmodel.ClienteCadastroVM;
-import com.system.application.pizzaria.viewmodel.UserLoginVM;
+import com.system.application.pizzaria.viewmodel.cadastro.ClienteCadastroVM;
 import com.system.application.pizzaria.viewmodel.ClienteVM;
-import com.system.application.pizzaria.viewmodel.adapter.ClienteCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.UserLoginVM;
+import com.system.application.pizzaria.viewmodel.adapter.forms.ClienteCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.ClienteVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +19,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClienteController {
+
+    @Autowired
+    private ValidateClienteByCPF validateClienteByCPF;
 
     @Autowired
     private GetAllCliente getAllCliente;
@@ -70,6 +73,6 @@ public class ClienteController {
     public ResponseEntity<ClienteCadastroVM> saveClienteController(@RequestBody final ClienteCadastroVM clienteCadastroVM) throws ClienteException {
         Cliente cliente = ClienteCadastroVMAdapter.viewModelToEntity(clienteCadastroVM);
         ClienteCadastroVM clienteCadastroReturnDataBase = ClienteCadastroVMAdapter.entityToViewModel(saveCliente.saveCliente(cliente));
-        return ResponseEntity.status(200).body(clienteCadastroReturnDataBase);
+        return ResponseEntity.status(201).body(clienteCadastroReturnDataBase);
     }
 }

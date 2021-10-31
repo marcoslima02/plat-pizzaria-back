@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface AtendentePersistenceDataBase {
 
-    List<Atendente> getAllAtendentes();
+    List<Atendente> getAllAtendentes() throws AtendenteException;
 
     Atendente getAtendenteById(Integer idAtendente) throws AtendenteException;
 
-    Atendente getAtendenteByCPF(String cpfAtendente);
+    Atendente saveAtendente(Atendente atendente) throws AtendenteException;
+
+    Boolean validateAtendenteByCPF(String cpfAtendente)throws AtendenteException;
+
+    Atendente getAtendenteByCPF(String cpfAtendente) throws AtendenteException;
 }

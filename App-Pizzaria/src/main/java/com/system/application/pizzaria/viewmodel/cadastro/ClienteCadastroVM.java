@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.viewmodel;
+package com.system.application.pizzaria.viewmodel.cadastro;
 
 import lombok.Getter;
 import lombok.Setter;

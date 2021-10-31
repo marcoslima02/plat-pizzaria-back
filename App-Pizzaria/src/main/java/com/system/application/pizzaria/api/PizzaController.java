@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.endpoint;
+package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Pizza;
 
@@ -28,7 +28,7 @@ public class PizzaController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PizzaVM>> getAllPizzas() {
+    public ResponseEntity<List<PizzaVM>> getAllPizzas() throws PizzaException {
         List<Pizza> listaPizzasEntity = getAllPizza.getAllPizzas();
         List<PizzaVM> listaPizzaVM = PizzaVMAdapter.entityListToEntityList(listaPizzasEntity);
         return ResponseEntity.ok().body(listaPizzaVM);
