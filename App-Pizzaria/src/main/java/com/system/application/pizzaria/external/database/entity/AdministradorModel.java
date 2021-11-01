@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @Table(name = "TB_ADMINISTRADOR")
-public class AdministradorModel {
+public class AdministradorModel extends FuncionarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
