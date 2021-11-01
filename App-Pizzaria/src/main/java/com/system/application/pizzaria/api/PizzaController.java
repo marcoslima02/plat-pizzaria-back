@@ -1,8 +1,6 @@
 package com.system.application.pizzaria.api;
 
-import com.system.application.pizzaria.entity.Cliente;
 import com.system.application.pizzaria.entity.Pizza;
-import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.exception.PizzaException;
 import com.system.application.pizzaria.usecase.Pizza.GetAllPizza;
 import com.system.application.pizzaria.usecase.Pizza.GetPizzaById;
@@ -11,8 +9,6 @@ import com.system.application.pizzaria.viewmodel.PizzaCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
 import com.system.application.pizzaria.viewmodel.adapter.PizzaCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.PizzaVMAdapter;
-import com.system.application.pizzaria.viewmodel.adapter.cadastro.ClienteCadastroVMAdapter;
-import com.system.application.pizzaria.viewmodel.cadastro.ClienteCadastroVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
