@@ -4,9 +4,7 @@ import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.ErrorType;
-import com.system.application.pizzaria.exception.BebidaException;
-import com.system.application.pizzaria.exception.PedidoException;
-import com.system.application.pizzaria.exception.PizzaException;
+import com.system.application.pizzaria.exception.*;
 import com.system.application.pizzaria.external.database.entity.BebidaModel;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
 import com.system.application.pizzaria.external.database.entity.PizzaModel;
@@ -27,20 +25,40 @@ public class PedidoModelAdapter {
         try {
             pedido.setIdPedido(pedidoModel.getIdPedidoModel());
             pedido.setStatusPedido(pedidoModel.getStatusPedidoModel());
-            percorreListaPizzaModel(pedidoModel, pizzaList);
-            percorreListaBebidaModel(pedidoModel, bebidaList);
+            validateIsExistsIsNUll(pedidoModel, pedido, pizzaList, bebidaList);
             pedido.setListaPizzaPedido(pizzaList);
             pedido.setListaBebidaPedido(bebidaList);
             pedido.setHorarioPedido(pedidoModel.getHorarioPedidoModel());
             pedido.setHorarioEstimadoPedido(pedidoModel.getHorarioEstimadoPedidoModel());
             pedido.setPrecoPedido(pedidoModel.getPrecoPedidoModel());
             pedido.setComentarioPedido(pedidoModel.getComentarioPedidoModel());
-            pedido.setAtendenteResponsavelPedido(AtendenteModelAdapter.modelToEntity(pedidoModel.getAtendenteModel()));
-            pedido.setCozinheiroResponsavelPedido(CozinheiroModelAdapter.modelToEntity(pedidoModel.getCozinheiroModel()));
+            validadeAtendenteIsNull(pedidoModel, pedido);
+            validateCozinheiroIsNull(pedidoModel, pedido);
             return pedido;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de PedidoModel para Pedido");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter modelToEntity Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateCozinheiroIsNull(PedidoModel pedidoModel, Pedido pedido) throws CozinheiroException {
+        if(pedidoModel.getCozinheiroModel() != null){
+            pedido.setCozinheiroResponsavelPedido(CozinheiroModelAdapter.modelToEntity(pedidoModel.getCozinheiroModel()));
+        }
+    }
+
+    private static void validadeAtendenteIsNull(PedidoModel pedidoModel, Pedido pedido) throws AtendenteException {
+        if(pedidoModel.getAtendenteModel() != null){
+            pedido.setAtendenteResponsavelPedido(AtendenteModelAdapter.modelToEntityAtendenteInfo(pedidoModel.getAtendenteModel()));
+        }
+    }
+
+    private static void validateIsExistsIsNUll(PedidoModel pedidoModel, Pedido pedido, List<Pizza> pizzaList, List<Bebida> bebidaList) {
+        if(pedido.getListaBebidaPedido() != null){
+            percorreListaBebidaModel(pedidoModel, bebidaList);
+        }
+        if(pedido.getListaPizzaPedido() != null){
+            percorreListaPizzaModel(pedidoModel, pizzaList);
         }
     }
 
@@ -72,20 +90,40 @@ public class PedidoModelAdapter {
         try {
             pedidoModel.setIdPedidoModel(pedido.getIdPedido());
             pedidoModel.setStatusPedidoModel(pedido.getStatusPedido());
-            percorreListaPizzaEntity(pedido, pizzaModelList);
-            percorreListaBebidaEntity(pedido, bebidaModelList);
+            validateIsNullEntityToModel(pedido, pedidoModel, pizzaModelList, bebidaModelList);
             pedidoModel.setListaPizzaModel(pizzaModelList);
             pedidoModel.setListaBebidaModel(bebidaModelList);
             pedidoModel.setHorarioPedidoModel(pedido.getHorarioPedido());
             pedidoModel.setHorarioEstimadoPedidoModel(pedido.getHorarioEstimadoPedido());
             pedidoModel.setPrecoPedidoModel(pedido.getPrecoPedido());
             pedidoModel.setComentarioPedidoModel(pedido.getComentarioPedido());
-            pedidoModel.setAtendenteModel(AtendenteModelAdapter.entityToModel(pedido.getAtendenteResponsavelPedido()));
-            pedidoModel.setCozinheiroModel(CozinheiroModelAdapter.entityToModel(pedido.getCozinheiroResponsavelPedido()));
+            validateAtendenteIsNull(pedido, pedidoModel);
+            validateCozinheiroIsNull(pedido, pedidoModel);
             return pedidoModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoModel");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter entityToModel Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateCozinheiroIsNull(Pedido pedido, PedidoModel pedidoModel) throws CozinheiroException {
+        if(pedido.getCozinheiroResponsavelPedido() != null){
+            pedidoModel.setCozinheiroModel(CozinheiroModelAdapter.entityToModel(pedido.getCozinheiroResponsavelPedido()));
+        }
+    }
+
+    private static void validateAtendenteIsNull(Pedido pedido, PedidoModel pedidoModel) throws AtendenteException {
+        if(pedido.getAtendenteResponsavelPedido() != null){
+            pedidoModel.setAtendenteModel(AtendenteModelAdapter.entityToModel(pedido.getAtendenteResponsavelPedido()));
+        }
+    }
+
+    private static void validateIsNullEntityToModel(Pedido pedido, PedidoModel pedidoModel, List<PizzaModel> pizzaModelList, List<BebidaModel> bebidaModelList) {
+        if(pedido.getListaPizzaPedido() != null){
+            percorreListaPizzaEntity(pedido, pizzaModelList);
+        }
+        if(pedido.getListaBebidaPedido() != null){
+            percorreListaBebidaEntity(pedido, bebidaModelList);
         }
     }
 

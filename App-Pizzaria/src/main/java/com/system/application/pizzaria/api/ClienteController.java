@@ -1,13 +1,12 @@
 package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Cliente;
-import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.usecase.cliente.*;
 import com.system.application.pizzaria.viewmodel.cadastro.ClienteCadastroVM;
 import com.system.application.pizzaria.viewmodel.ClienteVM;
 import com.system.application.pizzaria.viewmodel.UserLoginVM;
-import com.system.application.pizzaria.viewmodel.adapter.cadastro.ClienteCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.forms.ClienteCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.ClienteVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

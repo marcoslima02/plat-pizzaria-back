@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AtendentePersistenceDataBase {
 
-    List<Atendente> getAllAtendentes();
+    List<Atendente> getAllAtendentes() throws AtendenteException;
 
     Atendente getAtendenteById(Integer idAtendente) throws AtendenteException;
 

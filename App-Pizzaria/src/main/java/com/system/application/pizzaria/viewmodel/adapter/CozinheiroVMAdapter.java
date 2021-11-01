@@ -20,7 +20,6 @@ public class CozinheiroVMAdapter {
 
         try {
             cozinheiro.setIdCozinheiro(cozinheiroVM.getIdCozinheiroVM());
-            cozinheiro.setIdCozinheiro(cozinheiroVM.getIdCozinheiroVM());
             cozinheiro.setNome(cozinheiroVM.getNomeVM());
             cozinheiro.setCpf(cozinheiroVM.getCpfVM());
             cozinheiro.setApelido(cozinheiroVM.getApelidoVM());
@@ -28,14 +27,22 @@ public class CozinheiroVMAdapter {
             cozinheiro.setTelefone(cozinheiroVM.getTelefoneVM());
             cozinheiro.setHorarioTrabalho(cozinheiroVM.getHorarioTrabalhoVM());
             cozinheiro.setSalario(cozinheiroVM.getSalarioVM());
-            percorreListaPedidoVM(cozinheiroVM, pedidoList);
-            percorreListaIngredienteVM(cozinheiroVM, ingredienteList);
+            validateIsNullVMToEntity(cozinheiroVM, pedidoList, ingredienteList);
             cozinheiro.setListaPedidoCozinheiro(pedidoList);
             cozinheiro.setListaIngredientesPizzaCozinheiro(ingredienteList);
             return cozinheiro;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de CozinheiroModel para Cozinheiro");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullVMToEntity(CozinheiroVM cozinheiroVM, List<Pedido> pedidoList, List<Ingrediente> ingredienteList) {
+        if(cozinheiroVM.getListaPedidoVMCozinheiroVM() != null){
+            percorreListaPedidoVM(cozinheiroVM, pedidoList);
+        }
+        if(cozinheiroVM.getListaIngredientesPizzaVMCozinheiroVM() != null){
+            percorreListaIngredienteVM(cozinheiroVM, ingredienteList);
         }
     }
 
@@ -75,14 +82,22 @@ public class CozinheiroVMAdapter {
             cozinheiroVM.setHorarioTrabalhoVM(cozinheiro.getHorarioTrabalho());
             cozinheiroVM.setSalarioVM(cozinheiro.getSalario());
             cozinheiroVM.setIdCozinheiroVM(cozinheiro.getIdCozinheiro());
-            percorreListaPedidoEntity(cozinheiro, pedidoVMList);
-            percorreListaIngredienteEntity(cozinheiro, ingredienteVMList);
+            validateIsNullEntityToVM(cozinheiro, pedidoVMList, ingredienteVMList);
             cozinheiroVM.setListaPedidoVMCozinheiroVM(pedidoVMList);
             cozinheiroVM.setListaIngredientesPizzaVMCozinheiroVM(ingredienteVMList);
             return cozinheiroVM;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Cozinheiro para CozinheiroModel");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter entityToViewModel Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullEntityToVM(Cozinheiro cozinheiro, List<PedidoVM> pedidoVMList, List<IngredienteVM> ingredienteVMList) {
+        if(cozinheiro.getListaPedidoCozinheiro() != null){
+            percorreListaPedidoEntity(cozinheiro, pedidoVMList);
+        }
+        if(cozinheiro.getListaIngredientesPizzaCozinheiro() != null){
+            percorreListaIngredienteEntity(cozinheiro, ingredienteVMList);
         }
     }
 

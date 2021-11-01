@@ -1,9 +1,8 @@
-package com.system.application.pizzaria.viewmodel.adapter.cadastro;
+package com.system.application.pizzaria.viewmodel.adapter.forms;
 
 import com.system.application.pizzaria.entity.Atendente;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.AtendenteException;
-import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.cadastro.AtendenteCadastroVM;
 import org.springframework.http.HttpStatus;

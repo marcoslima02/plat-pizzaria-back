@@ -1,6 +1,6 @@
 package com.system.application.pizzaria.viewmodel.cadastro;
 
-import com.system.application.pizzaria.viewmodel.AtendenteVM;
+import com.system.application.pizzaria.viewmodel.AtendenteVMCadastroInfo;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.CozinheiroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
@@ -20,6 +20,6 @@ public class PedidoCadastroVM {
     private List<BebidaVM> bebidaVMList;
     private BigDecimal precoTotalPedido;
     private String comentarioPedidoCadastroVM;
-    private AtendenteVM atendenteResponsavelVM;
+    private AtendenteVMCadastroInfo atendenteResponsavelVM;
     private CozinheiroVM cozinheiroResponsavelVM;
 }

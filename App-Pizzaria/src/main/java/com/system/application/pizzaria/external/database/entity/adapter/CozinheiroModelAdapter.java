@@ -34,8 +34,7 @@ public class CozinheiroModelAdapter {
             cozinheiro.setHorarioTrabalho(cozinheiroModel.getHorarioTrabalhoModel());
             cozinheiro.setSalario(cozinheiroModel.getSalarioModel());
             cozinheiro.setIdCozinheiro(cozinheiroModel.getIdCozinheiroModel());
-            percorreListaPizzasModel(cozinheiroModel, pedidoList);
-            percorreListaIngredientesModel(cozinheiroModel, ingredienteList);
+            validateIsExistsNUllModelToEntity(cozinheiroModel, pedidoList, ingredienteList);
             cozinheiro.setListaPedidoCozinheiro(pedidoList);
             cozinheiro.setListaIngredientesPizzaCozinheiro(ingredienteList);
 
@@ -43,6 +42,16 @@ public class CozinheiroModelAdapter {
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de CozinheiroModel para Cozinheiro");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter modelToEntity Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsExistsNUllModelToEntity(CozinheiroModel cozinheiroModel, List<Pedido> pedidoList, List<Ingrediente> ingredienteList) {
+        if(cozinheiroModel.getListaPedidoModelCozinheiroModel() != null){
+            percorreListaPizzasModel(cozinheiroModel, pedidoList);
+        }
+
+        if(cozinheiroModel.getListaIngredientesPizzaModelCozinheiroModel() != null){
+            percorreListaIngredientesModel(cozinheiroModel, ingredienteList);
         }
     }
 
@@ -81,14 +90,22 @@ public class CozinheiroModelAdapter {
             cozinheiroModel.setHorarioTrabalhoModel(cozinheiro.getHorarioTrabalho());
             cozinheiroModel.setSalarioModel(cozinheiro.getSalario());
             cozinheiroModel.setIdCozinheiroModel(cozinheiro.getIdCozinheiro());
-            percorreListaPedidosEntity(cozinheiro, pedidoModelList);
-            percorreListaIngredientesEntity(cozinheiro, ingredienteModelList);
+            validateIsNullEntityToModel(cozinheiro, pedidoModelList, ingredienteModelList);
             cozinheiroModel.setListaPedidoModelCozinheiroModel(pedidoModelList);
             cozinheiroModel.setListaIngredientesPizzaModelCozinheiroModel(ingredienteModelList);
             return cozinheiroModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Cozinheiro para CozinheiroModel");
             throw new CozinheiroException(ErrorType.VALIDATIONS, "Adapter entityToModel Cozinheiro is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateIsNullEntityToModel(Cozinheiro cozinheiro, List<PedidoModel> pedidoModelList, List<IngredienteModel> ingredienteModelList) {
+        if(cozinheiro.getListaIngredientesPizzaCozinheiro() != null){
+            percorreListaIngredientesEntity(cozinheiro, ingredienteModelList);
+        }
+        if(cozinheiro.getListaPedidoCozinheiro() != null){
+            percorreListaPedidosEntity(cozinheiro, pedidoModelList);
         }
     }
 

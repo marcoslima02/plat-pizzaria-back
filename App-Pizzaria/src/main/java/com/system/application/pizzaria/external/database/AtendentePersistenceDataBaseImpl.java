@@ -21,9 +21,13 @@ public class AtendentePersistenceDataBaseImpl implements AtendentePersistenceDat
     private AtendenteRepository atendenteRepository;
 
     @Override
-    public List<Atendente> getAllAtendentes() {
-        List<AtendenteModel> atendenteModelList = atendenteRepository.findAll();
-        return AtendenteModelAdapter.modelListToEntityList(atendenteModelList);
+    public List<Atendente> getAllAtendentes() throws AtendenteException {
+        try{
+            List<AtendenteModel> atendenteModelList = atendenteRepository.findAll();
+            return AtendenteModelAdapter.modelListToEntityList(atendenteModelList);
+        }catch (Exception e){
+            throw new AtendenteException(ErrorType.DATA_BASE_NOT_FOUND, "Erro ao trazer todos Atendentes", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override

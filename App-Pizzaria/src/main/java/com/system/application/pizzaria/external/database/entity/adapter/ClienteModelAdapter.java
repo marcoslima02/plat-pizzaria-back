@@ -5,6 +5,7 @@ import com.system.application.pizzaria.entity.Endereco;
 import com.system.application.pizzaria.entity.enums.ErrorType;
 import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.exception.EnderecoException;
+import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.database.entity.ClienteModel;
 import com.system.application.pizzaria.external.database.entity.EnderecoModel;
 import com.system.application.pizzaria.util.ConfigUtils;
@@ -27,14 +28,25 @@ public class ClienteModelAdapter {
             cliente.setSenha(clienteModel.getSenhaModel());
             cliente.setEmailCliente(clienteModel.getEmailClienteModel());
             cliente.setTelefone(clienteModel.getTelefoneModel());
-            percorreListaEnderecoModel(clienteModel, enderecoList);
+            validateExistsNullModelToEntity(clienteModel, enderecoList);
             cliente.setListaEnderecoCliente(enderecoList);
-            cliente.setPedidoCliente(PedidoModelAdapter.modelToEntity(clienteModel.getPedidoModelClienteModel()));
-
+            validatePeidoIsNullModelToEntity(clienteModel, cliente);
             return cliente;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de ClienteModel para Cliente");
             throw new ClienteException(ErrorType.VALIDATIONS, "Adapter modelToEntity Cliente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validatePeidoIsNullModelToEntity(ClienteModel clienteModel, Cliente cliente) throws PedidoException {
+        if(clienteModel.getPedidoModelClienteModel() != null){
+            cliente.setPedidoCliente(PedidoModelAdapter.modelToEntity(clienteModel.getPedidoModelClienteModel()));
+        }
+    }
+
+    private static void validateExistsNullModelToEntity(ClienteModel clienteModel, List<Endereco> enderecoList) {
+        if(clienteModel.getListaEnderecoModelClienteModel() != null){
+            percorreListaEnderecoModel(clienteModel, enderecoList);
         }
     }
 
@@ -60,10 +72,9 @@ public class ClienteModelAdapter {
             clienteModel.setEmailClienteModel(cliente.getEmailCliente());
             clienteModel.setSenhaModel(cliente.getSenha());
             clienteModel.setTelefoneModel(cliente.getTelefone());
-            percorreListaEnderecoEntity(cliente, enderecoModelList);
+            validateExistsNullEntityToModel(cliente, enderecoModelList);
             clienteModel.setListaEnderecoModelClienteModel(enderecoModelList);
-            clienteModel.setPedidoModelClienteModel(PedidoModelAdapter.entityToModel(cliente.getPedidoCliente()));
-
+            validatePedidoNullEntityToModel(cliente, clienteModel);
             return clienteModel;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Cliente para ClienteModel");
@@ -71,6 +82,17 @@ public class ClienteModelAdapter {
         }
     }
 
+    private static void validatePedidoNullEntityToModel(Cliente cliente, ClienteModel clienteModel) throws PedidoException {
+        if(cliente.getPedidoCliente() != null){
+            clienteModel.setPedidoModelClienteModel(PedidoModelAdapter.entityToModel(cliente.getPedidoCliente()));
+        }
+    }
+
+    private static void validateExistsNullEntityToModel(Cliente cliente, List<EnderecoModel> enderecoModelList) {
+        if(cliente.getListaEnderecoCliente() != null){
+            percorreListaEnderecoEntity(cliente, enderecoModelList);
+        }
+    }
     private static void percorreListaEnderecoEntity(Cliente cliente, List<EnderecoModel> enderecoModelList) {
         cliente.getListaEnderecoCliente().forEach(endereco -> {
             try {

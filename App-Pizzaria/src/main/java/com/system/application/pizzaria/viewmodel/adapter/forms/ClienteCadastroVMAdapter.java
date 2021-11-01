@@ -1,4 +1,4 @@
-package com.system.application.pizzaria.viewmodel.adapter.cadastro;
+package com.system.application.pizzaria.viewmodel.adapter.forms;
 
 import com.system.application.pizzaria.entity.Cliente;
 import com.system.application.pizzaria.entity.enums.ErrorType;

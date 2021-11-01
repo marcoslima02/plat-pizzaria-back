@@ -8,7 +8,7 @@ import com.system.application.pizzaria.usecase.atendente.SaveAtendente;
 import com.system.application.pizzaria.usecase.atendente.ValidateAtendenteByCPF;
 import com.system.application.pizzaria.viewmodel.AtendenteVM;
 import com.system.application.pizzaria.viewmodel.adapter.AtendenteVMAdapter;
-import com.system.application.pizzaria.viewmodel.adapter.cadastro.AtendenteCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.forms.AtendenteCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.cadastro.AtendenteCadastroVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -6,7 +6,7 @@ import com.system.application.pizzaria.exception.PedidoException;
 import java.util.List;
 
 public interface PedidoPersistenceDataBase {
-    List<Pedido> getAllPedidos();
+    List<Pedido> getAllPedidos() throws PedidoException;
 
     Pedido getPedidoById(Integer idPedido) throws PedidoException;
 

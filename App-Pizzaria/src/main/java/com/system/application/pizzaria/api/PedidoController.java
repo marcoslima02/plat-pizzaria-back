@@ -1,13 +1,15 @@
 package com.system.application.pizzaria.api;
 
 import com.system.application.pizzaria.entity.Pedido;
+import com.system.application.pizzaria.exception.AtendenteException;
 import com.system.application.pizzaria.exception.PedidoException;
+import com.system.application.pizzaria.usecase.atendente.EnricherAtendente;
 import com.system.application.pizzaria.usecase.Pedido.GetAllPedido;
 import com.system.application.pizzaria.usecase.Pedido.GetPedidoById;
 import com.system.application.pizzaria.usecase.Pedido.SavePedido;
 import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PedidoVM;
-import com.system.application.pizzaria.viewmodel.adapter.cadastro.PedidoCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.forms.PedidoCadastroVMAdapter;
 import com.system.application.pizzaria.viewmodel.adapter.PedidoVMAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,9 @@ public class PedidoController {
     @Autowired
     private SavePedido savePedido;
 
+    @Autowired
+    private EnricherAtendente enricherAtendente;
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PedidoVM>> getAllPedidos() throws PedidoException {
@@ -47,9 +52,11 @@ public class PedidoController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException {
+    public ResponseEntity<PedidoCadastroVM> savePedidoController(@RequestBody final PedidoCadastroVM pedidoCadastroVM) throws PedidoException, AtendenteException {
         Pedido pedido = PedidoCadastroVMAdapter.viewModelToEntity(pedidoCadastroVM);
-        PedidoCadastroVM pedidoCadastroVMRetornado = PedidoCadastroVMAdapter.entityToViewModel(savePedido.savePedido(pedido));
+        Pedido pedidoRetornado = enricherAtendente.enricherAtendente(pedido);
+        savePedido.savePedido(pedidoRetornado);
+        PedidoCadastroVM pedidoCadastroVMRetornado = PedidoCadastroVMAdapter.entityToViewModel(pedido);
         return ResponseEntity.ok().body(pedidoCadastroVMRetornado);
     }
 }

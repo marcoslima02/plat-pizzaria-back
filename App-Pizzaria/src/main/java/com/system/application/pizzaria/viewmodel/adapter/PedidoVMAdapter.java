@@ -4,9 +4,7 @@ import com.system.application.pizzaria.entity.Bebida;
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.Pizza;
 import com.system.application.pizzaria.entity.enums.ErrorType;
-import com.system.application.pizzaria.exception.BebidaException;
-import com.system.application.pizzaria.exception.PedidoException;
-import com.system.application.pizzaria.exception.PizzaException;
+import com.system.application.pizzaria.exception.*;
 import com.system.application.pizzaria.util.ConfigUtils;
 import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.PedidoVM;
@@ -27,18 +25,40 @@ public class PedidoVMAdapter {
         try {
             pedido.setIdPedido(pedidoVM.getIdPedidoVM());
             pedido.setStatusPedido(pedidoVM.getStatusPedidoVM());
-            percorreListaPizzaVMToEntity(pedidoVM, pizzaList);
-            percorreListaBebidaVMToEntity(pedidoVM, bebidaList);
+            validadeIsNullVMToEntity(pedidoVM, pizzaList, bebidaList);
             pedido.setListaBebidaPedido(bebidaList);
             pedido.setListaPizzaPedido(pizzaList);
             pedido.setHorarioPedido(pedidoVM.getHorarioPedidoVM());
             pedido.setHorarioEstimadoPedido(pedidoVM.getHorarioEstimadoPedidoVM());
             pedido.setPrecoPedido(pedidoVM.getPrecoPedidoVM());
             pedido.setComentarioPedido(pedidoVM.getComentarioPedidoVM());
+            validateCozinheiroIsNullVMToEntity(pedidoVM, pedido);
+            validateAtendenteisNullVmTOEntity(pedidoVM, pedido);
             return pedido;
         } catch (Exception e) {
-            ConfigUtils.logger.warning("Error ao fazer adapter de PedidoModel para Pedido");
+            ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoVM");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter viewModelToEntity Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateAtendenteisNullVmTOEntity(PedidoVM pedidoVM, Pedido pedido) throws AtendenteException {
+        if (pedidoVM.getNomeAtendenteVM() != null) {
+            pedido.setAtendenteResponsavelPedido(AtendenteVMAdapter.viewModelToEntity(pedidoVM.getNomeAtendenteVM()));
+        }
+    }
+
+    private static void validateCozinheiroIsNullVMToEntity(PedidoVM pedidoVM, Pedido pedido) throws CozinheiroException {
+        if (pedidoVM.getNomeCozinheiroVM() != null) {
+            pedido.setCozinheiroResponsavelPedido(CozinheiroVMAdapter.viewModelToEntity(pedidoVM.getNomeCozinheiroVM()));
+        }
+    }
+
+    private static void validadeIsNullVMToEntity(PedidoVM pedidoVM, List<Pizza> pizzaList, List<Bebida> bebidaList) {
+        if (pedidoVM.getListaBebidaVMPedidoVM() != null) {
+            percorreListaBebidaVMToEntity(pedidoVM, bebidaList);
+        }
+        if (pedidoVM.getListaPizzaVMPedidoVM() != null) {
+            percorreListaPizzaVMToEntity(pedidoVM, pizzaList);
         }
     }
 
@@ -70,20 +90,41 @@ public class PedidoVMAdapter {
         try {
             pedidoVM.setIdPedidoVM(pedido.getIdPedido());
             pedidoVM.setStatusPedidoVM(pedido.getStatusPedido());
-            percorreListaPizzaEntityToVM(pedido, pizzaVMList);
-            percorreListaBebidaEntityToVM(pedido, bebidaVMList);
+            validaIsNullEntityToVM(pedido, pizzaVMList, bebidaVMList);
             pedidoVM.setListaPizzaVMPedidoVM(pizzaVMList);
             pedidoVM.setListaBebidaVMPedidoVM(bebidaVMList);
             pedidoVM.setHorarioPedidoVM(pedido.getHorarioPedido());
             pedidoVM.setHorarioEstimadoPedidoVM(pedido.getHorarioEstimadoPedido());
             pedidoVM.setPrecoPedidoVM(pedido.getPrecoPedido());
             pedidoVM.setComentarioPedidoVM(pedido.getComentarioPedido());
-            pedidoVM.setNomeAtendenteVM(AtendenteVMAdapter.entityToViewModel(pedido.getAtendenteResponsavelPedido()));
-            pedidoVM.setNomeCozinheiroVM(CozinheiroVMAdapter.entityToViewModel(pedido.getCozinheiroResponsavelPedido()));
+            validateCozinheiroIsNullEntityToVM(pedido, pedidoVM);
+            validateAtendenteIsNullEntityToVM(pedido, pedidoVM);
             return pedidoVM;
         } catch (Exception e) {
             ConfigUtils.logger.warning("Error ao fazer adapter de Pedido para PedidoViewModel");
             throw new PedidoException(ErrorType.VALIDATIONS, "Adapter entityToViewModel Pedido is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private static void validateAtendenteIsNullEntityToVM(Pedido pedido, PedidoVM pedidoVM) throws AtendenteException {
+        if (pedido.getAtendenteResponsavelPedido() != null) {
+            pedidoVM.setNomeAtendenteVM(AtendenteVMAdapter.entityToViewModel(pedido.getAtendenteResponsavelPedido()));
+        }
+    }
+
+    private static void validateCozinheiroIsNullEntityToVM(Pedido pedido, PedidoVM pedidoVM) throws CozinheiroException {
+        if (pedido.getCozinheiroResponsavelPedido() != null) {
+            pedidoVM.setNomeCozinheiroVM(CozinheiroVMAdapter.entityToViewModel(pedido.getCozinheiroResponsavelPedido()));
+        }
+    }
+
+    private static void validaIsNullEntityToVM(Pedido pedido, List<PizzaVM> pizzaVMList, List<BebidaVM> bebidaVMList) {
+        if (pedido.getListaPizzaPedido() != null) {
+            percorreListaPizzaEntityToVM(pedido, pizzaVMList);
+        }
+
+        if (pedido.getListaBebidaPedido() != null) {
+            percorreListaBebidaEntityToVM(pedido, bebidaVMList);
         }
     }
 

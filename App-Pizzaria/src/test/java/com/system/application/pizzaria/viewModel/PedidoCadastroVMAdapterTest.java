@@ -12,7 +12,7 @@ import com.system.application.pizzaria.viewmodel.BebidaVM;
 import com.system.application.pizzaria.viewmodel.IngredienteVM;
 import com.system.application.pizzaria.viewmodel.cadastro.PedidoCadastroVM;
 import com.system.application.pizzaria.viewmodel.PizzaVM;
-import com.system.application.pizzaria.viewmodel.adapter.cadastro.PedidoCadastroVMAdapter;
+import com.system.application.pizzaria.viewmodel.adapter.forms.PedidoCadastroVMAdapter;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

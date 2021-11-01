@@ -2,12 +2,10 @@ package com.system.application.pizzaria.external.database;
 
 import com.system.application.pizzaria.entity.Pedido;
 import com.system.application.pizzaria.entity.enums.ErrorType;
-import com.system.application.pizzaria.exception.ClienteException;
 import com.system.application.pizzaria.exception.PedidoException;
 import com.system.application.pizzaria.external.PedidoPersistenceDataBase;
 import com.system.application.pizzaria.external.database.entity.PedidoModel;
-import com.system.application.pizzaria.external.database.entity.adapter.PedidoCadastroModelAdapter;
-import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
+import com.system.application.pizzaria.external.database.entity.adapter.cadastro.PedidoCadastroModelAdapter;
 import com.system.application.pizzaria.external.database.entity.adapter.PedidoModelAdapter;
 import com.system.application.pizzaria.external.database.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +22,13 @@ public class PedidoPersistenceDataBaseImpl implements PedidoPersistenceDataBase 
     private PedidoRepository pedidoRepository;
 
     @Override
-    public List<Pedido> getAllPedidos() {
-        List<PedidoModel> pedidoModelList = pedidoRepository.findAll();
-        return PedidoModelAdapter.modelListToEntityList(pedidoModelList);
+    public List<Pedido> getAllPedidos() throws PedidoException {
+        try{
+            List<PedidoModel> pedidoModelList = pedidoRepository.findAll();
+            return PedidoModelAdapter.modelListToEntityList(pedidoModelList);
+        }catch (Exception e){
+            throw new PedidoException(ErrorType.DATA_BASE_NOT_FOUND, "Erro em Trazer todos os Pedidos", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
