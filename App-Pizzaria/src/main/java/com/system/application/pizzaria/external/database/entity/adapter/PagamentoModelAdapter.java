@@ -1,14 +1,8 @@
 package com.system.application.pizzaria.external.database.entity.adapter;
 
-import com.system.application.pizzaria.entity.Endereco;
-import com.system.application.pizzaria.entity.Ingrediente;
 import com.system.application.pizzaria.entity.Pagamento;
 import com.system.application.pizzaria.entity.enums.ErrorType;
-import com.system.application.pizzaria.exception.EnderecoException;
-import com.system.application.pizzaria.exception.IngredienteException;
 import com.system.application.pizzaria.exception.PagamentoException;
-import com.system.application.pizzaria.external.database.entity.EnderecoModel;
-import com.system.application.pizzaria.external.database.entity.IngredienteModel;
 import com.system.application.pizzaria.external.database.entity.PagamentoModel;
 import com.system.application.pizzaria.util.ConfigUtils;
 import org.springframework.http.HttpStatus;
@@ -26,47 +20,34 @@ public class PagamentoModelAdapter {
             pagamento.setSalarioPagamento(pagamentoModel.getSalarioPagamentoModel());
             return pagamento;
         } catch (Exception e) {
-            ConfigUtils.logger.warning("Error ao fazer adapter de IngredienteModel para Ingrediente");
-            throw new PagamentoException(ErrorType.VALIDATIONS, "Adapter modelToEntity Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            ConfigUtils.logger.warning("Error ao fazer adapter de PagamentoModel para Pagamento");
+            throw new PagamentoException(ErrorType.VALIDATIONS, "Adapter modelToEntity Pagamento is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public static IngredienteModel entityToModel(Ingrediente ingrediente) throws IngredienteException {
+    public static PagamentoModel entityToModel(Pagamento pagamento) throws PagamentoException {
         try {
-            IngredienteModel ingredienteModel = new IngredienteModel();
-            ingredienteModel.setIdIngredienteModel(ingrediente.getIdIngrediente());
-            ingredienteModel.setNomeIngredienteModel(ingrediente.getNomeIngrediente());
-            ingredienteModel.setQuantidadeIngredienteModel(ingrediente.getQuantidadeIngrediente());
-            ingredienteModel.setPrecoIngredienteModel(ingrediente.getPrecoIngrediente());
-            return ingredienteModel;
+            PagamentoModel pagamentoModel = new PagamentoModel();
+            pagamentoModel.setIdPagamentoModel(pagamento.getIdPagamento());
+            pagamentoModel.setFuncionarioPagamentoModel(pagamento.getFuncionarioPagamento());
+            pagamentoModel.setSalarioPagamentoModel(pagamento.getSalarioPagamento());
+            return pagamentoModel;
         } catch (Exception e) {
-            ConfigUtils.logger.warning("Error ao fazer adapter de Ingrediente para IngredienteModel");
-            throw new IngredienteException(ErrorType.VALIDATIONS, "Adapter entityToModel Ingrediente is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
+            ConfigUtils.logger.warning("Error ao fazer adapter de Pagamento para PagamentoModel");
+            throw new PagamentoException(ErrorType.VALIDATIONS, "Adapter entityToModel Pagamento is Null", new Date(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public static List<Ingrediente> modelListToEntityList(List<IngredienteModel> ingredienteModelList) {
-        List<Ingrediente> ingredienteList = new ArrayList<>();
-        ingredienteModelList.forEach(ingrediente -> {
+    public static List<Pagamento> modelListToEntityList(List<PagamentoModel> pagamentoModelList) {
+        List<Pagamento> pagamentoList = new ArrayList<>();
+        pagamentoModelList.forEach(pagamento -> {
             try {
-                ingredienteList.add(modelToEntity(ingrediente));
-            } catch (IngredienteException e) {
+                pagamentoList.add(modelToEntity(pagamento));
+            } catch (PagamentoException e) {
                 e.printStackTrace();
             }
         });
-        return ingredienteList;
-    }
-
-    public static List<EnderecoModel> entityListToModelList(List<Endereco> enderecoList) {
-        List<EnderecoModel> enderecoModelList = new ArrayList<>();
-        enderecoList.forEach(endereco -> {
-            try {
-                enderecoModelList.add(entityToModel(endereco));
-            } catch (EnderecoException e) {
-                e.printStackTrace();
-            }
-        });
-        return enderecoModelList;
+        return pagamentoList;
     }
 
 }

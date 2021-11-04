@@ -12,8 +12,8 @@ import java.util.List;
 @EqualsAndHashCode
 public class AdministradorVM extends FuncionarioVM {
 
-    private Integer idAdminitradorVM;
+    private Integer idAdministradorVM;
     private StatusPedido statusPedidoAdministrador;
-    private List<PagamentoVM> listaPagamentoAdministradorVM;
+    private List<PagamentoVM> listaPagamentoVMAdministradorVM;
 
 }

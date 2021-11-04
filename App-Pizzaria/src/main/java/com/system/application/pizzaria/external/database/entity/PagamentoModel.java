@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -23,7 +24,7 @@ public class PagamentoModel {
     private String funcionarioPagamentoModel;
 
     @Column(name = "SALARIOS", nullable = false, columnDefinition = "DOUBLE")
-    private Double salarioPagamentoModel;
+    private BigDecimal salarioPagamentoModel;
 
     @ManyToOne
     private AdministradorModel administradorModel;
